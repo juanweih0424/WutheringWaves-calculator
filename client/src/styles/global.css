@@ -1,18 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-    --color-bg: #E0E0E0;
-    --color-text: #FFFFFF
+    --color-bg: #FAF9EE;
+    --color-text : #1D1616;
+    --color-img: 0;
+    --color-hover:#D3DAD9;
+    --color-text-hover: #44444E;
 }
 
 [data-theme="dark"] {
     --color-bg : #37353E;
-    --color-text : #0F0E0E;
+    --color-text: #FFFFFF;
+    --color-img: 100;
+    --color-hover:#44444E;
+    --color-text-hover:#D3DAD9;
 }
 
 html {
-    @apply bg-[var(--color-bg)];
+    @apply bg-[var(--color-bg)] text-[var(--color-text)];
     color-scheme: light;
+    font-family: 'Roboto', 'Sansation', sans-serif;
 }
 
 html[data-theme] {
