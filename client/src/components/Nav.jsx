@@ -4,7 +4,7 @@ import ThemeSwitcher from "../components/ThemeSwitcher"
 import Toggle from "./Toggle";
 import Header from "./Header";
 
-export default function Nav() {
+export default function Nav({onSelect, activePage}) {
 
   return (
     <nav className="
@@ -13,7 +13,7 @@ export default function Nav() {
       border-b border-[var(--color-bg)]
       shadow-sm">
       <div className="w-full h-10 md:h-12 xl:h-15 flex items-center justify-between">
-        <Header />
+        <Header onSelect={onSelect} activePage={activePage} />
         <div className="flex items-center gap-1 md:gap-2">
           <Toggle />
           <ThemeSwitcher />

@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-    --color-bg: #FAF9EE;
+    --color-bg: #FFFFFF;
     --color-text : #1D1616;
     --color-img: 0;
     --color-hover:#D3DAD9;
     --color-text-hover: #44444E;
+    --color-highlight: #FF9A00
 }
 
 [data-theme="dark"] {
@@ -14,6 +15,7 @@
     --color-img: 100;
     --color-hover:#44444E;
     --color-text-hover:#D3DAD9;
+    --color-highlight: #FFD93D
 }
 
 html {

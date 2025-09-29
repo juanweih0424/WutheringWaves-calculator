@@ -6,10 +6,10 @@ import resonator from "../assets/images/ui/resonator.png"
 import forte from "../assets/images/ui/Icon_Forte.webp"
 import chain from "../assets/images/ui/chain.png"
 
-export default function Header() {
+export default function Header({ onSelect = () => {}, activePage }) {
   return (
     <div className='flex h-full md:justify-start md:items-center'>
-        <button className="cursor-pointer h-full p-1 hover:bg-[var(--color-hover)] border-0 border-solid rounded-full">
+        <button onClick={() => onSelect("resonator")} className="cursor-pointer h-full p-1 hover:bg-[var(--color-hover)] border-0 border-solid rounded-full">
             <img
             src={resonator}
             title="Resonator"
@@ -17,7 +17,7 @@ export default function Header() {
             hover:scale-[1.1] transition-transform duration-150 "
             />
         </button>
-        <button className="cursor-pointer h-full p-2 hover:bg-[var(--color-hover)] border-0 border-solid rounded-full">
+        <button onClick={() => onSelect("weapon")} className="cursor-pointer h-full p-2 hover:bg-[var(--color-hover)] border-0 border-solid rounded-full">
             <img
             src={weapon}
             title="Weapon"
@@ -49,7 +49,7 @@ export default function Header() {
             hover:scale-[1.1] transition-transform duration-150"
             />
         </button>
-        <button className="cursor-pointer h-full p-1 hover:bg-[var(--color-hover)] border-0 border-solid rounded-full">
+        <button className="cursor-pointer h-full pr-0.5 pb-0.75 hover:bg-[var(--color-hover)] border-0 border-solid rounded-full">
             <img
             src={chain}
             title="Resonator Chain"
