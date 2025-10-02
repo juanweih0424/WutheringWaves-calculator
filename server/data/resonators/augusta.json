@@ -1,0 +1,177 @@
+{
+    "id":25,
+    "name":"Augusta",
+    "element": "Electro",
+    "weapon": "Broadblade",
+    "rarity":5,
+    "stats":{
+        "hp":{
+            "base":824,
+            "max":10300
+        },
+        "atk":{
+            "base":37,
+            "max":463
+        },
+        "def":{
+            "base":91,
+            "max":1112
+        },
+        "cd":1.5,
+        "cr":0.05,
+        "er":1
+    },
+    "basic": {
+    "name": "Normal Attack: Hunter's Path",
+    "detail": {
+        "Stage 1 DMG": {
+            "base": 0.2890,
+            "max": 0.5746,
+            "type": "baDmg"
+        },
+        "Stage 2 DMG": {
+            "base": 0.674,
+            "max": 1.34,
+            "type": "baDmg"
+        },
+        "Stage 3 DMG": {
+            "base": 0.99,
+            "max": 1.9683,
+            "type": "baDmg"
+        },
+        "Stage 4 DMG": {
+            "base": 0.9753,
+            "max": 1.9389,
+            "type": "baDmg"
+        },
+
+        "Heavy Attack: Steelclash DMG": {
+            "base": 0.7002,
+            "max": 1.3917,
+            "type": "haDmg"
+        },
+
+        "Mid-air Attack DMG": {
+            "base": 0.6,
+            "max": 1.193,
+            "type": "baDmg"
+        },
+
+        "Dodge Counter DMG": {
+            "base": 0.674,
+            "max": 1.34,
+            "type": "baDmg"
+        },
+        "Mid-air Dodge Counter DMG": {
+            "base": 0.6,
+            "max": 1.193,
+            "type": "baDmg"
+        },
+
+        "Heavy Attack - Thunderoar: Backstep DMG": {
+            "base": 0.2700,
+            "max": 0.5368,
+            "type": "haDmg"
+        },
+        "Heavy Attack - Thunderoar: Spinslash DMG": {
+            "base": 2.1384,
+            "max": 4.2156,
+            "type": "haDmg"
+        },
+        "Heavy Attack - Thunderoar: Uppercut DMG": {
+            "base": 1.8,
+            "max": 3.5786,
+            "type": "haDmg"
+        },
+
+        "Dodge Counter - Heavy Attack: Steelclash DMG": {
+            "base": 0.7002,
+            "max": 1.3917,
+            "type": "haDmg"
+        },
+        "Dodge Counter - Thunderoar: Backstep DMG": {
+            "base": 0.2700,
+            "max": 0.5368,
+            "type": "haDmg"
+        }
+        }
+    },
+    "minor":[
+        {"atk": 0.12},
+        {"cr":0.08}
+    ],
+    "skill":{
+        "name":"Resonance Skill: Warrior's Blade",
+        "detail":{
+            "Warrior's Blade DMG":{
+                "base":3.3,
+                "max":6.561,
+                "type":"skill"
+            }
+        }
+    },
+    "forte": {
+    "name": "Forte Circuit: Call Me By the Sun",
+    "detail": {
+        "Resonance Skill - Undying Sunlight: Strike DMG": {
+        "base": 1.40,
+        "max": 2.7834,
+        "type": "skill"
+        },
+        "Resonance Skill - Undying Sunlight: Leap DMG": {
+        "base": 1.40,
+        "max": 2.7835,
+        "type": "skill"
+        },
+        "Resonance Skill - Undying Sunlight: Plunge DMG": {
+        "base": 4.355,
+        "max": 8.6583,
+        "type": "haDmg"
+        },
+        "Mid-air Dodge Counter - Undying Sunlight: Strike DMG": {
+        "base": 1.40,
+        "max": 2.7834,
+        "type": "skill"
+        }
+    }
+    },
+    "ult": {
+        "name": "Resonance Liberation: Sunward Conquest",
+        "detail": {
+            "Resonance Liberation - Sword of Eternal Oath DMG": {
+                "base": 3.6085,
+                "max": 9.05,
+                "type": "haDmg"
+            },
+            "Sublime is the Sun - Sunborne DMG": {
+                "base": 0.6,
+                "max": 1.1929,
+                "type": "haDmg"
+            },
+            "Sublime is the Sun - Everbright Protector DMG": {
+                "base": 6.0,
+                "max": 11.9293,
+                "type": "haDmg"
+            }
+        }
+    },
+    "intro": {
+        "name": "Intro Skill: Stride of Goldenflare",
+        "detail": {
+            "Stride of Goldenflare DMG": {
+            "base": 1.0,
+            "max": 1.9882,
+            "type": "intro"
+            }
+        }
+    },
+    "self_buff":[
+        {"name": "Crown of Wills",
+        "description":"Each stack grants 15% Electro DMG Bonus, up to 1 stack. When {Resonance Liberation - Sublime is the Sun: Everbright Protector} ends, all stacks of Crown of Wills are removed.",
+        "stack":true,
+        "maxStacks": 1,
+        "valuePerStack":0.15,
+        "type":"electro"}
+    ]
+
+}

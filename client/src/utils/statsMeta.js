@@ -1,5 +1,5 @@
 export const statsMeta = [
-  { key: "atk",     label: "Attack",                         fmt: v => v },
+  { key: "atk",     label: "Attack",                         fmt: v => `${v.toFixed(0)}` },
   { key: "hp",      label: "HP",                             fmt: v => v.toLocaleString()},
   { key: "def",     label: "Defense",                        fmt: v => v },
   { key: "cr",      label: "Crit Rate",                      fmt: v => `${v.toFixed(1)}%` },

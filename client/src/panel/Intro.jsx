@@ -4,31 +4,29 @@ import { useEffectiveStats } from "../hooks/useEffectiveStats";
 import { talentMv, finalHit } from "../utils/dmg"; 
 import {useEnemy} from "../context/EnemyContext"
 
-export default function Basic() {
+export default function Intro() {
   const totals = useEffectiveStats();              
-  const { current, basic } = useResonator();       
+  const { current, intro } = useResonator();       
 
   const elementKey = (current?.element ?? "").toLowerCase();
   const {enemylvl, enemyres} = useEnemy();
   const applies = (scope, rowType) =>
   scope && (scope === "all" || scope === rowType);
-
   const rows = useMemo(() => {
     if (!current || !totals) return [];    
-    const detail = current?.basic?.detail || {};
+    const detail = current?.intro?.detail || {};
     return Object.entries(detail).map(([label, row]) => {
-      const mv = talentMv(1, 10, row.base, row.max, basic); 
-    
+      const mv = talentMv(1, 10, row.base, row.max, intro); 
       const defIgnore = applies(totals.defIgnoreScope, row.type)
       ? (totals.defIgnore ?? 0)
       : 0;
       const allAmp = totals.allAmp;
       const elementBonus = (totals[elementKey] ?? 0) / 100;
-      const skillBonus = (totals[row.type] ?? 0) / 100;       
+      const skillBonus = (totals[row.type] ?? 0) / 100;        
       const critRate = (totals.cr ?? 0) / 100;                
-      const critDmgMult = (totals.cd ?? 0) / 100;  
+      const critDmgMult = (totals.cd ?? 0) / 100;
       const enemyLevel = enemylvl;
-      const resistance = enemyres / 100;        
+      const resistance = enemyres / 100;            
       const { nonCrit, avg, crit } = finalHit({
         atk: totals.atk,            
         mv,
@@ -54,10 +52,11 @@ export default function Basic() {
         crit,
       };
     });
-  }, [current?.id, current?.basic?.detail, totals, basic, elementKey, enemylvl, enemyres]);
+  }, [current?.id, current?.intro?.detail, totals, intro, elementKey,enemylvl,enemyres]);
+
   return current ? (
     <div className="p-4 grid gap-2 border-0 shadow-xl">
-      <h2 className="text-lg font-bold">{current.basic?.name ?? "Basic Attack"}</h2>
+      <h2 className="text-lg font-bold">{current.intro?.name ?? "Intro Skill"}</h2>
       {(rows ?? []).map((r) => (
         <div
           key={r.key}

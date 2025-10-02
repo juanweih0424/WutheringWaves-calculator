@@ -6,7 +6,9 @@ import fourstars from "../assets/images/ui/Icon_4_Stars.webp"
 import fivestars from "../assets/images/ui/Icon_5_Stars.webp"
 import { useResonator } from "../context/ResonatorContext";
 import Slider from '../components/Slider.jsx'
-
+import MinorButtons from '../components/MinorButtons.jsx'
+import CharBuffStack from '../components/CharBuffStack.jsx'
+import { useEffectiveStats } from '../hooks/useEffectiveStats.js'
 
 const elementColors = {
   Aero: "#22c55e",  
@@ -18,7 +20,11 @@ const elementColors = {
 };
 
 export default function Resonator() {
-  const { resonators, loading, error, current, setCurrent,level,setLevel, chain, setChain,basic,setBasic,ult,setUlt, skill, setSkill, forte,setForte, intro,setIntro } = useResonator();
+  const { resonators, loading, error, current, setCurrent
+    ,level,setLevel,basic,setBasic,ult,setUlt, 
+    skill, setSkill, forte,setForte, intro,setIntro,
+    minor1, setMinor1,
+    minor2, setMinor2} = useResonator();
   const [isOpen, setIsOpen] = useState(false);
 
   const handlePick = (r) => {
@@ -35,7 +41,6 @@ export default function Resonator() {
       avatar: getCharacterImageUrl(current.id),
     };
   }, [current]);
-
 
 
   return (
@@ -74,16 +79,6 @@ export default function Resonator() {
           onChange={setLevel}
           min={1}
           max={90}
-          step={1}
-          elementColor={elementColors[current.element]}
-          className=""
-        />
-        <Slider
-          label="Resonance Chain"
-          value={chain}
-          onChange={setChain}
-          min={0}
-          max={6}
           step={1}
           elementColor={elementColors[current.element]}
           className=""
@@ -147,6 +142,8 @@ export default function Resonator() {
           className=""
         />
       </div>) : (null)}
+        <MinorButtons/>
+        <CharBuffStack/>
         <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
           <DialogBackdrop className="fixed inset-0 bg-black/30" />
           <div className="fixed inset-0 flex items-center justify-center p-4">

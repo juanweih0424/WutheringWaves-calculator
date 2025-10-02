@@ -1,0 +1,190 @@
+[
+    {
+        "name": "Moongazer's Sigil",
+        "substat":"cr",
+        "subval": {
+            "base": 0.08,
+            "max": 0.36
+        },
+        "atk":{
+            "base":40,
+            "max":500
+        },
+        "icon":"moongazer-s-sigil",
+        "weapon":"Gauntlet",
+        "passive": {
+            "name": "Plenilune Radiance",
+            "description":"Increases ATK by {atkPct}%. Casting Intro Skill or Resonance Liberation increases Resonance Liberation DMG by {ult}% for 15s. Obtaining Shield allows Resonance Liberation DMG to ignore {defIgnorePerStack}% of the target's DEF for 7s, stacking up to 5 times. This effect is triggered once every 0.5s. Upon casting Intro Skill, this effect reaches max stacks immediately, lasting for 3s.",
+            "ranks":[
+                {"atkPct":0.12, "ult": 0.2, "defIgnorePerStack":0.072},
+                {"atkPct":0.15, "ult": 0.25, "defIgnorePerStack":0.084},
+                {"atkPct":0.18, "ult": 0.3, "defIgnorePerStack":0.096},
+                {"atkPct":0.21, "ult": 0.35, "defIgnorePerStack":0.108},
+                {"atkPct":0.24, "ult": 0.40, "defIgnorePerStack":0.12}
+            ],
+            "defIgnoreScope": "ult",
+            "stack":true    
+        }
+    },
+    {
+        "name": "Thunderflare Dominion",
+        "substat":"cr",
+        "subval": {
+            "base": 0.027,
+            "max": 0.1215
+        },
+        "atk":{
+            "base":54,
+            "max":675
+        },
+        "icon":"thunderflare-dominion",
+        "weapon":"Broadblade",
+
+        "passive": {
+            "name": "Thunderblaze Eminence",
+            "description":"Increases ATK by {atkPct}%. Casting Intro Skill or Resonance Skill increases Heavy Attack DMG by {haDmg}% for 15s. Obtaining Shield allows Heavy Attack DMG to ignore {defIgnorePerStack}% of the target's DEF for 7s, stacking up to 5 times (triggers once every 0.5s).",
+            "ranks":[
+                {"atkPct":0.12, "haDmg": 0.2, "defIgnorePerStack":0.072},
+                {"atkPct":0.15, "haDmg": 0.25, "defIgnorePerStack":0.084},
+                {"atkPct":0.18, "haDmg": 0.3, "defIgnorePerStack":0.096},
+                {"atkPct":0.21, "haDmg": 0.35, "defIgnorePerStack":0.108},
+                {"atkPct":0.24, "haDmg": 0.40, "defIgnorePerStack":0.12}
+            ],
+            "defIgnoreScope": "haDmg",    
+            "stack":true
+        }
+    },
+    {
+        "name":"Verity's handle",
+        "icon": "verity-s-handle",
+        "substat":"cr",
+        "subval":{
+            "base":0.054,
+            "max":0.243
+        },
+        "atk":{
+            "base":47,
+            "max":587.5
+        },
+        "weapon":"Gauntlet",
+        "passive":{
+            "name":"Ad Veritatem",
+            "description":"Gain {allAtr}% Attribute DMG Bonus. When using Resonance Liberation, the wielder gains {ult}% Resonance Liberation DMG Bonus for 8s. This effect can be extended by 5s each time Resonance Skills are cast, up to 3 times.",
+            "stack":false,
+            "ranks": [
+                {"allAtr":0.12, "ult":0.48},
+                {"allAtr":0.15, "ult":0.60},
+                {"allAtr":0.18, "ult":0.72},
+                {"allAtr":0.21, "ult":0.84},
+                {"allAtr":0.24, "ult":0.96}
+            ]
+        }
+    },
+    {
+        "name":"Abyss Surges",
+        "icon": "abyss-surges",
+        "substat":"atk",
+        "subval":{
+            "base":0.081,
+            "max":0.3645
+        },
+        "atk":{
+            "base":47,
+            "max":587.5
+        },
+        "weapon":"Gauntlet",
+        "passive":{
+            "name":"Stormy Resolution",
+            "description":"Increases Energy Regen by {er}%. When hitting a target with Resonance Skill, increases Basic Attack DMG Bonus by {baDmg}%, lasting for 8s. When hitting a target with Basic Attacks, increases Resonance Skill DMG Bonus by {skill}%, lasting for 8s.",
+            "stack":false,
+            "ranks": [
+                {"er":0.128, "baDmg":0.1, "skill": 0.1},
+                {"er":0.16, "baDmg":0.125, "skill": 0.125},
+                {"er":0.192, "baDmg":0.15, "skill": 0.15},
+                {"er":0.224, "baDmg":0.175, "skill": 0.175},
+                {"er":0.256, "baDmg":0.2, "skill": 0.2}
+            ]
+        }
+    },
+    {
+        "name":"Tragicomedy",
+        "icon": "tragicomedy",
+        "substat":"cr",
+        "subval":{
+            "base":0.054,
+            "max":0.243
+        },
+        "atk":{
+            "base":47,
+            "max":587.5
+        },
+        "weapon":"Gauntlet",
+        "passive":{
+            "name":"Fool's Warble",
+            "description":"Increases ATK by {atkPct}%. Every time Basic Attack or Intro Skill is cast, Heavy Attack DMG Bonus increases by {haDmg}% for 3s.",
+            "stack":false,
+            "ranks": [
+                {"atkPct":0.12, "haDmg":0.48},
+                {"atkPct":0.15, "haDmg":0.60},
+                {"atkPct":0.18, "haDmg":0.72},
+                {"atkPct":0.21, "haDmg":0.84},
+                {"atkPct":0.24, "haDmg":0.96}
+            ]
+        }
+    },
+    {
+        "name":"Blazing Justice",
+        "icon": "blazing-justice",
+        "substat":"cd",
+        "subval":{
+            "base":0.081,
+            "max":0.3645
+        },
+        "atk":{
+            "base":47,
+            "max":587.5
+        },
+        "weapon":"Broadblade",
+        "passive":{
+            "name":"Stormy Resolution",
+            "description":"Increases ATK by {atkPct}%. Casting Basic Attack grants the following effects: Dealing damage ignores {defIgnore}% of the target's DEF and Amplifies Spectro Frazzle DMG dealt by {frazzle}% for 6s. Retriggering the effect resets its duration.",
+            "stack":false,
+            "defIgnoreScope":"all",
+            "ranks": [
+                {"atkPct":0.12, "defIgnore":0.08, "frazzle":0.5},
+                {"atkPct":0.15, "defIgnore":0.1, "frazzle":0.625},
+                {"atkPct":0.18, "defIgnore":0.12, "frazzle":0.75},
+                {"atkPct":0.21, "defIgnore":0.14, "frazzle":0.875},
+                {"atkPct":0.24, "defIgnore":0.16, "frazzle":1}
+            ]
+        }
+    },
+    {
+        "name":"Lustrous Razor",
+        "icon": "lustrous-razor",
+        "substat":"atk",
+        "subval":{
+            "base":0.108,
+            "max":0.486
+        },
+        "atk":{
+            "base":47,
+            "max":587.5
+        },
+        "weapon":"Broadblade",
+        "passive":{
+            "name":"Stormy Resolution",
+            "description":"Increases Energy Regen by {er}%. When Resonance Skill is cast, Resonance Liberation DMG Bonus is increased by {ult}%(Stack is capped at 3), stacking up to 3 times. This effect lasts for 12s.",
+            "stack":true,
+            "ranks": [
+                {"er":0.128,"ult":0.21},
+                {"er":0.16,"ult":0.2625},
+                {"er":0.192,"ult":0.315},
+                {"er":0.224,"ult":0.37},
+                {"er":0.256,"ult":0.42}
+            ]
+        }
+    }
+
+
+]

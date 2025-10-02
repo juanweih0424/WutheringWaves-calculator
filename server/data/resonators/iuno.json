@@ -1,0 +1,232 @@
+{
+    "id":39,
+    "name": "Iuno",
+    "rarity": 5,
+    "element":"Aero",
+    "weapon":"Gauntlet",
+    "stats":{
+        "hp":{
+            "base":842,
+            "max":10525
+        },
+        "atk":{
+            "base":36,
+            "max":450
+        },
+        "def":{
+            "base":92,
+            "max":1124
+        },
+        "cd":1.5,
+        "cr":0.05,
+        "er":1
+    },
+    "basic":{
+        "name": "Normal Attack: Moon Steps",
+        "detail":{
+            "Moonring - Basic Attack 1 DMG":{
+                "base":0.441,
+                "max": 0.8768,
+                "type":"baDmg"
+            },
+            "Moonring - Basic Attack 2 DMG":{
+                "base":0.7021,
+                "max": 1.3958,
+                "type":"baDmg"               
+            },
+            "Moonring - Basic Attack 3 DMG":{
+                "base":1.3412,
+                "max": 2.6661,
+                "type":"baDmg"              
+            },
+            "Mid-air Attack": {
+                "base":0.54,
+                "max":1.0736,
+                "type":"baDmg"
+            },
+            "Moonring - Dodge Counter":{
+                "base":1.2512,
+                "max":2.4873,
+                "type":"baDmg"
+            },
+            "Moonbow - Basic Attack 1 DMG":{
+                "base":0.636,
+                "max":1.2645,
+                "type":"ult"
+            },
+            "Moonbow - Basic Attack 2 DMG":{
+                "base":0.84,
+                "max":1.6701,
+                "type":"ult"
+            },
+            "Moonbow - Basic Attack 3 DMG":{
+                "base":1.68,
+                "max":3.3402,
+                "type":"ult"
+            },
+            "Moonbow - Dodge Counter DMG":{
+                "base":1.56,
+                "max":3.1017,
+                "type":"ult"
+            }
+        }
+    },
+    "skill":{
+        "name":"Resonance Skill: Foresight Fugue",
+        "detail":{
+            "Pulse of Origins DMG":{
+                "base":1.3131,
+                "max":2.6107,
+                "type":"skill"
+            },
+            "Closing Refrain DMG":{
+                "base": 2.4483,
+                "max": 6.89577,
+                "type": "skill"
+            },
+            "Unfinished Refrain DMG":{
+                "base": 2.4483,
+                "max": 6.89577,
+                "type": "skill"
+            },
+            "Arc Beyond the Edge DMG":{
+                "base": 2.211,
+                "max": 4.3958,
+                "type": "ult"
+            }
+        }
+    },
+    "forte":{
+        "name": "Forte Circuit: Ebb and Flow",
+        "detail": {
+            "Flux - Moonbow DMG":{
+                "base": 1.26,
+                "max": 2.5051,
+                "type": "ult"
+            },
+            "Flux - Moonring DMG":{
+                "base": 1.5932,
+                "max": 3.1672,
+                "type": "ult"
+            },
+            "Enhanced Moonbow - Basic Attack 1 DMG":{
+                "base": 1.036,
+                "max": 2.0597,
+                "type": "ult" 
+            },
+            "Enhanced Moonbow - Basic Attack 2 DMG":{
+                "base": 1.44,
+                "max": 2.8629,
+                "type": "ult"
+            },
+            "Enhanced Moonbow - Basic Attack 3 DMG":{
+                "base": 2.68,
+                "max": 5.3282,
+                "type": "ult"
+            },
+            "Enhanced Moonbow - Dodge Counter DMG":{
+                "base": 2.36,
+                "max": 4.692,
+                "type": "ult"
+            },
+            "Enhanced Arc Beyond the Edge DMG":{
+                "base": 3.211,
+                "max": 6.3838,
+                "type": "ult"
+            },
+            "Absolute Fullness DMG":{
+                "base": 0.8,
+                "max": 1.5905,
+                "type": "ult"
+            }
+        }
+    },
+    "ult":{
+        "name":"Resonance Liberation: Beneath Lunar Tides",
+        "detail":{
+            "Beneath Lunar Tides DMG":{
+                "base":5.5,
+                "max":10.9346,
+                "type":"ult"
+            }
+        }
+    },
+    "intro":{
+        "name":"Intro Skill: Illuminated Manifestation",
+        "detail":{
+            "Illuminated Manifestation DMG":{
+                "base": 0.8,
+                "max": 1.6452, 
+                "type": "intro"
+            }
+        }
+    },
+    "outro":{
+        "name":"Outro Skill: From Gloom to Gleam",
+        "detail":{
+            "From Gloom to Gleam DMG":{
+                "base": 1,
+                "max": 1, 
+                "type": "outro"
+            }
+        }
+    },
+    "minor":[
+        {"atk": 0.12},
+        {"cr":0.08}
+    ],
+    "self_buff":[
+        {"name": "Blessing of the Wan Light",
+        "description":"Gaining a Shield inside the {Full Moon Domain domain} grants 1 stack of {Blessing of the Wan Light}. This effect can be triggered once every 0.5s. The receiving Resonator gains 4% all DMG Amplification for 10s, stacking up to 10 times. Gaining new stacks resets the duration. This effect ends early if the receiving Resonator is switched off the field.",
+        "stack":true,
+        "maxStacks": 10,
+        "valuePerStack":0.04,
+        "type":"allAmp"}
+    ],
+    "chain":[
+        {
+            "name":"Wax or Wane, All Gild the Bough",
+            "label":"none",
+            "type":"atkPct",
+            "value":0.4,
+            "description": "When Iuno is in the {Lunar Cycle} state, her ATK is increased by 40%. When casting {Resonance Skill - Arc Beyond the Edge} and {Heavy Attack - Absolute Fullness}, Iuno is immune to interruption."
+        },
+        {
+            "name":"Day or Night, Let This Be Eternal",
+            "label":"none",
+            "value":0.4,
+            "type":"allAmp",
+            "description":"Resonators with 10 stacks of {Blessing of the Wan Light} gain an additional 40% DMG Amplification."
+        },
+        {
+            "name":"I Drink Deep of Their Forgetting",
+            "label":["Moonbow - Basic Attack 1 DMG", "Moonbow - Basic Attack 2 DMG", "Moonbow - Basic Attack 3 DMG","Moonbow - Dodge Counter DMG","Arc Beyond the Edge DMG", "Enhanced Moonbow - Basic Attack 1 DMG", "Enhanced Moonbow - Basic Attack 2 DMG", "Enhanced Moonbow - Basic Attack 3 DMG","Enhanced Moonbow - Dodge Counter DMG","Enhanced Arc Beyond the Edge DMG"],
+            "value":0.65,
+            "type":"scalingBouns",
+            "description":"When Iuno is in {Lunar Cycle}, DMG dealt by {Moonbow - Basic Attack, Resonance Skill - Arc Beyond the Edge, Moonbow - Dodge Counter} is Amplified by 65%. Casting {Resonance Skill - Arc Beyond the Edge} no longer resets the attack cycle of {Moonbow - Basic Attack}."
+        },
+        {
+            "buff":false,
+            "name": "Rainy Season Dwell in My Eyes",
+            "label": "none",
+            "description": "Casting {Heavy Attack - Absolute Fullness} grants a Shield equal to 160% of Iuno's ATK to all Resonators in the team for 30s, which cannot be passed on to the incoming Resonator."
+        },
+        {
+            "name": "A Thousand Futile Glimpses",
+            "label":"none",
+            "value":0.2,
+            "type": "ult",
+            "description":"Iuno gains 20% Resonance Liberation DMG Bonus."
+        },
+        {
+            "name": "I Am the Constant in the Chaos",
+            "label": "Heavy Attack - Absolute Fullness",
+            "type": "scalingBouns",
+            "value": 16.0,
+            "description": "The DMG Multiplier of {Heavy Attack - Absolute Fullness} is increased by 1600%. Upon casting this skill, Iuno re-enters {Lunar Cycle - New Moon}, gains 100 points of {Sentience}, and resets all the cooldown of {Resonance Skill - Arc Beyond the Edge}."
+        }
+    ]
+
+    
+
+}

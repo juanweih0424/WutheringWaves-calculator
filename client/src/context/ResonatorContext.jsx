@@ -9,14 +9,21 @@ export function ResonatorProvider({ children }) {
     const [error, setError] = useState(null);
     const [current, setCurrent] = useState(null);
 
+    /* Slider control */ 
     const [level, setLevel] = useState(90);
-    const [chain, setChain] = useState(0);
     const [basic, setBasic] = useState(10);
     const [skill, setSkill] = useState(10);
     const [forte, setForte] = useState(10);
     const [ult, setUlt] = useState(10);
     const [intro, setIntro] = useState(10);
 
+    /* Minor */
+    const [minor1, setMinor1] = useState(null);
+    const [minor2, setMinor2] = useState(null);
+
+    const [passStacks, setPassStacks] = useState(0);
+
+    /* Fetching character data */ 
     useEffect(() => {
         const ctrl = new AbortController();
         (async () => {
@@ -37,17 +44,38 @@ export function ResonatorProvider({ children }) {
         return () => ctrl.abort();
     }, []); 
 
+    /* Reset slider after character change */ 
     useEffect(() => {
         if (!current) return;
         setLevel(90);
-        setChain(0);
         setBasic(10);
         setSkill(10);
         setForte(10);
         setUlt(10);
         setIntro(10);
-    }, [current?.id]);
+    }, [current]);
 
+    const charPassive = useMemo(() => {
+        if (!current?.self_buff?.length) return null;
+
+        const p = current.self_buff[0]; // first passive only for now
+
+        const stackable = p.stack === true;
+
+        return {
+            name: p.name,
+            description: p.description,
+            buffType: p.type,
+            stackable,
+            maxStacks: stackable ? p.maxStacks : null,
+            valuePerStack: stackable ? (p.valuePerStack ?? 0) : null,
+            value: stackable
+                ? (passStacks ?? 0) * (p.valuePerStack ?? 0)
+                : (p.value ?? 0),
+            };
+    }, [current, passStacks]);
+
+    /* Compute base stats */ 
     const currentStats = useMemo(() => {
         if (!current?.stats) return null;
         const s = current.stats;
@@ -55,44 +83,32 @@ export function ResonatorProvider({ children }) {
         hp: Math.round(statsAtLevel(level, s.hp.base, s.hp.max)),
         def: Math.round(statsAtLevel(level, s.def.base, s.def.max)),
         atk: Math.round(statsAtLevel(level, s.atk.base, s.atk.max)),
-
         cr: s.cr * 100,
         cd: s.cd * 100,
         er: s.er * 100,
-        baDmg: 0,
-        haDmg: 0,
-        skill: 0,
-        ult: 0,
-
-        glacio:0,
-        fusion: 0,
-        electro: 0,
-        aero: 0,
-        spectro:0,
-        havoc: 0,
-        heal: 0,
         };
-    }, [current?.id, current?.stats, level]);
+    }, [current,level]);
 
     const value = useMemo(() => ({
         resonators, loading, error,
         current, setCurrent,
 
         level, setLevel,
-        chain, setChain,
-
         basic, setBasic,
         skill, setSkill,
         forte, setForte,
         ult, setUlt,
         intro, setIntro,
-
-        currentStats, 
+        minor1, setMinor1,
+        minor2, setMinor2,
+        passStacks,setPassStacks, 
+        currentStats, charPassive
     }), [
         resonators, loading, error,
         current,
-        level, chain, basic, skill, forte, ult, intro,
+        level, basic, skill, forte, ult, intro,
         currentStats,
+        minor1, minor2, charPassive, passStacks
     ]);
 
   return <ResonatorContext.Provider value={value}>{children}</ResonatorContext.Provider>;

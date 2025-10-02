@@ -8,7 +8,7 @@ export default function Stats() {
   const { weaponStats } = useWeapon(); 
 
   if (!totals) return null;
-
+  
   return (
     <div className="p-4 flex flex-col">
       {statsMeta.map(({ key, label, fmt, isElement }) => {
