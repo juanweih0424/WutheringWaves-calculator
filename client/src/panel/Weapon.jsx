@@ -1,145 +1,167 @@
-import { useWeapon } from "../context/WeaponContext";
-import Slider from "../components/Slider";
-import { useState, useMemo } from "react";
-import { getWeaponImageUrl } from "../utils/weapon";
-import WeaponCard from "../components/WeaponCard"
-import { Description, Dialog, DialogBackdrop, DialogPanel, DialogTitle }  from '@headlessui/react'
-import { useEffectiveStats } from "../hooks/useEffectiveStats";
+import { useState,useMemo } from 'react'
+import { useWeapon } from '../context/WeaponContext'
+import { getWeaponImageUrl } from '../utils/weapon';
+import Slider from '../components/Slider';
+import WeaponModal from '../modals/WeaponModal';
+
+const SUB_LABEL = {
+    cr: "Crit. Rate",
+    cd: "Crit. Damage",
+    er: "Energy Regen",
+    atk: "ATK%",
+    hp: "HP%",
+    def: "DEF%"
+}
+
+const LABELS = {
+  atkPctTm: "Increases Party Members' ATK by ",
+  atkPct: "Increases ATK by ",
+  hpPct: "Increases HP by ",
+  baDmg: "Increases Basic Attack DMG by ",
+  baDmgStack: "Increases Basic Attack DMG by ",
+  haDmg: "Increases Heavy Attack DMG by ",
+  defIgnore: "Ignore Enemy Defense by ",
+  er:"Increases Energy Regen by ",
+  ult:"Increases Resonance Liberation DMG by",
+  allAtr: "Increases All Element Attribute DMG by",
+  skill: "Increases Resonance Skill DMG by",
+  fusion: "Increases Fusion DMG Bonus to all Resonators by",
+  frazzle:"Amplifies Spectro Frazzle DMG dealt by ",
+  echoDmg: "Increases Echo Skill DMG Amplification by ",
+  additionalAtk: "When the wielder is not on the field, increases their ATK by an additional",
+  frazzleTm: "Casting Outro Skill Amplifies the Spectro Frazzle DMG on targets around the active Resonator by",
+  havocShred: "Ignore Enemy Havoc RES by ",
+  allAmp: "the DMG taken by the target is Amplified by ",
+  aeroAmpTm:" Aero DMG dealt by nearby Resonators on the field is Amplified by",
+  cr:"Increases Crit Rate by",
+  aeroShred: "Ignore Enemy Aero RES by ",
+  aeroBouns : "Increase Aero Bouns by"
+}
+
+const formatSubVal = (type, v) => {
+  if (type in SUB_LABEL) return `${v.toFixed(2)}%`;
+  return String(v);
+}
 
 export default function Weapon() {
 
-  const {
-    weapons, loading, error,
-    currentWeapon, setCurrentWeapon,
-    weaponLevel, setWeaponLevel,
-    refine, setRefine, weaponPassive, stacks, setStacks,weaponStats
-  } = useWeapon();
+    const {currWeap, setCurrWeap, refineLvl, setRefineLvl,
+        passiveStack, setPassiveStack,
+        currWeapLvl, setCurrWeapLvl,
+        weaponStats, passiveStats, enabled, togglePassiveKey,weapons
+    } = useWeapon();
 
-  const [isOpen, setIsOpen] = useState(false);
+    const rank = currWeap?.passive?.ranks?.[refineLvl - 1] ?? {};
+    const keys = Object.keys(rank);
 
-  const handlePick = (r) => {
-    setCurrentWeapon(r);     
-    setIsOpen(false);   
-  };
-
-  const { avatar } = useMemo(() => {
-    if (!currentWeapon) return { avatar: null };
-
-    return {
-      avatar: getWeaponImageUrl(currentWeapon.icon),
+    // Handle click behavior in panel
+    const [isOpen,setIsOpen] = useState(false);
+    const handlePick = (r) => {
+        setCurrWeap(r);     
+        setIsOpen(false);   
     };
-  }, [currentWeapon]);
 
-  if (loading) return <div className="p-4">Loading weapons…</div>;
-  if (error) return <div className="p-4 text-red-500">{error}</div>;
-  
-  const subKeyLabels = {
-    atk: "ATK",
-    hp: "HP",
-    def: "DEF",
-    cr: "Crit. Rate",
-    cd: "Crit. Dmg",
-    er: "Energy Regen"
-  };
+    // UI 
+    const {weapon} = useMemo(()=> {
+        if (!currWeap) return {weapon:null}
+
+        return {
+            weapon:getWeaponImageUrl(currWeap.icon)
+        }
+    },[currWeap])
+
+
   return (
-    <div className="p-4 space-y-4">
-      <div className='flex justify-center items-center'>
-        <button onClick={() => setIsOpen(true)} className='w-35 h-35 border-1 rounded-full border-amber-400 cursor-pointer transition-transform hover:scale-110 duration-300 ease-in-out'>
-        {currentWeapon ? (
-            <img src={avatar} className="w-full h-full rounded-full" />
-          ) : (
-          <span>Select a Weapon</span>)}
-        </button>
-         {currentWeapon ? (
-            <div className='flex flex-col items-center h-full'>
-              <div className='flex flex-col items-center justify-between xl:min-w-md px-5 gap-2'>
-                <p className='text-xl font-semibold text-[var(--color-highlight)]'>{currentWeapon.name}</p>
-                <div className="flex justify-between w-full bg-gray-500/20 p-2 rounded-xl">
-                  <p>ATK </p>
-                  <p>{weaponStats.atk}</p>
+    <div className='pt-8 flex flex-col'>
+        <div className='flex justify-center'>
+            <button onClick={() => setIsOpen(true)} className='w-35 h-35 border-1 place-self-center rounded-full border-amber-400 cursor-pointer transition-transform hover:scale-110 duration-300 ease-in-out'>
+            {currWeap ? (
+                <img src={weapon} className="w-full h-full rounded-full" />
+            ) : (
+            <span>Select a weapon</span>)}
+            </button>
+            {currWeap ? (
+                <div className='flex flex-col items-center lg:min-w-md p-4'>
+                    <p className='text-xl font-semibold text-[var(--color-highlight)]'>{currWeap.name}</p>
+                    <div className='flex justify-between w-full p-4 border-0 shadow-md my-2 bg-gray-500/20 rounded-2xl'>
+                        <p>ATK</p>
+                        <p>{(weaponStats.weaponAtk).toFixed(1)}</p>
+                    </div>
+                    <div className='flex justify-between w-full p-4 border-0 shadow-md my-2 bg-gray-500/20 rounded-2xl'>
+                        <p>{SUB_LABEL[weaponStats.subValType]}</p>
+                        <p>{(weaponStats.subVal).toFixed(2)}</p>
+                    </div>
                 </div>
-                <div className="flex justify-between w-full bg-gray-500/20 p-2 rounded-xl">
-                  <p>{subKeyLabels[weaponStats.subKey]} </p>
-                  <p>{(weaponStats.subValue * 100).toFixed(2)}%</p>
-                </div>
-                
-              </div>
+            ): (null)}
+        </div>
+        {currWeap ? (
+            <div className='border-0 flex flex-col shadow-[0_4px_16px_rgba(0,0,0,0.15)] p-6 rounded-2xl mt-6 mx-4'>
+                <Slider
+                    label="Level"
+                    value={currWeapLvl}
+                    onChange={setCurrWeapLvl}
+                    min={1}
+                    max={90}
+                    step={1}
+                />
+                <Slider
+                    label="Refinement"
+                    value={refineLvl}
+                    onChange={setRefineLvl}
+                    min={1}
+                    max={5}
+                    step={1}
+                />
             </div>
-            ):(
-              null
-            )}       
-      </div>
-      {currentWeapon? (<div className='border-0 flex flex-col shadow-[0_4px_16px_rgba(0,0,0,0.15)] p-6 rounded-2xl mt-6 mx-4 '>
-        
-        <Slider
-          label="Level"
-          value={weaponLevel}
-          onChange={setWeaponLevel}
-          min={1}
-          max={90}
-          step={1}
-          className=""
-        />
-
-        <Slider
-          label="Refinement"
-          value={refine}
-          onChange={setRefine}
-          min={1}
-          max={5}
-          step={1}
-          className=""
-        />
-      </div>) : (null)}
-      { currentWeapon?.passive?.stack ? (<div className='border-0 flex flex-col shadow-[0_4px_16px_rgba(0,0,0,0.15)] p-6 rounded-2xl mt-6 mx-4 gap-2'>
-        <p className="font-semibold text-lg text-[var(--color-highlight)]">{weaponPassive.name}</p>
-        <p>{weaponPassive.description}</p>
-        {weaponPassive.stacksMax > 0 && (<div className="flex gap-2 items-center">
-          <label className="text-[var(--color-highlight)]">Stacks:</label>
-          <input
-          type="number"
-          min={0}
-          max={weaponPassive.stacksMax}
-          value={stacks}
-          onChange={(e) => setStacks(Number(e.target.value))}
-          className="w-12 h-10 rounded bg-black/10 p-1"
-        />
-          <p>Max Stacks: {weaponPassive.stacksMax}</p>
-        </div>)}
-      </div>) : (null)}
-
-      { currentWeapon?.passive && currentWeapon.passive.stack === false ? (<div className='border-0 flex flex-col shadow-[0_4px_16px_rgba(0,0,0,0.15)] p-6 rounded-2xl mt-6 mx-4 gap-2'>
-        <p className="font-semibold text-lg text-[var(--color-highlight)]">{weaponPassive.name}</p>
-        <p>{weaponPassive.description}</p>
-      </div>) : (null)}
-
-
-
-      <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
-          <DialogBackdrop className="fixed inset-0 bg-black/30" />
-          <div className="fixed inset-0 flex items-center justify-center p-4">
-            <DialogPanel
-              className="
-                relative
-                w-2/3
-                max-h-[85vh]
-                overflow-y-auto         
-                rounded-2xl bg-[var(--color-bg)] p-12
-                grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6
-              "
-            >
-              <button type="button" onClick={() => setIsOpen(false)} className="absolute top-3 right-3 rounded-full p-2 hover:bg-black/10 focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="size-6">                    
-                <path d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z" />
-                </svg>                 
-              </button>
-              {weapons.map((w) => (
-                 <WeaponCard key={w.slug ?? w.name} weapon={w} onSelect={() => handlePick(w)} />
-              ))}
-            </DialogPanel>
+        ) : (null)}
+        {currWeap? (
+            <div className='flex flex-col p-6 mx-4 border-1 shadow-lg my-4 rounded-2xl gap-2 border-gray-500/30'>
+                <p className='text-[var(--color-highlight)] font-bold text-lg'>{passiveStats.weapPassiveName}</p>
+                <div dangerouslySetInnerHTML={{ __html: passiveStats.weapPassiveDesc }} />
+            </div>
+        ):(null)}
+    <div className="grid grid-cols-2 gap-5 p-4">
+      {keys.map((k) => {
+        const isStackLine = passiveStats.stackScope === k;
+        const percent = (rank[k] * 100).toLocaleString(undefined, { maximumFractionDigits: 2 });
+        return (
+          <div key={k} className="rounded-xl border-1  p-4 shadow-xl border-gray-500/30">
+            <p className="text-md">
+              <span className="font-semibold">
+                {LABELS[k] ?? k}
+              </span>{" "}
+              <span className="text-[var(--color-highlight)]">{percent}%</span>
+            </p>
+            <div className="mt-2 flex items-center gap-4">
+              <label className="inline-flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={!!enabled[k]}
+                  onChange={() => togglePassiveKey(k)}
+                />
+                <span>Enabled?</span>
+              </label>
+              {isStackLine && passiveStats.hasStack && (
+                <div className="flex items-center gap-2">
+                  <span>Stacks</span>
+                  <input
+                    type="number"
+                    min={0}
+                    max={passiveStats.maxStack}
+                    value={passiveStack}
+                    onChange={(e) => setPassiveStack(Number(e.target.value || 0))}
+                    className="w-16 h-8 rounded bg-black/6 px-2"
+                    disabled={!enabled[k]}
+                  />
+                  <span className="text-xs opacity-80">(Max {passiveStats.maxStack})</span>
+                </div>
+              )}
+            </div>
           </div>
-        </Dialog>
+        );
+      })}
     </div>
-  );
-  
+        <WeaponModal open={isOpen} onClose={()=>setIsOpen(false)} onSelect={handlePick}/>
+    </div>
+  )
 }

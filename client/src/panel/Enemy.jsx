@@ -17,7 +17,6 @@ export default function Enemy() {
             onChange={setEnemylvl}
             value={enemylvl}
         />
-
         <Slider
             label="Enemy Resistance"
             min={0}

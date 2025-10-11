@@ -1,48 +1,81 @@
 import { useState,useEffect, useMemo } from 'react'
-import { Description, Dialog, DialogBackdrop, DialogPanel, DialogTitle }  from '@headlessui/react'
-import CharacterCard from "../components/CharacterCard.jsx"
 import { getCharacterElementUrl,getCharacterImageUrl,getCharacterWeaponUrl } from '../utils/character.js'
 import fourstars from "../assets/images/ui/Icon_4_Stars.webp"
 import fivestars from "../assets/images/ui/Icon_5_Stars.webp"
 import { useResonator } from "../context/ResonatorContext";
 import Slider from '../components/Slider.jsx'
-import MinorButtons from '../components/MinorButtons.jsx'
-import CharBuffStack from '../components/CharBuffStack.jsx'
-import { useEffectiveStats } from '../hooks/useEffectiveStats.js'
+import CharModal from '../modals/CharModal.jsx'
+import { tokenizeDescription } from '../utils/formatDescription.js';
+import ResonatorBuff from '../components/ResonatorBuff.jsx';
 
 const elementColors = {
   Aero: "#22c55e",  
   Glacio: "#3b82f6", 
-  Fusion: "#ef4444",  
+  Fusion: "#ed744d",  
   Electro: "#a855f7", 
   Spectro: "#facc15", 
-  Havoc: "#64748b",   
+  Havoc: "#94224a",   
 };
 
+const STAT_LABEL = {
+  atkPct: "ATK %",
+  hpPct: "HP %",
+  defPct: "DEF %",
+  cr: "Crit. Rate",
+  cd: "Crit. DMG"
+};
+
+const statTitle = (k) =>
+  `Stat Bonus: ${STAT_LABEL[k] ?? k}`;
+
+const statDesc = (k, v) => {
+  const asPct = (v * 100).toFixed(0);
+  switch (k) {
+    case "cr": return `Crit. Rate increased by ${asPct}%.`;
+    case "cd": return `Crit. DMG increased by ${asPct}%.`;
+    case "er": return `Energy Regen increased by ${asPct}%.`;
+    case "atkPct": return `ATK increased by ${asPct}%.`;
+    case "hpPct": return `HP increased by ${asPct}%.`;
+    case "defPct": return `DEF increased by ${asPct}%.`;
+    case "atk": return `ATK increased by ${v}.`;
+    case "hp":  return `HP increased by ${v}.`;
+    case "def": return `DEF increased by ${v}.`;
+    default:    return `Value: ${v}`;
+  }
+};
+
+
 export default function Resonator() {
-  const { resonators, loading, error, current, setCurrent
-    ,level,setLevel,basic,setBasic,ult,setUlt, 
-    skill, setSkill, forte,setForte, intro,setIntro,
-    minor1, setMinor1,
-    minor2, setMinor2} = useResonator();
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handlePick = (r) => {
-    setCurrent(r);     
-    setIsOpen(false);   
-  };
-
-  const { weapon, element, avatar } = useMemo(() => {
-    if (!current) return { weapon: null, element: null, avatar: null };
-
-    return {
-      weapon: getCharacterWeaponUrl(current.weapon),
-      element: getCharacterElementUrl(current.element),
-      avatar: getCharacterImageUrl(current.id),
+  
+    // Expose resonator
+    const {current,setCurrent,
+          level,setLevel,
+          basic,setBasic,
+          skill,setSkill,
+          intro,setIntro,
+          ult,setUlt,
+          forte,setForte,
+          minor, toggleMinor} = useResonator();
+    
+    // Handle click behavior in panel
+    const [isOpen,setIsOpen] = useState(false);
+    const handlePick = (r) => {
+      setCurrent(r);     
+      setIsOpen(false);   
     };
-  }, [current]);
 
+    // UI fetch 
+    const { weapon, element, avatar } = useMemo(() => {
+      if (!current) return { weapon: null, element: null, avatar: null };
 
+      return {
+        weapon: getCharacterWeaponUrl(current.weapon),
+        element: getCharacterElementUrl(current.element),
+        avatar: getCharacterImageUrl(current.id),
+      };
+    }, [current]);
+
+    
   return (
     <div className='pt-8 flex flex-col'>
       <div className='flex justify-center'>
@@ -56,9 +89,9 @@ export default function Resonator() {
             <div className='flex flex-col items-center'>
               <div className='flex items-center justify-between w-full px-5'>
                 <p className='text-xl font-semibold text-[var(--color-highlight)]'>{current.name}</p>
-                <div className='flex'>
+                <div className='flex items-center'>
                 <img src={element} className='size-12'/>
-                <img src={weapon} className='brightness-[var(--color-img)] size-11'/>
+                <img src={weapon} className='brightness-[var(--color-img)] size-10'/>
                 </div>
               </div>
               {current.rarity === 5 ? (
@@ -142,32 +175,45 @@ export default function Resonator() {
           className=""
         />
       </div>) : (null)}
-        <MinorButtons/>
-        <CharBuffStack/>
-        <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
-          <DialogBackdrop className="fixed inset-0 bg-black/30" />
-          <div className="fixed inset-0 flex items-center justify-center p-4">
-            <DialogPanel
-              className="
-                relative
-                w-2/3
-                max-h-[85vh]
-                overflow-y-auto         
-                rounded-2xl bg-[var(--color-bg)] p-12
-                grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6
-              "
-            >
-              <button type="button" onClick={() => setIsOpen(false)} className="absolute top-3 right-3 rounded-full p-2 hover:bg-black/10 focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="size-6">                    
-                <path d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z" />
-                </svg>                 
-              </button>
-              {resonators.map((r) => (
-                <CharacterCard key={r.id} resonator={r} onSelect={() => handlePick(r)} />
-              ))}
-            </DialogPanel>
-          </div>
-        </Dialog>
+      <div className="grid grid-cols-2 gap-4 mx-4 mt-4">
+        {Object.entries(minor).map(([key, { value, enable }]) => (
+          <div
+            key={key}
+            className="rounded-xl border-0 shadow-xl px-4 py-3 flex items-center justify-between hover:border-white/20 transition mb-4"
+          >
+            <div className="min-w-0">
+              <div className="flex items-center gap-2">
+                <h3 className="font-semibold tracking-tight">{statTitle(key)}</h3>
+              </div>
+              <p className="text-sm opacity-80 mt-0.5">
+                {statDesc(key, value)}
+              </p>
+            </div>
+      <label className="ml-6 inline-flex items-center cursor-pointer select-none">
+        <input
+          type="checkbox"
+          checked={enable}
+          onChange={() => toggleMinor(key)}
+          className="peer sr-only"
+        />
+        <span
+          className="
+            relative w-11 h-6 rounded-full bg-gray-500 transition-colors
+            after:content-[''] after:absolute after:top-0.5 after:left-0.5
+            after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow
+            after:transition-transform after:duration-200
+            peer-checked:bg-emerald-500/70 peer-checked:after:translate-x-5
+          "
+        />
+        <span className="ml-3 text-sm opacity-80 w-16 text-right">
+          {enable ? 'Enabled' : 'Disabled'}
+        </span>
+      </label>
+      </div>
+      ))}
+      </div>
+      <ResonatorBuff/>
+      <CharModal open={isOpen} onClose={()=>setIsOpen(false)} onSelect={handlePick}/>
     </div>
   )
 }

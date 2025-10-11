@@ -1,45 +1,49 @@
-import React from "react";
-import { statsMeta, getIconForStat } from "../utils/statsMeta";
-import { useEffectiveStats } from "../hooks/useEffectiveStats";
-import { useWeapon } from "../context/WeaponContext";
+import React, {useEffect} from 'react'
+import { useStats } from '../hooks/useStats'
+import { getIconForStat, statsMeta } from '../utils/statsMeta';
+import { useResonator } from '../context/ResonatorContext';
 
 export default function Stats() {
-  const totals = useEffectiveStats();
-  const { weaponStats } = useWeapon(); 
+    const s = useStats();
+    
+    const {current} = useResonator();
+    if (!s) return null;
 
-  if (!totals) return null;
-  
+
+    const values = {
+        atk: s.atk, hp: s.hp, def: s.def,
+        cr: s.cr, cd: s.cd, er: s.er,
+        baDmg: s.baDmg, haDmg: s.haDmg, skill: s.skill, ult: s.ult,
+        glacio: s.glacio, fusion: s.fusion, electro: s.electro,
+        spectro: s.spectro, havoc: s.havoc, aero: s.aero, heal: s.heal,
+        allAmp: s.allAmp, echoDmg: s.echoDmg, defIgnore: s.defIgnore, defIgnoreScope:s.defIgnoreScope, aeroShred: s.aeroShred, havocShred:s.havocShred
+    };
+
+
   return (
-    <div className="p-4 flex flex-col">
-      {statsMeta.map(({ key, label, fmt, isElement }) => {
-        if (!(key in totals)) return null;
-        const total = totals[key];
+    <div className='shadow-xl border-0 m-4 p-4 rounded-2xl'>
+        <p className='text-xl text-[var(--color-highlight)] font-semibold text-center mb-4'>{current.name} Main Stats</p>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+        {statsMeta.map(({ key, label, fmt, isElement }) => {
+            const raw = values[key];
+            const display = raw == null ? "—" : fmt(raw);
+            const icon = getIconForStat(key);
 
-        let bonusText = null;
-        if (weaponStats) {
-          if (key === "atk" && weaponStats.atk) {
-            bonusText = `+${weaponStats.atk.toLocaleString()}`;
-          } else if (["cr","cd","er"].includes(key) && weaponStats.subKey === key) {
-            bonusText = `+${(weaponStats.subValue * 100).toFixed(1)}%`;
-          }
-        }
-        return (
-          <div key={key} className="flex justify-between items-center odd:bg-[var(--color-hover)]/50 px-3 py-2 rounded-md">
-            <div className="flex gap-2 items-center">
-              <img src={getIconForStat(key)} className={`size-7 ${isElement ? "" : "brightness-[var(--color-img)]"}`} alt={label}/>
-              <p className="font-semibold text-lg">{label}</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <p className="font-semibold text-lg">{(fmt ?? (v => v))(total)}</p>
-              {bonusText && (
-                <span className="text-base font-medium text-emerald-600 bg-emerald-600/10 px-2 py-0.5 rounded">
-                  {bonusText}
-                </span>
-              )}
-            </div>
-          </div>
-        );
-      })}
+            const iconClass = [
+            "h-9 w-9 object-contain",
+            !isElement && "filter brightness-[var(--color-img)]"
+            ].filter(Boolean).join(" ");
+            return (
+                <div key={key} className="flex items-center gap-3 rounded-xl bg-gray-600/25 px-3 py-2">
+                    {icon && <img src={icon} alt="" className={iconClass} />}
+                    <div className="min-w-0">
+                    <div className="text-xs opacity-70 truncate lg:text-sm">{label}</div>
+                    <div className="font-semibold truncate">{display}</div>
+                    </div>
+                </div>
+            );
+        })}
+        </div>
     </div>
   );
 }

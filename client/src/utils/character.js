@@ -51,21 +51,3 @@ export const getCharacterElementUrl = (() => {
   };
 })();
 
-export const getCharacterInherentUrl = (() => {
-  const images = import.meta.glob("../assets/images/characters/characterAbility/*.webp", {
-    eager: true,
-    import: "default",
-  });
-
-  const map = {};
-  for (const path in images) {
-    const key = path.match(/\/([^/]+)\.webp$/)?.[1]; 
-    if (key) map[key.toLowerCase()] = images[path]; 
-  }
-
-  return (elementName) => {
-    if (!elementName) return null;
-    const slug = elementName.toString().trim().toLowerCase();
-    return map[slug] ?? null;
-  };
-})();

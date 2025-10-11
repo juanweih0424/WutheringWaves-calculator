@@ -3,11 +3,17 @@ import { statsAtLevel } from "../utils/formulas";
 
 const ResonatorContext = createContext(null);
 
-export function ResonatorProvider({ children }) {
-    const [resonators, setResonators] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [current, setCurrent] = useState(null);
+const CRIT_RATE = 5;
+const CRIT_DMG = 150;
+const ENERGY_REGEN = 100;
+
+export function ResonatorProvider({ items=[], children }) {
+    const [current, setCurrent] = useState(null)
+
+    // Initialize a character
+    useEffect(()=>{
+        setCurrent(items[1])
+    },[items])
 
     /* Slider control */ 
     const [level, setLevel] = useState(90);
@@ -17,34 +23,19 @@ export function ResonatorProvider({ children }) {
     const [ult, setUlt] = useState(10);
     const [intro, setIntro] = useState(10);
 
-    /* Minor */
-    const [minor1, setMinor1] = useState(null);
-    const [minor2, setMinor2] = useState(null);
-
-    const [passStacks, setPassStacks] = useState(0);
-
-    /* Fetching character data */ 
+    // enable inherent and minor forte
+    const [minor, setMinor] = useState({});
     useEffect(() => {
-        const ctrl = new AbortController();
-        (async () => {
-        try {
-            setLoading(true);
-            setError(null);
-            const res = await fetch("http://127.0.0.1:5000/v1/resonators", { signal: ctrl.signal });
-            if (!res.ok) throw new Error("Failed to fetch resonators");
-            const data = await res.json();
-            setResonators(data);
-            if (!current && data?.length) setCurrent(data[0]);
-        } catch (e) {
-            if (e.name !== "AbortError") setError(e.message);
-        } finally {
-            setLoading(false);
-        }
-        })();
-        return () => ctrl.abort();
-    }, []); 
+    if (!current) { setMinor({}); return; }
+    const next = Object.fromEntries(
+        Object.entries(current.minor ?? {}).map(([k, v]) => [k, { value: v, enable: false }])
+    );
+    setMinor(next); 
+    }, [current?.id]); 
 
-    /* Reset slider after character change */ 
+    const toggleMinor = (key) =>
+    setMinor(prev => ({ ...prev, [key]: { ...prev[key], enable: !prev[key].enable } }));
+
     useEffect(() => {
         if (!current) return;
         setLevel(90);
@@ -55,60 +46,100 @@ export function ResonatorProvider({ children }) {
         setIntro(10);
     }, [current]);
 
-    const charPassive = useMemo(() => {
-        if (!current?.self_buff?.length) return null;
+    // Compute base stats for current character
+    const charBaseStats = useMemo(() => {
+    if (!current?.stats) return null;
+    return {
+        charHp:  statsAtLevel(level, current.stats.hp.base,  current.stats.hp.max),
+        charDef: statsAtLevel(level, current.stats.def.base,  current.stats.def.max),
+        charAtk: statsAtLevel(level, current.stats.atk.base,  current.stats.atk.max),
+        critRate: CRIT_RATE,
+        critDmg:  CRIT_DMG,
+        energyRegen: ENERGY_REGEN,
+    };
+    }, [current, level]);
 
-        const p = current.self_buff[0]; // first passive only for now
+    // Character buff
+    const [enabledBuffs, setEnabledBuffs] = useState({});
+    const [buffStacks, setBuffStacks] = useState({});
+    useEffect(() => {
+        if (!current?.buff) { setEnabledBuffs({}); setBuffStacks({}); return; }
 
-        const stackable = p.stack === true;
+        const initEnabled = {};
+        const initStacks  = {};
 
-        return {
-            name: p.name,
-            description: p.description,
-            buffType: p.type,
-            stackable,
-            maxStacks: stackable ? p.maxStacks : null,
-            valuePerStack: stackable ? (p.valuePerStack ?? 0) : null,
-            value: stackable
-                ? (passStacks ?? 0) * (p.valuePerStack ?? 0)
-                : (p.value ?? 0),
-            };
-    }, [current, passStacks]);
+        for (const [name, data] of Object.entries(current.buff)) {
+            
+            initEnabled[name] = false;                 
+            initStacks[name]  = 0;                     
+        }
+        setEnabledBuffs(initEnabled);
+        setBuffStacks(initStacks);
+    }, [current?.id]);
 
-    /* Compute base stats */ 
-    const currentStats = useMemo(() => {
-        if (!current?.stats) return null;
-        const s = current.stats;
-        return {
-        hp: Math.round(statsAtLevel(level, s.hp.base, s.hp.max)),
-        def: Math.round(statsAtLevel(level, s.def.base, s.def.max)),
-        atk: Math.round(statsAtLevel(level, s.atk.base, s.atk.max)),
-        cr: s.cr * 100,
-        cd: s.cd * 100,
-        er: s.er * 100,
-        };
-    }, [current,level]);
+    function toggleBuff(name) {
+        setEnabledBuffs(prev => ({ ...prev, [name]: !prev[name] }));
+    }
+
+    const getMaxStacks = (name) =>
+        Math.max(
+            1,
+            ...((current?.buff?.[name]?.effects ?? [])
+                .filter(e => e.stack)
+                .map(e => e.maxStack ?? 1))
+    );
+
+    function setBuffStack(name, value) {
+        const max = getMaxStacks(name);
+        const n = Math.max(0, Math.min(max, Number(value) || 0));
+        setBuffStacks(prev => ({ ...prev, [name]: n }));
+    }
+
+    const trackEnable = useMemo(() => {
+        if (!current?.buff) return [];
+
+        const effects = [];
+
+        for (const [name, buff] of Object.entries(current.buff)) {
+            if (!enabledBuffs?.[name]) continue;
+
+            for (const e of (buff.effects ?? [])) {
+            const max = e.maxStack ?? 1;
+            const stacks = e.stack
+                ? Math.min(max, Math.max(0, buffStacks?.[name] ?? 0))
+                : 1;
+
+            effects.push({
+                source: name,
+                stat: e.stat,                
+                amount: (e.value ?? 0) * stacks,
+                stacks,
+                appliesTo: e.tags ?? null,
+            });
+            }
+        }
+
+        return effects;
+    }, [current?.id, enabledBuffs, buffStacks]);
+
 
     const value = useMemo(() => ({
-        resonators, loading, error,
-        current, setCurrent,
-
-        level, setLevel,
-        basic, setBasic,
-        skill, setSkill,
-        forte, setForte,
-        ult, setUlt,
-        intro, setIntro,
-        minor1, setMinor1,
-        minor2, setMinor2,
-        passStacks,setPassStacks, 
-        currentStats, charPassive
-    }), [
-        resonators, loading, error,
-        current,
-        level, basic, skill, forte, ult, intro,
-        currentStats,
-        minor1, minor2, charPassive, passStacks
+        items,
+        current,setCurrent,
+        level,setLevel,
+        basic,setBasic,
+        skill,setSkill,
+        intro,setIntro,
+        ult,setUlt,
+        forte,setForte,
+        charBaseStats,
+        minor,setMinor, toggleMinor,
+        enabledBuffs,
+        toggleBuff,
+        buffStacks,
+        setBuffStack,
+        trackEnable
+    }), [items, current,level,basic,skill,intro,ult,forte, charBaseStats, minor, enabledBuffs, buffStacks, trackEnable
     ]);
 
   return <ResonatorContext.Provider value={value}>{children}</ResonatorContext.Provider>;
