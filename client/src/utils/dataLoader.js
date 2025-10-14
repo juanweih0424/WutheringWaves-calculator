@@ -4,6 +4,8 @@ const BASE_URL = "http://127.0.0.1:5000/v1"
 // Cache
 let _cacheResonators = null;
 let _cacheWeapons = null;
+let _cacheEcho = null;
+let _cacheEchoSet = null;
 
 export async function fetchAllResonators(signal) {
   if (_cacheResonators) return _cacheResonators;
@@ -20,5 +22,24 @@ export async function fetchAllWeapons(signal) {
   if (!res.ok) throw new Error(`Failed to fetch weapons (${res.status})`);
   const json = await res.json();
   _cacheWeapons = json;
+  return json;
+}
+
+export async function fetchAllEcho(signal) {
+  if (_cacheEcho) return _cacheEcho;
+  const res = await fetch(`${BASE_URL}/echoes`, { signal });
+  if (!res.ok) throw new Error(`Failed to fetch echo (${res.status})`);
+  const json = await res.json();
+  _cacheEcho = json;
+  return json;
+}
+
+
+export async function fetchAllSet(signal) {
+  if (_cacheEchoSet) return _cacheEchoSet;
+  const res = await fetch(`${BASE_URL}/echoset`, { signal });
+  if (!res.ok) throw new Error(`Failed to fetch echo (${res.status})`);
+  const json = await res.json();
+  _cacheEchoSet = json;
   return json;
 }

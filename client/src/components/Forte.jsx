@@ -15,7 +15,8 @@ export default function Forte() {
   const defIgnoreScope = stats?.defIgnoreScope ?? null; // "all" | "baDmg" | "skill" | "ult"
   const defIgnoreGlobal = Number(stats?.defIgnore ?? 0);
 
-  let atk = stats?.atk;
+  const baseAtk = stats?.baseAtk;
+  
   let shred = 0;
   if (current?.element === "Aero"){
     shred = stats.aeroShred;
@@ -64,7 +65,7 @@ export default function Forte() {
       let addAllAmp = 0;      // extra amplification
       let addTypeBonus = 0;   // extra type DMG bonus (only if matches row.type)
       let addElemBonus = 0;   // extra element DMG bonus (only if matches element)
-
+      let atkPct = stats?.atkPct;
       for (const eff of pool) {
         if (!matches(eff.appliesTo, row)) continue;
         const amt = Number(eff.amount ?? eff.value ?? 0);
@@ -99,7 +100,7 @@ export default function Forte() {
             break;
 
           case "atkPct":
-            atk = stats.baseAtk * (1+stats.atkPct+amt);
+            atkPct += amt;
 
           default:
             break;
@@ -108,15 +109,15 @@ export default function Forte() {
 
       const baseMv = row.mv;
       const mv = baseMv * (1 + scalingBonus);
-
+      const atk = baseAtk * (1+atkPct)
       // add global defIgnore if scope matches
       if (defIgnoreScope === "all" || defIgnoreScope === row.type) {
         rowDefIgnore += defIgnoreGlobal;
       }
-
       return {
         ...row,
         baseMv,
+        atk,
         mv,
         scalingBonus,
         defIgnore: rowDefIgnore,
@@ -143,9 +144,9 @@ export default function Forte() {
     return rowsWithMods.map((row) => {
       const tbKey = typeBonusKey(row.type);
       const baseTypeBonus = Number(tbKey ? stats?.[tbKey] ?? 0 : 0);
-
+      
       const { nonCrit, crit, avg } = finalHit({
-        atk: atk,
+        atk: row.atk,
         mv: Number(row.mv ?? 0),
         scalingBonus: 0, // already baked into mv
         elementBonus: baseElemBonus + (row.addElemBonus ?? 0),

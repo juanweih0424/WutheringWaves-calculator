@@ -26,7 +26,7 @@ export default function Header({ onSelect = () => {}, activePage }) {
             hover:scale-[1.1] transition-transform duration-150"
             />
         </button>
-        <button className="cursor-pointer h-full p-2 hover:bg-[var(--color-hover)] border-0 border-solid rounded-full">
+        <button onClick={() => onSelect("echo")} className="cursor-pointer h-full p-2 hover:bg-[var(--color-hover)] border-0 border-solid rounded-full">
             <img
             src={echo}
             title="Echo"

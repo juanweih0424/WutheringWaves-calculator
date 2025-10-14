@@ -9,21 +9,21 @@ export default function Basic() {
 
   const scopedChain = stats?.scopedChain ?? [];
   const scopedInherent = stats?.scopedInherent ?? [];
-  const title = current?.basic?.name ?? "Basic Attack";
+  const title = current?.basic?.name ?? "Forte Circuit";
   const ability = current?.basic?.detail ?? null;
 
   const defIgnoreScope = stats?.defIgnoreScope ?? null; // "all" | "baDmg" | "skill" | "ult"
   const defIgnoreGlobal = Number(stats?.defIgnore ?? 0);
 
-  let atk = stats?.atk;
-
-  let shred = 0;
+  const baseAtk = stats?.baseAtk;
   
+  let shred = 0;
   if (current?.element === "Aero"){
     shred = stats.aeroShred;
   } else if (current?.element === "Havoc"){
     shred = stats.havocShred;
   }
+
   // ---------- Build base rows ----------
   const rows = useMemo(() => {
     if (!ability) return [];
@@ -65,7 +65,7 @@ export default function Basic() {
       let addAllAmp = 0;      // extra amplification
       let addTypeBonus = 0;   // extra type DMG bonus (only if matches row.type)
       let addElemBonus = 0;   // extra element DMG bonus (only if matches element)
-
+      let atkPct = stats?.atkPct;
       for (const eff of pool) {
         if (!matches(eff.appliesTo, row)) continue;
         const amt = Number(eff.amount ?? eff.value ?? 0);
@@ -100,7 +100,7 @@ export default function Basic() {
             break;
 
           case "atkPct":
-            atk = stats.baseAtk * (1+stats.atkPct+amt);
+            atkPct += amt;
 
           default:
             break;
@@ -109,15 +109,15 @@ export default function Basic() {
 
       const baseMv = row.mv;
       const mv = baseMv * (1 + scalingBonus);
-
+      const atk = baseAtk * (1+atkPct)
       // add global defIgnore if scope matches
       if (defIgnoreScope === "all" || defIgnoreScope === row.type) {
         rowDefIgnore += defIgnoreGlobal;
       }
-
       return {
         ...row,
         baseMv,
+        atk,
         mv,
         scalingBonus,
         defIgnore: rowDefIgnore,
@@ -126,9 +126,8 @@ export default function Basic() {
         addElemBonus,
       };
     });
-  }, [rows, stats, scopedInherent, scopedChain, defIgnoreGlobal, defIgnoreScope, current?.element]);
+  }, [rows, stats, scopedInherent, scopedChain, defIgnoreGlobal, defIgnoreScope, current?.element, ]);
 
-  
   const typeBonusKey = (t) =>
     t === "baDmg" ? "baDmg" :
     t === "haDmg" ? "haDmg" :
@@ -141,13 +140,13 @@ export default function Basic() {
 
     const elementKey = (current.element ?? "").toLowerCase();
     const baseElemBonus = Number(stats?.[elementKey] ?? 0);
-
+    
     return rowsWithMods.map((row) => {
       const tbKey = typeBonusKey(row.type);
       const baseTypeBonus = Number(tbKey ? stats?.[tbKey] ?? 0 : 0);
-
+      
       const { nonCrit, crit, avg } = finalHit({
-        atk: atk,
+        atk: row.atk,
         mv: Number(row.mv ?? 0),
         scalingBonus: 0, // already baked into mv
         elementBonus: baseElemBonus + (row.addElemBonus ?? 0),

@@ -15,8 +15,8 @@ export default function Outro() {
   const defIgnoreScope = stats?.defIgnoreScope ?? null; // "all" | "baDmg" | "skill" | "ult"
   const defIgnoreGlobal = Number(stats?.defIgnore ?? 0);
 
-  let atk = stats?.atk;
-
+  const baseAtk = stats?.baseAtk;
+  
   let shred = 0;
   if (current?.element === "Aero"){
     shred = stats.aeroShred;
@@ -64,32 +64,25 @@ export default function Outro() {
       let addAllAmp = 0;      // extra amplification
       let addTypeBonus = 0;   // extra type DMG bonus (only if matches row.type)
       let addElemBonus = 0;   // extra element DMG bonus (only if matches element)
-
+      let scalingBonusAdd = 0 // Multiplier increase instaed of scaling
+      let atkPct = stats?.atkPct;
       for (const eff of pool) {
+        if (!matches(eff.appliesTo, row)) continue;
         const amt = Number(eff.amount ?? eff.value ?? 0);
-
-        // ---- defIgnore: handle both row-scoped and global-scoped effects
-        if (eff.stat === "defIgnore") {
-          if (eff.appliesTo != null) {
-            // regular row-scoped defIgnore
-            if (matches(eff.appliesTo, row)) rowDefIgnore += amt;
-          } else {
-            // no appliesTo provided -> use per-effect scope (or fallback)
-            const effScope = eff.scope || defIgnoreScope || "all";
-            if (effScope === "all" || effScope === row.type) rowDefIgnore += amt;
-          }
-          continue;
-        }
 
         switch (eff.stat) {
           // MV scaling
           case "skillBouns":
             scalingBonus += amt;
             break;
-
+          case "defIgnore": rowDefIgnore += amt; break;
           // Amplification
           case "allAmp":
             addAllAmp += amt;
+            break;
+
+          case "skillBounsAdd":
+            scalingBonusAdd += amt;
             break;
 
           // Type DMG bonus (apply only if matches row.type)
@@ -111,7 +104,7 @@ export default function Outro() {
             break;
 
           case "atkPct":
-            atk = stats.baseAtk * (1+stats.atkPct+amt);
+            atkPct += amt;
 
           default:
             break;
@@ -119,16 +112,18 @@ export default function Outro() {
       }
 
       const baseMv = row.mv;
-      const mv = baseMv * (1 + scalingBonus);
-
+      const mv = baseMv * (1 + scalingBonus) + scalingBonusAdd;
+      const atk = baseAtk * (1+atkPct)
       // add global defIgnore if scope matches
       if (defIgnoreScope === "all" || defIgnoreScope === row.type) {
         rowDefIgnore += defIgnoreGlobal;
       }
 
+
       return {
         ...row,
         baseMv,
+        atk,
         mv,
         scalingBonus,
         defIgnore: rowDefIgnore,
@@ -157,7 +152,7 @@ export default function Outro() {
       const baseTypeBonus = Number(tbKey ? stats?.[tbKey] ?? 0 : 0);
 
       const { nonCrit, crit, avg } = finalHit({
-        atk: atk,
+        atk: row.atk,
         mv: Number(row.mv ?? 0),
         scalingBonus: 0, // already baked into mv
         elementBonus: baseElemBonus + (row.addElemBonus ?? 0),

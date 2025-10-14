@@ -34,7 +34,7 @@ export default function Stats() {
             !isElement && "filter brightness-[var(--color-img)]"
             ].filter(Boolean).join(" ");
             return (
-                <div key={key} className="flex items-center gap-3 rounded-xl bg-gray-600/25 px-3 py-2">
+                <div key={key} className="flex items-center gap-3 rounded-xl bg-gray-500/15 px-3 py-2">
                     {icon && <img src={icon} alt="" className={iconClass} />}
                     <div className="min-w-0">
                     <div className="text-xs opacity-70 truncate lg:text-sm">{label}</div>

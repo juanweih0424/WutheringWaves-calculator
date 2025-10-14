@@ -9,14 +9,13 @@ export default function Ult() {
 
   const scopedChain = stats?.scopedChain ?? [];
   const scopedInherent = stats?.scopedInherent ?? [];
-  const title = current?.ult?.name ?? "Resonance Liberation";
+  const title = current?.ult?.name ?? "Forte Circuit";
   const ability = current?.ult?.detail ?? null;
 
   const defIgnoreScope = stats?.defIgnoreScope ?? null; // "all" | "baDmg" | "skill" | "ult"
   const defIgnoreGlobal = Number(stats?.defIgnore ?? 0);
 
-
-  let atk = stats?.atk;
+  const baseAtk = stats?.baseAtk;
   let shred = 0;
   if (current?.element === "Aero"){
     shred = stats.aeroShred;
@@ -65,7 +64,7 @@ export default function Ult() {
       let addAllAmp = 0;      // extra amplification
       let addTypeBonus = 0;   // extra type DMG bonus (only if matches row.type)
       let addElemBonus = 0;   // extra element DMG bonus (only if matches element)
-
+      let atkPct = stats?.atkPct;
       for (const eff of pool) {
         if (!matches(eff.appliesTo, row)) continue;
         const amt = Number(eff.amount ?? eff.value ?? 0);
@@ -100,7 +99,7 @@ export default function Ult() {
             break;
 
           case "atkPct":
-            atk = stats.baseAtk * (1+stats.atkPct+amt);
+            atkPct += amt;
 
           default:
             break;
@@ -109,15 +108,15 @@ export default function Ult() {
 
       const baseMv = row.mv;
       const mv = baseMv * (1 + scalingBonus);
-
+      const atk = baseAtk * (1+atkPct)
       // add global defIgnore if scope matches
       if (defIgnoreScope === "all" || defIgnoreScope === row.type) {
         rowDefIgnore += defIgnoreGlobal;
       }
-
       return {
         ...row,
         baseMv,
+        atk,
         mv,
         scalingBonus,
         defIgnore: rowDefIgnore,
@@ -126,7 +125,7 @@ export default function Ult() {
         addElemBonus,
       };
     });
-  }, [rows, stats, scopedInherent, scopedChain, defIgnoreGlobal, defIgnoreScope, current?.element]);
+  }, [rows, stats, scopedInherent, scopedChain, defIgnoreGlobal, defIgnoreScope, current?.element, ]);
 
   const typeBonusKey = (t) =>
     t === "baDmg" ? "baDmg" :
@@ -140,13 +139,12 @@ export default function Ult() {
 
     const elementKey = (current.element ?? "").toLowerCase();
     const baseElemBonus = Number(stats?.[elementKey] ?? 0);
-
+    
     return rowsWithMods.map((row) => {
       const tbKey = typeBonusKey(row.type);
       const baseTypeBonus = Number(tbKey ? stats?.[tbKey] ?? 0 : 0);
-      
       const { nonCrit, crit, avg } = finalHit({
-        atk: atk,
+        atk: row.atk,
         mv: Number(row.mv ?? 0),
         scalingBonus: 0, // already baked into mv
         elementBonus: baseElemBonus + (row.addElemBonus ?? 0),
@@ -170,7 +168,7 @@ export default function Ult() {
 
   if (!stats || !current || !ability) return null;
 
-  
+
   return (
     <div className="m-4 p-4 grid gap-2 border-0 shadow-2xl rounded-2xl">
       <p className="text-xl font-bold tracking-tight text-center text-[var(--color-highlight)]">
@@ -178,7 +176,7 @@ export default function Ult() {
       </p>
 
       {computedRows.map((r) => (
-        <div key={r.label} className="flex items-center justify-between px-3 py-2">
+        <div key={r.label} className="flex items-center justify-between px-3 py-2 odd:bg-gray-500/10">
           <div>
             <p className="font-medium">{r.label}</p>
             <div className="text-xs opacity-70">MV {(r.mv * 100).toFixed(2)}%</div>
