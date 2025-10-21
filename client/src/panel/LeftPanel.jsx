@@ -3,6 +3,7 @@ import Enemy from "../panel/Enemy.jsx"
 import Weapon from "./Weapon.jsx";
 import Chain from "./Chain.jsx";
 import Echo from "./Echo.jsx";
+import Team from "./Team.jsx"
 
 export default function LeftPanel({ activePanel }) {
   return (
@@ -12,6 +13,7 @@ export default function LeftPanel({ activePanel }) {
       {activePanel === "echo" && <Echo/>}
       {activePanel === "chain" && <Chain />}
       {activePanel === "enemy" && <Enemy />}
+      {activePanel === "team" && <Team />}
     </aside>
   );
 }

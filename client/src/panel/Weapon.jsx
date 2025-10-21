@@ -35,7 +35,8 @@ const LABELS = {
   aeroAmpTm:" Aero DMG dealt by nearby Resonators on the field is Amplified by",
   cr:"Increases Crit Rate by",
   aeroShred: "Ignore Enemy Aero RES by ",
-  aeroBouns : "Increase Aero Bouns by"
+  aeroBouns : "Increase Aero Bouns by",
+  echoDmgAmp: "Amplifies Echo DMG by "
 }
 
 const formatSubVal = (type, v) => {

@@ -8,6 +8,8 @@ APP_ROOT = Path(__file__).parent
 
 DATA_DIR = APP_ROOT / "data" / "resonators"
 WEAPONS_FILE = APP_ROOT / "data" / "weapons" / "weapon.json"
+ECHO_FILE = APP_ROOT / "data" / "echos" / "echo.json"
+ECHOSET_FILE = APP_ROOT / "data" / "echos" / "echoset.json"
 
 app = Flask(__name__)
 app.json.sort_keys = False  
@@ -31,6 +33,53 @@ def load_all_weapons() -> list[dict]:
         if "slug" not in w or not w["slug"]:
             w["slug"] = slugify(w.get("name", "weapon"))
     return items
+
+def load_all_echoes() -> list[dict]:
+    """Load the echo catalog (array) from ECHO_FILE."""
+    if not ECHO_FILE.exists():
+        return []
+    try:
+        with ECHO_FILE.open("r", encoding="utf-8") as f:
+            items = json.load(f) or []
+    except Exception:
+        return []
+    # normalize: add slug if missing
+    for e in items:
+        if "slug" not in e or not e.get("slug"):
+            e["slug"] = slugify(e.get("name", f"echo-{e.get('id', '')}"))
+    return items
+
+def load_all_echo_sets() -> list[dict]:
+    """Load all echo sets (array) from ECHOSET_FILE."""
+    if not ECHOSET_FILE.exists():
+        return []
+    try:
+        with ECHOSET_FILE.open("r", encoding="utf-8") as f:
+            items = json.load(f) or []
+    except Exception:
+        return []
+    # normalize: add slug if missing
+    for s in items:
+        if "slug" not in s or not s.get("slug"):
+            s["slug"] = slugify(s.get("name", f"set-{s.get('id', '')}"))
+    return items
+
+
+@app.get("/v1/echoes")
+def list_echoes():
+    """List all echoes from the echo catalog."""
+    items = load_all_echoes()
+    resp = make_response(jsonify(items), 200)
+    resp.headers["Cache-Control"] = "public, max-age=3600"
+    return resp
+
+@app.get("/v1/echoset")
+def list_echo_sets():
+    """List all echo sets (set bonuses)."""
+    items = load_all_echo_sets()
+    resp = make_response(jsonify(items), 200)
+    resp.headers["Cache-Control"] = "public, max-age=3600"
+    return resp
 
 @app.get("/v1/weapons")
 def list_weapons():
@@ -60,13 +109,16 @@ def list_resonators():
         "basic":obj.get("basic"), "skill":obj.get("skill"), "ult":obj.get("ult"),
         "intro":obj.get("intro"),"outro":obj.get("outro"),"forte":obj.get("forte"),
         "minor":obj.get("minor"),
-        "self_buff":obj.get("self_buff"),
-        "chain": obj.get("chain")})
+        "buff":obj.get("buff"),
+        "chain": obj.get("chain"),
+        "teamBuff":obj.get("teamBuff"),
+        "hpDmgBase":obj.get("hpDmgBase")})
         except Exception:
             continue
     resp = make_response(jsonify(items), 200)
     resp.headers["Cache-Control"] = "public, max-age=3600"
     return resp
+
 
 @app.get("/v1/resonators/<slug>")
 def get_resonator(slug: str):

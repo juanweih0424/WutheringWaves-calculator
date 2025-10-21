@@ -80,6 +80,7 @@ export function WeaponProvider({weapons=[], children}) {
             cr:currRankStats?.cr != null ? (currRankStats.cr * 100).toFixed(1) : "0",
             aeroBouns: currRankStats?.aeroBouns != null ? (currRankStats.aeroBouns * 100).toFixed(0) : "0",
             aeroShred:currRankStats?.aeroShred != null ? (currRankStats.aeroShred*100).toFixed(1):"0",
+            echoDmgAmp: currRankStats?.echoDmgAmp != null ? (currRankStats.echoDmgAmp * 100).toFixed(0):"0"
         }
 
         const primary = "#e0c707"
@@ -111,6 +112,8 @@ export function WeaponProvider({weapons=[], children}) {
         let aeroAmpTm = g("aeroAmpTm");
         let aeroBouns = g("aeroBouns");
         let aeroShred = g("aeroShred");
+        let echoDmgAmp = g("echoDmgAmp");
+        let frazzleAmp = g("frazzle");
 
         // Find if a passive has a stack variable
         const hasStack = wPassive?.stack === true;
@@ -165,7 +168,7 @@ export function WeaponProvider({weapons=[], children}) {
         
         return {
             hpPct, defPct,atkPct, allAtr, baDmg, haDmg, skill, ult, echoDmg, ult , er, heal, defIgnore, cr,cd, maxStack, currentStackVal, defIgnoreScope, fusion, additionalAtk,
-            weapPassiveName: currWeap.passive.name, weapPassiveDesc: description, stackScope, hasStack,baDmgStack,havocShred,allAmp,aeroAmpTm,aeroBouns, aeroShred
+            weapPassiveName: currWeap.passive.name, weapPassiveDesc: description, stackScope, hasStack,baDmgStack,havocShred,allAmp,aeroAmpTm,aeroBouns, aeroShred, echoDmgAmp,frazzleAmp
         }
     },[currWeap, refineLvl, passiveStack,enabled])
 

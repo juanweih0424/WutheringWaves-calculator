@@ -1,0 +1,325 @@
+{
+    "id": 2,
+    "name": "Cartethyia",
+    "rarity": 5,
+    "element": "Aero",
+    "weapon": "Sword",
+    "hpDmgBase":true,
+    "stats": {
+        "hp": { "base": 1184, "max": 14800 },
+        "atk": { "base": 25,  "max": 313 },
+        "def": { "base":50 ,  "max": 611 }
+    },
+    "basic": {
+    "name": "Normal Attack: Sword to Carve My Forms",
+    "detail": {
+        "Stage 1 DMG": {
+        "base": 0.0241,
+        "max": 0.0478,
+        "type": "baDmg",
+        "tags":["chain2"]
+        },
+        "Stage 2 DMG": {
+        "base": 0.0660,
+        "max": 0.1313,
+        "type": "baDmg",
+        "tags":["chain2"]
+        },
+        "Stage 3 DMG": {
+        "base": 0.0860,
+        "max": 0.1712,
+        "type": "baDmg",
+        "tags":["chain2"]
+        },
+        "Stage 4 DMG": {
+        "base": 0.0761,
+        "max": 0.1510,
+        "type": "baDmg",
+        "tags":["chain2"]
+        },
+        "Dodge Counter DMG": {
+        "base": 0.1380,
+        "max": 0.2740,
+        "type": "baDmg",
+        "tags":["chain2"]
+        },
+        "Heavy Attack DMG": {
+        "base": 0.0629,
+        "max": 0.1248,
+        "type": "haDmg",
+        "tags":["chain2"]
+        },
+        "Mid-air Attack": {
+        "base": 0.0284,
+        "max": 0.0565,
+        "type": "baDmg",
+        "tags":["chain21"]
+        },
+        "Mid-air Attack 1 Sword Shadow Recalled": {
+        "base": 0.0284,
+        "max": 0.0565,
+        "type": "baDmg",
+        "tags":["chain21"],
+        "erosion":true
+        },
+        "Mid-air Attack 2 Sword Shadows Recalled": {
+        "base": 0.0498,
+        "max": 0.0990,
+        "type": "baDmg",
+        "tags":["chain21"],
+        "erosion":true
+        },
+        "Mid-air Attack 3 Sword Shadows Recalled": {
+        "base": 0.1704,
+        "max": 0.3387,
+        "type": "baDmg",
+        "tags":["chain21"],
+        "erosion":true
+        }
+        }
+    },
+    "skill": {
+        "name": "Resonance Skill: Sword to Bear Their Names",
+        "detail": {
+            "Sword to Bear Their Names DMG": {
+            "base": 0.1487,
+            "max": 0.2953,
+            "type": "skill"
+            }
+        }
+    },
+    "ult": {
+        "name": "Resonance Liberation: A Knight's Heartfelt Prayers",
+        "detail": {
+            "Blade of Howling Squall DMG": {
+            "base": 0.4623,
+            "max": 0.9184,
+            "type": "ult",
+            "tags": ["inherent1", "chain3", "chain6"]
+            }
+        }
+    },
+    "forte": {
+    "name": "Forte Circuit: Tempest",
+    "detail": {
+        "Basic Attack Stage 1 DMG": {
+        "base": 0.0327,
+        "max": 0.0649,
+        "type": "baDmg",
+        "tags":["chain6"]
+        },
+        "Basic Attack Stage 2 DMG": {
+        "base": 0.0459,
+        "max": 0.0992,
+        "type": "baDmg",
+        "tags":["chain6"]
+        },
+        "Basic Attack Stage 3 DMG": {
+        "base": 0.0649,
+        "max": 0.1087,
+        "type": "baDmg",
+        "tags":["chain6"]
+        },
+        "Basic Attack Stage 4 DMG": {
+        "base": 0.0690,
+        "max": 0.1370,
+        "type": "baDmg",
+        "tags":["chain6"]
+        },
+        "Basic Attack Stage 5 DMG": {
+        "base": 0.1812,
+        "max": 0.3580,
+        "type": "baDmg",
+        "tags":["chain6"]
+        },
+        "Dodge Counter DMG": {
+        "base": 0.1812,
+        "max": 0.3580,
+        "type": "baDmg",
+        "tags":["chain6"]
+        },
+        "Upward Cut DMG": {
+        "base": 0.0458,
+        "max": 0.0910,
+        "type": "baDmg",
+        "tags":["chain6"]
+        },
+        "Heavy Attack DMG": {
+        "base": 0.0717,
+        "max": 0.0910,
+        "type": "baDmg",
+        "tags":["chain6"]
+        },
+        "Enhanced Heavy Attack DMG": {
+        "base": 0.0987,
+        "max": 0.1379,
+        "type": "baDmg",
+        "tags":["chain6"]
+        },
+        "Mid-air Attack 1 DMG": {
+        "base": 0.0455,
+        "max": 0.0910,
+        "type": "baDmg",
+        "tags":["chain6"]
+        },
+        "Mid-air Attack 2 DMG": {
+        "base": 0.1828,
+        "max": 0.2945,
+        "type": "baDmg",
+        "tags":["chain6"]
+        },
+        "Mid-air Attack 3 DMG": {
+        "base": 0.0111,
+        "max": 0.0220,
+        "type": "baDmg",
+        "tags":["chain6"]
+        },
+        "Sword to Answer Waves' Call DMG": {
+        "base": 0.0421,
+        "max": 0.2130,
+        "type": "skill",
+        "tags":["chain6"]
+        },
+        "May Tempest Break the Tides DMG": {
+        "base": 0.1582,
+        "max": 0.3396,
+        "type": "skill",
+        "tags":["chain6"]
+        }
+        }
+    },
+    "intro": {
+        "name": "Intro Skill: Sword to Mark Tide's Trace",
+        "detail": {
+            "Sword to Mark Tide's Trace DMG": {
+            "base": 0.0629,
+            "max": 0.1248,
+            "type": "intro",
+            "tags":["chain2"]
+            },
+            "Sword to Call for Freedom DMG": {
+            "base": 0.0717,
+            "max": 0.1425,
+            "type": "intro",
+            "tags":["chain6"]
+            }
+        }
+    },
+    "minor":{"hpPct":0.12, "cr": 0.08},
+    "outro":{
+        "name":"Outro Skill: Wind's Divine Blessing"
+    },
+    "buff":{
+        "Mandate of Divinity": {
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.5,
+                    "stat": "erosionAmp"
+                }
+            ],
+            "desc":"When {Fleurdelys} has {Mandate of Divinity in Manifest}: Aero Erosion DMG is Amplified by 50% and the damage interval is decreased by 50% for enemies within a certain distance from {Fleurdelys}."
+        },
+        "Blade of Howling Squall: Aero Erosion Stack": {
+            "effects": [
+                {
+                    "stack": true,
+                    "value": 0.2,
+                    "maxStack":5,
+                    "stat": "allAmp",
+                    "tags": "inherent1"
+                }
+            ],
+            "desc":"Upon hitting the target, remove all stacks of {Aero Erosion} on the target. Each stack removed Amplifies the DMG taken by the targets by 20%, up to 5 stacks."
+        },
+        "Inherent Skill: Wind's Indelible Imprint: Stack 1-3": {
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.3,
+                    "stat": "allAmp"
+                }
+            ],
+            "desc":"Targets with 1 to 3 stacks of Aero Erosion take 30% more DMG from {Cartethyia} and {Fleurdelys}. Targets with more than 3 stacks of Aero Erosion additionally take 10% more DMG from {Cartethyia} and {Fleurdelys} for each stack of Aero Erosion they have, up to 3 stacks."
+        },
+        "Inherent Skill: Wind's Indelible Imprint: Additional Stack": {
+            "effects": [
+                {
+                    "stack": true,
+                    "value": 0.1,
+                    "stat": "allAmp",
+                    "maxStack": 3
+                }
+            ],
+            "desc":"Targets with 1 to 3 stacks of Aero Erosion take 30% more DMG from {Cartethyia} and {Fleurdelys}. Targets with more than 3 stacks of Aero Erosion additionally take 10% more DMG from {Cartethyia} and {Fleurdelys} for each stack of Aero Erosion they have, up to 3 stacks."
+        }
+    },
+    "chain":{
+        "Sequence Node 1: Crown Destined by Fate":{
+            "desc":"Defeating targets with as Cartethyia and Fleurdelys grants Zeal that lasts for 10s. In the {Zeal} state, the highest stack count of among the targets defeated will be recorded and inflicted upon the targets hit by her next move. This will not exceed the current max stacks. {Zeal} is removed afterwards and enter a 1s cooldown. Each time when Fleurdelys's Resolve hits 30/60/90/120, her Crit. DMG is increased by 25% for 15s. The duration of this effect does not reset upon gaining new stacks. After casting Resonance Liberation - {Blade of Howling Squall}, the increased Crit. DMG is removed.",
+            "effects":[
+                {
+                    "stack":true,
+                    "maxStack": 4,
+                    "value":0.25,
+                    "stat":"cd"
+                }
+            ]
+        },
+        "Sequence Node 2: Blade Broken by Tempest":{
+            "desc":"Casting Resonance Liberation - {A Knight's Heartfelt Prayers} increases the max stack limit of Aero Erosion on targets within a certain range by 3 stack. The next attack inflicts 3 stack of Aero Erosion on all targets hit and immediately trigger the Aero Erosion DMG on the targets once without consuming the Aero Erosion stacks. The DMG Multipliers of Cartethyia's {Basic Attack, Heavy Attack, Dodge Counter}, and {Intro Skill} are increased by 50% and the DMG Multiplier of her Mid-air Attack is increased by 200%. After casting Mid-air Attack - Cartethyia, every 1 type of {Sword Shadow} recalled reduces the cooldown of {Resonance Skill - Cartethyia} by 1s.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.5,
+                    "stat":"skillBouns",
+                    "tags": "chain2"
+                },
+                {
+                    "stack":false,
+                    "value":2,
+                    "stat":"skillBouns",
+                    "tags": "chain21"
+                }
+            ]
+        },
+        "Sequence Node 3: Prisoner Hanged in the Tower":{
+            "desc":"{Basic Attack - Fleurdelys Stage 5, Mid-air Attack - Fleurdelys Stage 5, Enhanced Heavy Attack - Fleurdelys}, and {Resonance Skill - May Tempest Break the Tides} now inflict 2 stack of Aero Erosion on the targets hit. The DMG Multiplier of {Resonance Skill - Blade of Howling Squall} is increased by 100%.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":1,
+                    "stat":"skillBouns",
+                    "tags": "chain3"
+                }
+            ]
+        },
+        "Sequence Node 4: Sacrifice Made for Salvation":{
+            "desc":"When Resonators in the team inflict {Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe and Aero Erosion}, all Resonators in the team gain 20% DMG Bonus for all Attributes for 20s.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.2,
+                    "stat":"allAtr"
+                }
+            ]
+        },
+        "Sequence Node 5: Hope Reshaped in Storms":{
+            "desc":"When {Cartethyia} or {Fleurdelys} takes a fatal blow, they will not be downed by this instance of damage, but instead gain a Shield equal to 20% of {Cartethyia's} Max HP for 10s. This effect can be triggered once every 10 min. The HP cost for casting {Resonance Liberation - A Knight's Heartfelt} Prayers is reduced to 25% of Max HP."
+        },
+        "Sequence Node 6: Freedom Found in Storm's Wake":{
+            "desc":"After casting {Resonance Liberation - Blade of Howling Squall}, raise the Aero Erosion stacks on the target hit to the max. After casting {Intro Skill - Sword to Mark Tide's Trace, Intro Skill - Sword to Call for Freedom, Resonance Liberation - A Knight's Heartfelt Prayers}, and {Resonance Liberation - Blade of Howling Squall, Fleurdelys} gains new abilities: For 30s, when any Resonator in the team inflicts Aero Erosion on the targets with max stacks of Aero Erosion, immediately trigger the Aero Erosion DMG once. The targets take 40% more DMG from {Fleurdelys}.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.4,
+                    "stat":"allAmp",
+                    "tags":"chain6"
+                }
+            ]
+        }
+    },
+    "teamBuff":[
+    ]
+
+}

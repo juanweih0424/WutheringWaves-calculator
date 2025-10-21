@@ -71,17 +71,20 @@
         "Heavy Attack - Thunderoar: Backstep DMG": {
             "base": 0.2700,
             "max": 0.5368,
-            "type": "haDmg"
+            "type": "haDmg",
+            "tags":["chain3"]
         },
         "Heavy Attack - Thunderoar: Spinslash DMG": {
             "base": 2.1384,
             "max": 4.2156,
-            "type": "haDmg"
+            "type": "haDmg",
+            "tags":["chain3"]
         },
         "Heavy Attack - Thunderoar: Uppercut DMG": {
             "base": 1.8,
             "max": 3.5786,
-            "type": "haDmg"
+            "type": "haDmg",
+            "tags":["chain3"]
         },
 
         "Dodge Counter - Heavy Attack: Steelclash DMG": {
@@ -92,14 +95,19 @@
         "Dodge Counter - Thunderoar: Backstep DMG": {
             "base": 0.2700,
             "max": 0.5368,
-            "type": "haDmg"
+            "type": "haDmg",
+            "tags":["chain3"]
+        },
+        "Chain Node 6: Engraved in Radiant Light DMG": {
+            "base": 0,
+            "max": 0,
+            "type": "haDmg",
+            "tags": ["chain6"]
         }
-        }
+
+    }
     },
-    "minor":[
-        {"atk": 0.12},
-        {"cr":0.08}
-    ],
+    "minor":{"atkPct":0.12, "cr": 0.08},
     "skill":{
         "name":"Resonance Skill: Warrior's Blade",
         "detail":{
@@ -126,7 +134,8 @@
         "Resonance Skill - Undying Sunlight: Plunge DMG": {
         "base": 4.355,
         "max": 8.6583,
-        "type": "haDmg"
+        "type": "haDmg",
+        "tags":["chain3"]
         },
         "Mid-air Dodge Counter - Undying Sunlight: Strike DMG": {
         "base": 1.40,
@@ -146,12 +155,14 @@
             "Sublime is the Sun - Sunborne DMG": {
                 "base": 0.6,
                 "max": 1.1929,
-                "type": "haDmg"
+                "type": "haDmg",
+            "tags":["chain3"]
             },
             "Sublime is the Sun - Everbright Protector DMG": {
                 "base": 6.0,
                 "max": 11.9293,
-                "type": "haDmg"
+                "type": "haDmg",
+                "tags":["chain3"]
             }
         }
     },
@@ -165,13 +176,143 @@
             }
         }
     },
-    "self_buff":[
-        {"name": "Crown of Wills",
-        "description":"Each stack grants 15% Electro DMG Bonus, up to 1 stack. When {Resonance Liberation - Sublime is the Sun: Everbright Protector} ends, all stacks of Crown of Wills are removed.",
-        "stack":true,
-        "maxStacks": 1,
-        "valuePerStack":0.15,
-        "type":"electro"}
-    ]
+    "outro":{
+        "name": "Outro Skill: Battlesong of the Unyielding"
+    },
+    "buff":{
+        "Crown of Wills": {
+            "effects":[
+                {
+                    "stack": true,
+                    "maxStack": 1,
+                    "value": 0.15,
+                    "stat": "electro"
+                }
+            ],
+            "desc": "Each stack grants 15% Electro DMG Bonus, up to 1 stack. When {Resonance Liberation - Sublime is the Sun: Everbright Protector} ends, all stacks of {Crown of Wills} are removed."
+        }
+    },
+    "chain":{
+        "Sequence Node 1: Stained in Scorched Earth": {
+            "desc":"Each stack of {Crown of Wills} additionally increases Augusta's Crit. DMG by 15%. The max stack of {Crown of Wills} is increased to 2. Casting Intro Skill - {Stride of Goldenflare} now grants 1 stack of {Crown of Wills}. Resonance Skill - {Undying Sunlight: Strike}, Resonance Skill - {Undying Sunlight: Leap}, and Resonance Skill - {Undying Sunlight: Plunge} are now immune to interruption.",
+            "effects":[
+                {
+                    "stack":true,
+                    "maxStack":2,
+                    "value":0.15,
+                    "stat":"cd"
 
+                },
+                {
+                    "stack":true,
+                    "maxStack":2,
+                    "value":0.15,
+                    "stat":"electro"
+                }
+            ]
+        },
+        "Sequence Node 2: Cleansed in Crimson War":{ 
+            "desc":"{Crown of Wills} provides additional effects: Each stack increases Augusta's Crit. Rate by 20%. For every 1% of Crit. Rate over 100%, Augusta gains 2% Crit. DMG increase, up to 100%.",
+            "effects":[
+                {
+                    "stack":true,
+                    "maxStack":2,
+                    "value":0.15,
+                    "stat":"cd"
+
+                },
+                {
+                    "stack":true,
+                    "maxStack":2,
+                    "value":0.15,
+                    "stat":"electro"
+                },
+                {
+                    "stack":true,
+                    "maxStack":2,
+                    "value":0.2,
+                    "stat":"cr"
+                }
+            ]
+        },
+        "Sequence Node 3: Forged in Rot and Ruin":{ 
+            "desc":"The following skills have their DMG Multiplier increased by 25%: {Heavy Attack - Thunderoar: Backstep, Dodge Counter - Thunderoar: Backstep, Heavy Attack - Thunderoar: Spinslash, Heavy Attack - Thunderoar: Uppercut. Resonance Skill - Undying Sunlight: Plunge. Resonance Liberation - Sublime is the Sun: Sunborne, Resonance Liberation - Sublime is the Sun: Everbright Protector}.",
+            "effects":[
+               {
+                    "stack":false,
+                    "value": 0.25,
+                    "stat":"skillBouns",
+                    "tags": "chain3"
+               }
+            ]
+        },
+        "Sequence Node 4: Ascent in Sun and Glory":{ 
+            "desc":"Casting {Intro Skill - Stride of Goldenflare} increases the ATK of all Resonators in the team by 20% for 30s.",
+            "effects":[
+               {
+                    "stack":false,
+                    "value": 0.2,
+                    "stat":"atkPct"
+               }
+            ]
+        },
+        "Sequence Node 5: Unshaken in Wrathful Tides":{ 
+            "desc":"The Shield provided by {Inherent Skill - Glory's Favor} is increased by 50%."
+        },
+        "Sequence Node 6: Engraved in Radiant Light":{ 
+            "desc":"Augusta can now hold up to 4 stacks of {Crown of Wills}. For every 1% of Crit. Rate over 150%, Augusta gains 2% Crit. DMG increase, up to 50%. When Augusta performs {Heavy Attack - Thunderoar: Spinslash} or {Heavy Attack - Thunderoar: Uppercut}, she obtains 2 stacks of {Crown of Wills}. Augusta can only obtain 2 stacks of {Crown of Wills} every 1s via {Engraved in Radiant Light}. While casting {Heavy Attack - Thunderoar: Spinslash} or {Heavy Attack - Thunderoar: Uppercut}, {Thunder Rage} is triggered at the spot, dealing two instances of Electro DMG, with each instance equal to 100% of Augusta's ATK, considered as Heavy Attack DMG.",
+            "effects":[
+                {
+                    "stack":true,
+                    "maxStack":4,
+                    "value":0.15,
+                    "stat":"cd"
+
+                },
+                {
+                    "stack":true,
+                    "maxStack":4,
+                    "value":0.15,
+                    "stat":"electro"
+                },
+                {
+                    "stack":true,
+                    "maxStack":4,
+                    "value":0.2,
+                    "stat":"cr"
+                },
+                {
+                    "stack":false,
+                    "value":1,
+                    "stat": "skillBounsAdd",
+                    "tags": "chain6"
+                }
+            ]
+        }
+    },
+    "teamBuff":[
+        {
+            "name":"Outro Skill: Battlesong of the Unyielding",
+            "desc":"The next Resonator switched onto the field gains the following effects for 14s, which end immediately if they are switched out: Gain 15% DMG Amplification for all Attributes.",
+            "effects": [
+                {
+                    "stack":false,
+                    "stat":"allAmp",
+                    "value":0.15
+                }
+            ]
+        },
+        {
+            "name":"Sequence Node 4: Ascent in Sun and Glory",
+            "desc":"Casting {Intro Skill - Stride of Goldenflare} increases the ATK of all Resonators in the team by 20% for 30s.",
+            "effects": [
+                {
+                    "stack":false,
+                    "stat":"atkPct",
+                    "value":0.2
+                }
+            ]
+        }
+
+    ]
 }

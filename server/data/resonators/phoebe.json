@@ -1,0 +1,52 @@
+{
+    "id": 12,
+    "name": "Phoebe",
+    "rarity": 5,
+    "element": "Spectro",
+    "weapon": "Rectifier",
+    "stats": {
+        "hp": { "base": 866, "max": 10825 },
+        "atk": { "base": 33,  "max": 413 },
+        "def": { "base": 103,  "max": 1259 }
+    },
+    "teamBuff":[
+        {
+            "name":"Sequence Node 2: A Boat Adrift in Tears",
+            "desc":"When in {Confession}, {Silent Prayer} grants 120% more DMG Amplification for Spectro Frazzle.",
+            "effects":[
+                    {
+                        "stack":false,
+                        "value":1.2,
+                        "stat":"frazzleAmp"
+                    }
+                ]
+        },
+        {
+            "name":"Sequence Node 4: Ringing Bells on Wings Aloft",
+            "desc":"When Basic Attack, Basic Attack {Chamuel's Star}, {Dodge Counter}, or {Chamuel‘s Star: Dodge Counter} hits, the target's Spectro RES is reduced by 10% for 30s.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.1,
+                    "stat":"spectroShred"
+                }
+            ]
+        },
+        {
+            "name":"Outro Skill: Attentive Heart",
+            "desc":"{Confession Enhancement: Grant Silent} Prayer to the Resonator on the field, reducing the Spectro RES of nearby targets by 10% and granting 100% Spectro Frazzle DMG Amplification. When Spectro Frazzle inflicts DMG, extend Spectro Frazzle's damage interval by 50%. This effect lasts 30s or until Phoebe switches to {Absolution} status.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.1,
+                    "stat":"spectroShred"
+                },
+                {
+                    "stack":false,
+                    "value":1,
+                    "stat":"frazzleAmp"
+                }
+            ]
+        }
+    ]
+}

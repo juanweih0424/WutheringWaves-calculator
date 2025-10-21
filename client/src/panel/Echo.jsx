@@ -12,6 +12,7 @@ import { getEchoImageUrl } from "../utils/echo";
 import { getIconForStat } from "../utils/statsMeta";
 import { tokenizeDescription } from "../utils/formatDescription";
 import EchoSet from "../components/EchoSet";
+import EchoSetBuff from "./EchoSetBuff";
 
 /* ---------- Pretty formatter ---------- */
 const PERCENT_LABELS = new Set([
@@ -311,7 +312,7 @@ export default function Echo() {
                       </div>
                     )}
 
-                    {/* ===== User mini-stats (up to 5) ===== */}
+                    {/* ===== User sub-stats (up to 5) ===== */}
                     <div className="mt-1">
                       <div className="flex items-center justify-between">
                         <label className="text-sm font-semibold">
@@ -333,7 +334,7 @@ export default function Echo() {
                           const labelValue = row?.statLabel ?? "";
                           const key = row?.stat ?? null;
 
-                          // Build "used" keys set (exclude current row so it can keep its label)
+          
                           const used = new Set(
                             (slot?.subStats ?? [])
                               .map((r, k) => (k === j ? null : r?.stat))
@@ -422,6 +423,7 @@ export default function Echo() {
         })}
       </div>
         <EchoSet/>
+        <EchoSetBuff/>
       <EchoModal open={open} onClose={() => setOpen(false)} onSelect={onSelect} />
     </div>
   );

@@ -1,0 +1,49 @@
+{
+  "id": 11,
+  "name": "Ciaccona",
+  "rarity": 5,
+  "element": "Aero",
+  "weapon": "Pistol",
+  "stats": {
+    "hp": { "base": 979, "max": 12238 },
+    "atk": { "base": 30,  "max": 375 },
+    "def": { "base":98 ,  "max": 1198 }
+  },
+    "teamBuff":[
+        {
+            "name":"Outro Skill: Windcalling Tune",
+            "desc":"{Aero Erosion} DMG dealt to targets near the active Resonator is Amplified by 100% for 30s.",
+            "effects":[
+                    {
+                        "stack":false,
+                        "value":1,
+                        "stat":"erosionAmp"
+                    }
+                ]
+        },
+        {
+            "name":"Solo Concert",
+            "desc":"When Ciaccona or Ensemble Sylph performs {Solo Concert}, they give 24% Aero DMG Bonus to all nearby Resonators in the team. This effect is not stackable.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.24,
+                    "stat":"aero"
+                }
+            ]
+        },
+        {
+            "name":"Sequence Node 2: Song of the Four Seasons",
+            "desc":"During Resonance Liberation {Singer's Triple Cadenza}, Resonators in the team gain 40% Aero DMG Bonus.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.4,
+                    "stat":"aero"
+                }
+
+            ]
+        }
+    ]
+
+}

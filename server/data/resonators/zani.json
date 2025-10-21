@@ -1,0 +1,312 @@
+{
+  "id": 13,
+  "name": "Zani",
+  "rarity": 5,
+  "element": "Spectro",
+  "weapon": "Gauntlet",
+  "stats": {
+    "hp": { "base": 862, "max": 10775 },
+    "atk": { "base": 35,  "max": 438 },
+    "def": { "base": 93,  "max": 1137 }
+  },
+    "basic": {
+    "name": "Normal Attack: Routine Negotiation",
+    "detail": {
+        "Stage 1 DMG": {
+        "base": 0.2960,
+        "max": 0.5885,
+        "type": "baDmg",
+        "tags": ["inherent1"]
+        },
+        "Stage 2 DMG": {
+        "base": 0.4000,
+        "max": 0.7953,
+        "type": "baDmg",
+        "tags": ["inherent1"]
+        },
+        "Stage 3 DMG": {
+        "base": 0.6402,
+        "max": 1.2726,
+        "type": "baDmg",
+        "tags": ["inherent1"]
+        },
+        "Stage 4 DMG": {
+        "base": 1.3600,
+        "max": 2.7040,
+        "type": "baDmg",
+        "tags": ["inherent1"]
+        },
+        "Breakthrough DMG": {
+        "base": 0.9282,
+        "max": 1.8456,
+        "type": "baDmg",
+        "tags": ["inherent1"]
+        },
+        "Heavy Attack DMG": {
+        "base": 0.8264,
+        "max": 1.6432,
+        "type": "haDmg",
+        "tags": []
+        },
+        "Plunging Attack DMG": {
+        "base": 0.5280,
+        "max": 1.0498,
+        "type": "baDmg",
+        "tags": ["inherent1"]
+        },
+        "Dodge Counter DMG": {
+        "base": 1.1202,
+        "max": 2.2269,
+        "type": "baDmg",
+        "tags": ["inherent1"]
+        }
+    }
+    },
+    "skill": {
+        "name": "Resonance Skill: Restless Watch",
+        "detail": {
+            "Standard Defense Protocol DMG": {
+            "base": 0.3216,
+            "max": 0.6394,
+            "type": "skill",
+            "tags": []
+            },
+            "Pinpoint Strike DMG": {
+            "base": 0.9204,
+            "max": 1.8299,
+            "type": "skill",
+            "tags": []
+            },
+            "Targeted Action DMG": {
+            "base": 1.4450,
+            "max": 2.8747,
+            "type": "skill",
+            "tags": ["inherent2","chain2"],
+            "frazzle":true
+            },
+            "Forcible Riposte DMG": {
+            "base": 1.4450,
+            "max": 2.8747,
+            "type": "skill",
+            "tags": ["inherent2","chain2"],
+            "frazzle":true
+            }
+        }
+    },
+    "ult": {
+        "name": "Resonance Liberation: Between Dawn and Dusk",
+        "detail": {
+            "Rekindle DMG": {
+            "base": 1.6022,
+            "max": 3.1852,
+            "type": "ult",
+            "tags": ["chain5"]
+            },
+            "The Last Stand DMG": {
+            "base": 6.4086,
+            "max": 12.7408,
+            "type": "ult",
+            "tags": ["chain3"]
+            }
+        }
+    },
+    "forte": {
+        "name": "Forte Circuit: There Will Be A Light",
+        "detail": {
+            "Heavy Slash - Daybreak DMG": {
+            "base": 1.0000,
+            "max": 1.9881,
+            "type": "haDmg",
+            "tags": ["chain6"],
+            "frazzle":true
+            },
+            "Heavy Slash - Dawning DMG": {
+            "base": 2.1330,
+            "max": 4.2407,
+            "type": "haDmg",
+            "tags": ["chain6"],
+            "frazzle":true
+            },
+            "Heavy Slash - Nightfall DMG": {
+            "base": 2.0000,
+            "max": 3.9763,
+            "type": "haDmg",
+            "tags": ["inherent3", "chain6"],
+            "frazzle":true
+            },
+            "Heavy Slash - Lightsmash DMG": {
+            "base": 2.1330,
+            "max": 4.2407,
+            "type": "haDmg",
+            "tags": ["chain6"],
+            "frazzle":true
+            }
+        }
+    },
+    "intro": {
+        "name": "Intro Skill: Immediate Execution",
+        "detail": {
+            "Immediate Execution DMG": {
+            "base": 1.051,
+            "max": 2.002,
+            "type": "intro",
+            "tags": []
+            }
+        }
+    },
+    "outro": {
+        "name": "Outro Skill: Beacon For the Future",
+        "detail": {
+            "Beacon For the Future DMG": {
+            "base": 1.5,
+            "max": 1.5,
+            "type": "outro",
+            "tags": [],
+            "frazzle":true
+            }
+        }
+    },
+    "minor":{"atkPct":0.12, "cr": 0.08},
+    "buff": {
+        "Quick Response":{
+            "desc": "Casting {Intro Skill} Immediate Execution gives 12% Spectro DMG Bonus for 14s.",
+            "effects": [
+                {
+                    "stack":false,
+                    "value":0.12,
+                    "stat":"spectro"
+                }
+            ]
+        },
+        "Inferno Mode":{
+            "desc": "When in {Inferno Mode}, the DMG Multiplier of Basic Attack is increased.",
+            "effects": [
+                {
+                    "stack":false,
+                    "value":0.25,
+                    "stat":"skillBounsAdd",
+                    "tags":"inherent1"
+                }
+            ]
+        },
+        "Sunburst":{
+            "desc": "The {Spectro Frazzle DMG} dealt by Zani to the target is Amplified by 20%.",
+            "effects": [
+                {
+                    "stack":false,
+                    "value":0.2,
+                    "stat":"frazzleAmp"
+                }
+            ]
+        },
+        "Heavy Slash - Nightfall Blaze Stacks":{
+            "desc": "Consuming up to 40 Blazes on hit, with each Blaze increasing the DMG Multiplier of {Heavy Slash - Nightfall}",
+            "effects":[
+                {
+                    "stack":true,
+                    "maxStack": 40,
+                    "value":0.0995,
+                    "stat":"skillBounsAdd",
+                    "tags":"inherent3"
+                }
+            ]
+        }
+    },
+    "chain":{
+        "Sequence Node 1: When the Alarm Clock Rings":{
+            "desc":"Casting {Targeted Action} or {Forcible Riposte} gives 50% Spectro DMG Bonus for 14s. Immune to interruptions while casting Resonance Skill {Heavy Slash - Nightfall}.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.5,
+                    "stat":"spectro"
+                }
+            ]
+        },
+        "Sequence Node 2: Stale Bread With Energy Drink":{
+            "desc":"Crit. Rate is increased by 20%. The DMG Multiplier of {Targeted Action} and {Forcible Riposte} is increased by 80%.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.8,
+                    "stat":"skillBouns",
+                    "tags":"chain2"
+                },
+                {
+                    "stack":false,
+                    "value":0.2,
+                    "stat":"cr"
+                }
+            ]
+        },
+        "Sequence Node 3: Each Day A New Commute":{
+            "desc":"When in {Inferno Mode}, every 1 {Blaze} consumed increases the DMG Multiplier of Resonance Liberation {The Last Stand} by 8%, maxed at 1200%.",
+            "effects":[
+                {
+                    "stack":true,
+                    "maxStack": 150,
+                    "value":0.08,
+                    "stat":"skillBounsAdd",
+                    "tags": "chain3"
+                }
+            ]
+        },
+        "Sequence Node 4: More Efficiency, Less Drama":{
+            "desc":"When Intro Skill {Immediate Execution} is cast, ATK of all Resonators in the team is increased by 20% for 30s.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.2,
+                    "stat":"atkPct"
+                }
+            ]
+        },
+        "Sequence Node 5: Delivered In Full On Time":{
+            "desc":"The DMG Multiplier of Resonance Liberation {Rekindle} is increased by 120%.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":1.2,
+                    "stat":"skillBouns",
+                    "tags": "chain5"
+                }
+            ]
+        },
+        "Sequence Node 6: First Things First? Clock Out!":{
+            "desc":"The DMG Multipliers of {Heavy Slash - Daybreak}, {Heavy Slash- Dawning}, {Heavy Slash - Nightfall}, and {Heavy Slash - Lightsmash} are increased by 40%. Gain following effects when in {Inferno Mode}: - When {Blaze} is lower than 70, restore 70 {Blazes} immediately. This effect is triggered once in {Inferno Mode}. - Within 8s after entering {Inferno Mode}, Zani will remain standing with at least 1 HP if hit by a fatal.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.4,
+                    "stat":"skillBouns",
+                    "tags": "chain6"
+                }
+            ]
+        }
+    },
+    "teamBuff":[
+        {
+            "name":"Sequence Node 4: More Efficiency, Less Drama",
+            "desc":"When Intro Skill {Immediate Execution} is cast, ATK of all Resonators in the team is increased by 20% for 30s.",
+            "effects":[
+                    {
+                        "stack":false,
+                        "value":0.2,
+                        "stat":"atkPct"
+                    }
+                ]
+        },
+        {
+            "name":"Outro Skill: Beacon For the Future",
+            "desc":"Attack the target, dealing Spectro DMG equal to 150% of Zani's ATK and removing all stacks of {Heliacal Ember} inflicted upon the target. Each stack increases the DMG dealt by 10%. This DMG is considered Spectro Frazzle DMG. The Spectro DMG dealt by other Resonators in the team to the target marked by {Heliacal Ember} is Amplified by 20% for 20s.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.2,
+                    "stat":"spectroAmp"
+                }
+            ]
+        }
+    ]
+
+}

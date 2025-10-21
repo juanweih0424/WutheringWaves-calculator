@@ -1,0 +1,269 @@
+{
+    "id":7,
+    "name": "Carlotta",
+    "rarity": 5,
+    "element":"Glacio",
+    "weapon":"Pistol",
+    "stats":{
+        "hp":{
+            "base":996,
+            "max":12450
+        },
+        "atk":{
+            "base":37,
+            "max":463
+        },
+        "def":{
+            "base":98,
+            "max":1198
+        }
+    },
+    "basic": {
+    "name": "Basic Attack: Necessary Measures",
+    "detail": {
+        "Basic Attack Stage 1 DMG": {
+        "base": 0.2720,
+        "max": 0.5408,
+        "type": "baDmg",
+            "tags":["inherent2"]
+        },
+        "Basic Attack Stage 2 DMG": {
+        "base": 0.6630,
+        "max": 1.3183,
+        "type": "baDmg",
+            "tags":["inherent2"]
+        },
+        "Necessary Measures Stage 1 DMG": {
+        "base": 0.3315,
+        "max": 0.6591,
+        "type": "baDmg",
+            "tags":["inherent2"]
+        },
+        "Necessary Measures Stage 2 DMG": {
+        "base": 0.6716,
+        "max": 1.3351,
+        "type": "baDmg",
+            "tags":["inherent2"]
+        },
+        "Necessary Measures Stage 3 DMG": {
+        "base": 1.1730,
+        "max": 2.3325,
+        "type": "baDmg",
+            "tags":["inherent2"]
+        },
+        "Heavy Attack DMG": {
+        "base": 0.7652,
+        "max": 1.5212,
+        "type": "haDmg",
+            "tags":["inherent2"]
+        },
+        "Containment Tactics DMG": {
+        "base": 1.1478,
+        "max": 2.2818,
+        "type": "haDmg",
+            "tags":["inherent2"]
+        },
+        "Mid-air Attack DMG": {
+        "base": 0.5270,
+        "max": 1.0478,
+        "type": "baDmg",
+            "tags":["inherent2"]
+        },
+        "Customary Greetings DMG": {
+        "base": 1.2071,
+        "max": 2.3998,
+        "type": "baDmg",
+            "tags":["inherent2"]
+        },
+        "Dodge Counter DMG": {
+        "base": 1.2139,
+        "max": 2.4132,
+        "type": "baDmg",
+            "tags":["inherent2"]
+        }
+    }
+    },
+    "skill": {
+        "name": "Resonance Skill: Art of Violence",
+        "detail": {
+            "Art of Violence DMG": {
+            "base": 1.4498,
+            "max": 2.8822,
+            "type": "skill",
+            "tags":["inherent2","chain31"]
+            },
+            "Chromatic Splendor DMG": {
+            "base": 2.8330,
+            "max": 5.6371,
+            "type": "skill",
+            "tags":["inherent2","chain31"]
+            }
+        }
+    },
+    "ult": {
+    "name": "Resonance Liberation: Era of New Wave",
+    "detail": {
+        "Era of New Wave DMG": {
+            "base": 2.0256,
+            "max": 4.0271,
+            "type": "skill",
+            "tags":["inherent1","inherent2"]
+        },
+        "Death Knell DMG": {
+            "base": 1.2157,
+            "max": 2.4164,
+            "type": "skill",
+            "tags":["inherent1","inherent2","chain6"]
+        },
+        "Fatal Finale DMG": {
+            "base": 3.2409,
+            "max": 6.4433,
+            "type": "skill",
+            "tags":["inherent1","inherent2","chain2"]
+        }
+        }
+    },
+    "forte": {
+        "name": "Forte Circuit: Lethal Repertoire",
+        "detail": {
+            "Imminent Oblivion DMG": {
+            "base": 4.0706,
+            "max": 8.8426,
+            "type": "forte",
+            "tags":["inherent2","chain5"]
+            }
+        }
+    },
+    "intro": {
+        "name": "Intro Skill: Wintertime Aria",
+        "detail": {
+            "Wintertime Aria DMG": {
+            "base": 1.5,
+            "max": 2.9823,
+            "type": "intro",
+            "tags":["inherent2"]
+            }
+        }
+    },
+    "outro": {
+        "name": "Outro Skill: Closing Remark",
+        "detail": {
+            "Closing Remark DMG": {
+            "base": 7.942,
+            "max": 7.942,
+            "type": "outro",
+            "tags":["inherent2","chain32"]
+            }
+        }
+    },
+    "minor":{"atkPct":0.12, "cr": 0.08},
+    "buff":{
+        "Deconstruction": {
+            "desc": "Carlotta ignores 18% of the target's defense when dealing damage to a target affected by {Deconstruction}.",
+            "effects":[
+                {
+                    "stack": false,
+                    "value": 0.18,
+                    "stat": "defIgnore",
+                    "tags":"inherent2"
+                }
+            ]
+        },
+        "Final Bow": {
+            "desc": "When Substance is full, enter the {Final Bow} state. Increase the DMG Multiplier of Resonance Liberation {Era of New Wave} , Resonance Liberation {Death Knell}, and Resonance Liberation {Fatal Finale} by 80%. This effect ends when Carlotta is switched off the field during {Twilight Tango} or when {Twilight Tango} ends.",
+            "effects":[
+                {
+                    "stack": false,
+                    "value": 0.8,
+                    "stat": "skillBouns",
+                    "tags":"inherent1"
+                }
+            ]
+        }
+    },
+    "chain":{
+        "Sequence Node 1: Beauty Blazes Brightest Before It Fades":{
+            "desc":"When Carlotta deals DMG to a target inflicted with {Deconstruction}, the Crit. Rate of this instance of DMG is increased by 12.5%. When Resonance Skill {Chromatic Splendor} hits a target inflicted with {Dispersion}, Carlotta additionally restores 30 points of Substance.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.125,
+                    "stat":"cr"
+                }
+            ]
+        },
+        "Sequence Node 2: Fallen Petals Give Life to New Blooms":{
+            "desc":"The DMG Multiplier of Resonance Liberation {Fatal Finale} is increased by 126%.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":1.26,
+                    "stat":"skillBouns",
+                    "tags":"chain2"
+                }
+            ]
+        },
+        "Sequence Node 3: Adelante, Cortado, Spinning in Grace":{
+            "desc":"Enable Outro Skill Kaleidoscope Sparks: Deal 1 additional strike at the end of Outro Skill {Closing Remark}, dealing Glacio DMG equal to 1032.18% of Carlotta's ATK. The DMG Multiplier of Resonance Skill {Art of Violence} and Resonance Skill {Chromatic Splendor} is increased by 93%.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.93,
+                    "stat":"skillBouns",
+                    "tags":"chain31"
+                },
+                {
+                    "stack":false,
+                    "value":10.32,
+                    "stat":"skillBounsAdd",
+                    "tags":"chain32"
+                }
+            ]
+        },   
+        "Sequence Node 4: Yesterday's Raindrops Make Finest Wine":{
+            "desc":"Casting Heavy Attack, Heavy Attack {Containment Tactics}, and Heavy Attack {Imminent Oblivion} grants all Resonators in the team 25% Resonance Skill DMG Bonus for 30s.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.25,
+                    "stat":"skill"
+                }
+            ]
+        },
+        "Sequence Node 5: Toast to Past, Today, and Every Day to Come":{
+            "desc":"The DMG Multiplier of Heavy Attack {Imminent Oblivion} is increased by 47%.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.47,
+                    "stat":"skillBouns",
+                    "tags":"chain5"
+                }
+            ]
+        },
+        "Sequence Node 6: As the Curtain Falls, I Remain What I Am":{
+            "desc":"Shots of Resonance Liberation {Death Knell} deal higher DMG and shoot out double the number of crystal shards, representing a total increase of 186.6% in the DMG Multiplier of Resonance Liberation {Death Knell}.Shots of Resonance Liberation {Death Knell} inflict Scattering on targets when hit, during which the target is immobilized. This effect is removed after 1.5s or when the target receives DMG.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":1.866,
+                    "stat":"skillBouns",
+                    "tags":"chain6"
+                }
+            ]
+        }           
+    },
+    "teamBuff":[
+        {
+            "name":"Sequence Node 4: With Old Rain, a Hymn of Bitter Wine",
+            "desc":"Casting Heavy Attack, Heavy Attack {Containment Tactics}, and Heavy Attack {Imminent Oblivion} grants all Resonators in the team 25% {Resonance Skill DMG Bonus} for 30s.",
+            "effects": [
+                {
+                    "stack":false,
+                    "stat":"skill",
+                    "value":0.25
+                }
+            ]
+        }
+    ]
+}

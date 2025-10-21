@@ -34,18 +34,10 @@ export default function Header({ onSelect = () => {}, activePage }) {
             hover:scale-[1.1] transition-transform duration-150"
             />
         </button>
-        <button className="cursor-pointer h-full p-2 hover:bg-[var(--color-hover)] border-0 border-solid rounded-full">
+        <button onClick={() => onSelect("team")} className="cursor-pointer h-full p-2 hover:bg-[var(--color-hover)] border-0 border-solid rounded-full">
             <img
             src={team}
             title="Teammates"
-            className="w-full h-full object-contain filter brightness-[var(--color-img)] 
-            hover:scale-[1.1] transition-transform duration-150"
-            />
-        </button>
-        <button className="cursor-pointer h-full p-2 hover:bg-[var(--color-hover)] border-0 border-solid rounded-full">
-            <img
-            src={forte}
-            title="Skill and Forte"
             className="w-full h-full object-contain filter brightness-[var(--color-img)] 
             hover:scale-[1.1] transition-transform duration-150"
             />

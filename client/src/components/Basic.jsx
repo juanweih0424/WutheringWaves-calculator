@@ -16,13 +16,18 @@ export default function Basic() {
   const defIgnoreGlobal = Number(stats?.defIgnore ?? 0);
 
   const baseAtk = stats?.baseAtk;
-  
+  const baseHp = stats?.baseHp;
+  const baseDef = stats?.baseDef;
   let shred = 0;
   if (current?.element === "Aero"){
     shred = stats.aeroShred;
   } else if (current?.element === "Havoc"){
     shred = stats.havocShred;
+  } else if (current?.element === "Spectro"){
+    shred = stats.spectroShred;
   }
+
+  
 
   // ---------- Build base rows ----------
   const rows = useMemo(() => {
@@ -30,6 +35,8 @@ export default function Basic() {
     return Object.entries(ability).map(([label, row]) => ({
       label,
       type: row.type,
+      frazzle: row.frazzle ?? null,
+      erosion: row.erosion ?? null,
       mv: talentMv(1, 10, row.base, row.max, basic),
       tags: row.tags ?? [],
     }));
@@ -61,11 +68,14 @@ export default function Basic() {
 
     return rows.map((row) => {
       let scalingBonus = 0;   // MV scaling (skillBouns)
+      let scalingBounsInc = 0; // Increase, and not by 
       let rowDefIgnore = 0;   // extra defIgnore from scoped effects
       let addAllAmp = 0;      // extra amplification
       let addTypeBonus = 0;   // extra type DMG bonus (only if matches row.type)
       let addElemBonus = 0;   // extra element DMG bonus (only if matches element)
-      let atkPct = stats?.atkPct;
+      let atkPct = stats?.atkPct ?? 0;
+      let hpPct = stats?.hpPct ?? 0;
+      let defPct = stats?.defPct ?? 0;
       for (const eff of pool) {
         if (!matches(eff.appliesTo, row)) continue;
         const amt = Number(eff.amount ?? eff.value ?? 0);
@@ -74,6 +84,9 @@ export default function Basic() {
           // MV scaling
           case "skillBouns":
             scalingBonus += amt;
+            break;
+          case "skillBounsAdd":
+            scalingBounsInc += amt;
             break;
           case "defIgnore": rowDefIgnore += amt; break;
           // Amplification
@@ -101,23 +114,34 @@ export default function Basic() {
 
           case "atkPct":
             atkPct += amt;
-
+            break;
+          case "hpPct":
+            hpPct += amt;
+            break;
+          case "defPct":
+            defPct += amt;
+            break;  
           default:
             break;
         }
       }
 
       const baseMv = row.mv;
-      const mv = baseMv * (1 + scalingBonus);
-      const atk = baseAtk * (1+atkPct)
+      const mv = baseMv* (1 + scalingBonus) + scalingBounsInc;
+      const atk = baseAtk * (1+atkPct) +stats.flatAtk
+      const hp = baseHp * (1+hpPct) + stats.flatHp;
+      const def = baseDef * (1+defPct) + stats.flatDef;
       // add global defIgnore if scope matches
       if (defIgnoreScope === "all" || defIgnoreScope === row.type) {
         rowDefIgnore += defIgnoreGlobal;
       }
+
       return {
         ...row,
         baseMv,
         atk,
+        hp,
+        def,
         mv,
         scalingBonus,
         defIgnore: rowDefIgnore,
@@ -132,7 +156,8 @@ export default function Basic() {
     t === "baDmg" ? "baDmg" :
     t === "haDmg" ? "haDmg" :
     t === "skill" ? "skill" :
-    t === "ult"   ? "ult"   : null;
+    t === "ult"   ? "ult"   : 
+    t === "echoDmg" ? "echoDmg" : null;
 
   // ---------- Final damage per row ----------
   const computedRows = useMemo(() => {
@@ -140,20 +165,49 @@ export default function Basic() {
 
     const elementKey = (current.element ?? "").toLowerCase();
     const baseElemBonus = Number(stats?.[elementKey] ?? 0);
+  
+    const elementAmp =
+      current.element === "Aero"    ? Number(stats.aeroAmp ?? 0) :
+      current.element === "Fusion"  ? Number(stats.fusionAmp ?? 0) :
+      current.element === "Glacio"  ? Number(stats.glacioAmp ?? 0) :
+      current.element === "Spectro" ? Number(stats.spectroAmp ?? 0) :
+      current.element === "Electro" ? Number(stats.electroAmp ?? 0) :
+      current.element === "Havoc"   ? Number(stats.havocAmp ?? 0) : 
+      0;
     
     return rowsWithMods.map((row) => {
       const tbKey = typeBonusKey(row.type);
       const baseTypeBonus = Number(tbKey ? stats?.[tbKey] ?? 0 : 0);
       
+      let skillTypeAmp =
+        row.type === "baDmg" ? Number(stats.baAmp ?? 0) :
+        row.type === "haDmg" ? Number(stats.haAmp ?? 0) :
+        row.type === "skill" ? Number(stats.skillAmp ?? 0) :
+        row.type === "ult"   ? Number(stats.ultAmp ?? 0) :
+        row.type === "echoDmg" ? Number(stats.echoDmgAmp ?? 0):
+        0;
+      
+      if (row.frazzle) {
+          skillTypeAmp += stats.frazzleAmp;
+      }
+      
+      if (row.erosion){
+        skillTypeAmp += stats.erosionAmp;
+      }
+
+      console.log(row)
+
+    const finalStat = current?.hpDmgBase ? row.hp : row.atk;
+    
       const { nonCrit, crit, avg } = finalHit({
-        atk: row.atk,
+        atk: finalStat,
         mv: Number(row.mv ?? 0),
-        scalingBonus: 0, // already baked into mv
+        scalingBonus: 0, 
         elementBonus: baseElemBonus + (row.addElemBonus ?? 0),
         skillBonus: baseTypeBonus + (row.addTypeBonus ?? 0),
         allAmp: Number(stats.allAmp ?? 0) + (row.addAllAmp ?? 0),
-        elementAmp: 0,
-        skillTypeAmp: 0,
+        elementAmp: elementAmp,
+        skillTypeAmp: skillTypeAmp,
         attackerLevel: Number(current.level ?? 90),
         enemyLevel: Number(stats.enemylevel ?? 100),
         defIgnore: Number(row.defIgnore ?? 0),

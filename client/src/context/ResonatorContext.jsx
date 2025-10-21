@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { statsAtLevel } from "../utils/formulas";
+import { talentMv } from "../utils/dmg";
+import { useResonatorChain } from "./ResonatorChainContext";
 
 const ResonatorContext = createContext(null);
 
@@ -12,7 +14,7 @@ export function ResonatorProvider({ items=[], children }) {
 
     // Initialize a character
     useEffect(()=>{
-        setCurrent(items[1])
+        setCurrent(items[5])
     },[items])
 
     /* Slider control */ 
@@ -108,19 +110,33 @@ export function ResonatorProvider({ items=[], children }) {
             const stacks = e.stack
                 ? Math.min(max, Math.max(0, buffStacks?.[name] ?? 0))
                 : 1;
-
+            
+            const minBase = e.min ?? 0;
+            const value = talentMv(1,10, minBase, e.value, basic)
+            if (minBase == 0){
             effects.push({
                 source: name,
                 stat: e.stat,                
                 amount: (e.value ?? 0) * stacks,
                 stacks,
                 appliesTo: e.tags ?? null,
+                receive: e.receive ?? null
             });
+            } else {
+            effects.push({
+                source: name,
+                stat: e.stat,                
+                amount: (value ?? 0) * stacks,
+                stacks,
+                appliesTo: e.tags ?? null,
+                receive: e.receive ?? null
+            });
+            }
             }
         }
 
         return effects;
-    }, [current?.id, enabledBuffs, buffStacks]);
+    }, [current?.id, enabledBuffs, buffStacks,basic]);
 
 
     const value = useMemo(() => ({

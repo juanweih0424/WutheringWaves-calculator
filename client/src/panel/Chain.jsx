@@ -11,7 +11,11 @@ export default function ChainPanel() {
 
   return (
     <section className="mx-4 mt-6 rounded-2xl p-4">
+
       <p className="text-xl font-semibold mb-3 text-center text-[var(--color-highlight)]">{current.name} Resonance Chain</p>
+      {current?.id === 25 && (
+        <p className="text-center mb-4 text-lg font-bold text-[var(--color-highlight)]/75">For August Chains, Make sure only enable the highest chain of 1/2/6, and when Node 1/2/6 is enabled, disable the Crown of Wills in character page.</p>
+      )}
       <div className="space-y-6">
         {Object.entries(current.chain).map(([name, node]) => {
           const enabled = !!enabledChain[name];
@@ -21,7 +25,7 @@ export default function ChainPanel() {
           const stacks = chainStacks[name] ?? 0;
 
           return (
-            <div key={name} className="rounded-xl border-0 shadow-xl p-4">
+            <div key={name} className="rounded-xl border-0 shadow-md p-4">
               <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0">
                   <div className="font-medium text-[var(--color-highlight)]">{name}</div>

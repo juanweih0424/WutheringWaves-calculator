@@ -112,7 +112,7 @@ export default function Outro() {
       }
 
       const baseMv = row.mv;
-      const mv = baseMv * (1 + scalingBonus) + scalingBonusAdd;
+      const mv = (baseMv+ scalingBonusAdd) * (1 + scalingBonus) ;
       const atk = baseAtk * (1+atkPct)
       // add global defIgnore if scope matches
       if (defIgnoreScope === "all" || defIgnoreScope === row.type) {

@@ -1,0 +1,327 @@
+{
+    "id":8,
+    "name": "Phrolova",
+    "rarity": 5,
+    "element":"Havoc",
+    "weapon":"Rectifier",
+    "stats":{
+        "hp":{
+            "base":862,
+            "max":10775
+        },
+        "atk":{
+            "base":35,
+            "max":438
+        },
+        "def":{
+            "base":93,
+            "max":1137
+        }
+    },
+    "basic": {
+        "name": "Normal Attack: Movement of Life and Death",
+        "detail": {
+            "Stage 1 DMG": {
+            "base": 0.5376,
+            "max": 1.0690,
+            "type": "baDmg",
+            "tags": []
+            },
+            "Stage 2 DMG": {
+            "base": 0.4800,
+            "max": 0.9543,
+            "type": "baDmg",
+            "tags": []
+            },
+            "Stage 3 DMG": {
+            "base": 0.9864,
+            "max": 1.9614,
+            "type": "baDmg",
+            "tags": []
+            },
+            "Heavy Attack DMG": {
+            "base": 0.8032,
+            "max": 1.5970,
+            "type": "haDmg",
+            "tags": []
+            },
+            "Scarlet Coda DMG": {
+            "base": 3.3209,
+            "max": 6.6016,
+            "type": "skill",
+            "tags": ["inherent1", "chain21"]
+            },
+            "Mid-air Attack DMG": {
+            "base": 0.6400,
+            "max": 1.2724,
+            "type": "baDmg",
+            "tags": []
+            },
+            "Dodge Counter DMG": {
+            "base": 0.6136,
+            "max": 1.2199,
+            "type": "baDmg",
+            "tags": []
+            }
+        }
+    },
+    "skill": {
+        "name": "Resonance Skill: Whispers in a Fleeting Dream",
+        "detail": {
+            "Whispers in a Fleeting Dream DMG": {
+                "base": 1.0660,
+                "max": 2.1194,
+                "type": "skill",
+                "tags": []
+            }
+        }
+    },
+    "ult": {
+        "name": "Resonance Liberation: Curtain Call",
+        "detail": {
+            "Basic Attack - Hecate Stage 1 DMG": {
+            "base": 0.1400,
+            "max": 0.2784,
+            "type": "echoDmg",
+            "tags": ["chain63"]
+            },
+            "Basic Attack - Hecate Stage 2 DMG": {
+            "base": 0.1400,
+            "max": 0.2784,
+            "type": "echoDmg",
+            "tags": ["chain63"]
+            },
+            "Enhanced Attack - Hecate: Strings DMG": {
+            "base": 1.7500,
+            "max": 3.4793,
+            "type": "echoDmg",
+            "tags": ["chain61", "chain63"]
+            },
+            "Enhanced Attack - Hecate: Winds DMG": {
+            "base": 1.6626,
+            "max": 3.3063,
+            "type": "echoDmg",
+            "tags": ["chain61", "chain63"]
+            },
+            "Enhanced Attack - Hecate: Cadenza DMG": {
+            "base": 1.7500,
+            "max": 3.4793,
+            "type": "echoDmg",
+            "tags": ["chain61", "chain63"]
+            },
+            "Curtain Call DMG": {
+            "base": 2.3400,
+            "max": 4.6522,
+            "type": "ult",
+            "tags": []
+            }
+        }
+    },
+    "forte": {
+        "name": "Forte Circuit: Rhapsody of a New World",
+        "detail": {
+            "Movement of Fate and Finality DMG": {
+            "base": 2.5401,
+            "max": 5.0501,
+            "type": "skill",
+            "tags": ["chain1", "chain62"]
+            },
+            "Murmurs in a Haunting Dream DMG": {
+            "base": 2.3340,
+            "max": 4.6407,
+            "type": "skill",
+            "tags": ["chain1", "chain62"]
+            }
+        }
+    },
+    "intro": {
+        "name": "Intro Skill: Suite of Quietus",
+        "detail": {
+            "Suite of Quietus DMG": {
+            "base": 1.014,
+            "max": 2.014,
+            "type": "intro",
+            "tags": []
+            },
+            "Suite of Immortality DMG": {
+            "base": 3.000,
+            "max": 5.964,
+            "type": "skill",
+            "tags": []
+            }
+        }
+    },
+    "outro":{
+        "name":"Outro Skill: Unfinished Piece"
+    },
+    "minor":{"atkPct":0.12, "cr": 0.08},
+    "buff": {
+        "Maestro":{
+            "desc": "Gain 120% {ATK} increase.",
+            "effects": [
+                {
+                    "stack":false,
+                    "value":1.2,
+                    "stat":"atkPct"
+                }
+            ]
+        },
+        "Inherent Skill: Octet":{
+            "desc":"Obtain 10 stacks of {Aftersound} upon entering battle. This effect cannot be triggered again within 4s after exiting the combat state. For every 1 stacks of {Aftersound}, Crit. DMG is increased by 2.5%.",
+            "effects": [
+                {
+                    "stack":true,
+                    "maxStack": 24,
+                    "value":0.025,
+                    "stat":"cd"
+                }
+            ]
+        },
+        "Inherent Skill: Octet (Additional Stacks)":{
+            "desc":"Obtain 10 stacks of {Aftersound} upon entering battle. This effect cannot be triggered again within 4s after exiting the combat state. For every 1 stacks of {Aftersound}, Crit. DMG is increased by 2.5%.",
+            "effects": [
+                {
+                    "stack":true,
+                    "maxStack": 100,
+                    "value":0.01,
+                    "stat":"cd"
+                }
+            ]
+        },
+        "Aftersound":{
+            "desc": "Each stack of {Aftersound} additionally increases the DMG Multiplier of {Scarlet Coda}.",
+            "effects": [
+                {
+                    "stack":true,
+                    "maxStack": 24,
+                    "value":0.8255,
+                    "min":0.4153,
+                    "stat":"skillBounsAdd",
+                    "tags":"inherent1",
+                    "receive": "chain2"
+                }
+            ]
+        }
+    },
+    "chain":{
+        "Sequence Node 1: A Key to Netherworld's Secrets":{
+            "desc":"The DMG Multiplier of {Movement of Fate and Finality} is increased by 80%. The DMG Multiplier of {Murmurs in a Haunting Dream} is increased by 80%. If Phrolova has less than 2 {Volatile Notes} when she is not in the {Maestro state} and stays out of combat for 4s, she gains {Volatile Note - Cadenza} until she has at least 2 {Volatile Notes}.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.8,
+                    "stat":"skillBouns",
+                    "tags":"chain1"
+                }
+            ]
+        },
+        "Sequence Node 2: A Rope Tied to a Life Beyond":{
+            "desc":"The DMG Multiplier of {Scarlet Coda} is increased by 75%. {Aftersound} now additionally increases the DMG Multiplier of {Scarlet Coda} by 75%. Casting {Scarlet Coda} grants 14 stacks of {Aftersound}.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.75,
+                    "stat":"skillBouns",
+                    "tags":"chain2"
+                },
+                {
+                    "stack":false,
+                    "value":0.75,
+                    "stat":"skillBouns",
+                    "tags":"chain21"
+                }
+            ]
+        },
+        "Sequence Node 3: A Dagger to Cut Clean Obsessions":{
+            "desc": "Echo Skill DMG is Amplified by 80%. Casting {Scarlet Coda} will convert all {Volatile Notes} to {Volatile Notes - Cadenza} in turn. Targets hit by {Enhanced Attack - Hecate: Cadenza} will have their ATK reduced by 20% for 15s.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.8,
+                    "stat":"echoDmgAmp"
+                }
+            ]
+        },
+        "Sequence Node 4: A Torch Illuminating the Path":{
+            "desc": "Casting Echo Skill grants 20% Attribute DMG Bonus for all Resonators in the team for 30s.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.2,
+                    "stat":"allAtr"
+                }
+            ]
+        },
+        "Sequence Node 5: A Forked Road in Fate's Heartland":{
+            "desc":"Upon entering the {Maestro} state, generate a field to {Stagnate} the nearby targets, which lasts for 4s. Leaving the {Maestro} state or switching to other Resonators removes the Stagnation effect early.Damage taken during the {Maestro} state is reduced by 30%."
+        },
+        "Sequence Node 6: A Night to Depart From Eternal Rest":{
+            "desc": "The DMG Multiplier of {Enhanced Attack - Hecate} is increased by 24%.During {Movement of Fate and Finality} and {Murmurs in a Haunting Dream}, command Hecate to cast 1 {Apparition of Beyond - Hecate}, dealing Havoc DMG equal to 216.42% of Phrolova's ATK (considered Echo Skill DMG) and granting 8 stacks of Aftersound on hit.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.24,
+                    "stat":"skillBouns",
+                    "tags":"chain61"
+                },
+                {
+                    "stack":false,
+                    "value":2.1642,
+                    "stat":"skillBounsAdd",
+                    "tags":"chain62"
+                }
+            ]
+        },
+        "Sequence Node 6: A Night to Depart From Eternal Rest (Off-Field)":{
+            "desc":"If Phrolova is not the active Resonator during the {Maestro} state, targets take 40% more DMG from Hecate and Phrolova.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.4,
+                    "stat":"allAmp",
+                    "tags":"chain63"
+                }
+            ]    
+        },
+        "Sequence Node 6: A Night to Depart From Eternal Rest (On-Field)":{
+            "desc":"If Phrolova is the active Resonator during the {Maestro} state, gain 60% Havoc DMG Bonus.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.6,
+                    "stat":"havoc"
+                }
+            ]    
+        }
+    },
+    "teamBuff":[
+        {
+            "name":"Outro Skill: Unfinished Piece",
+            "desc":"The incoming Resonator gains 20% {Havoc DMG Amplification} and 25% {Heavy DMG Amplification} for 14s or until they are switched out.",
+            "effects": [
+                {
+                    "stack":false,
+                    "stat":"havocAmp",
+                    "value":0.2
+                },
+                {
+                    "stack":false,
+                    "stat":"haAmp",
+                    "value":0.25
+                }
+            ]
+        },
+        {
+            "name":"Sequence Node 4: A Torch Illuminating the Path",
+            "desc":"Casting {Echo Skill} grants 20% {Attribute DMG Bonus} for all Resonators in the team for 30s.",
+            "effects": [
+                {
+                    "stack":false,
+                    "stat":"allAtr",
+                    "value":0.2
+                }
+            ]
+        }
+
+    ]
+}

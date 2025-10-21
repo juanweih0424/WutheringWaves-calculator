@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useEchoSet } from "../context/EchoSetContext";
 import { labelFromStatKey } from "../context/EchoContext";
-import {buffMeta, getIconForStat} from "../utils/statsMeta";
+import { getIconForStat, statsMeta } from "../utils/statsMeta";
 import { tokenizeDescription } from "../utils/formatDescription";
+import { getEchoSetImageUrl } from "../utils/echo";
 
 /** Percent-style stats (for value formatting) */
 const PCT_STATS = new Set([
-  // core %
+  // elements
   "aero","glacio","fusion","electro","havoc","spectro",
-  "hpPct","atkPct","defPct","cr","cd","er","heal","skill","ult","haDmg","baDmg", 
+  // core %
+  "hpPct","atkPct","defPct","cr","cd","er","heal","skill","ult","haDmg","baDmg",
   // set-only %
   "outro","echoDmg","echoDmgAll","atkPctAll","atkPctTm",
   "fusionAll","aeroTm","havocTm","allAtr",
@@ -58,11 +60,29 @@ const STAT_OVERRIDES = {
   allAtr: "All Attribute DMG Bouns",
 };
 
+const ELEMENT_COLORS = {
+  aero:   "#22c55e", // Aero
+  glacio: "#3b82f6", // Glacio
+  fusion: "#ed744d", // Fusion
+  electro:"#a855f7", // Electro
+  spectro:"#facc15", // Spectro
+  havoc:  "#94224a", // Havoc
+};
+
+function colorForToken(text) {
+  if (!text) return null;
+  const lower = text.toLowerCase();
+  for (const [key, color] of Object.entries(ELEMENT_COLORS)) {
+    if (lower.includes(key)) return color;
+  }
+  return null;
+}
+
 function prettyStatLabel(stat) {
   if (STAT_OVERRIDES[stat]) return STAT_OVERRIDES[stat];
   const fromCtx = typeof labelFromStatKey === "function" ? labelFromStatKey(stat) : null;
   if (fromCtx) return fromCtx.replace("%", " %");
-  return stat.toUpperCase();
+  return String(stat ?? "").toUpperCase();
 }
 
 function fmtVal(stat, value) {
@@ -80,6 +100,11 @@ function EffectsList({ which, selSet, pieces }) {
   const { stacks, setEffectStack } = useEchoSet();
   if (!selSet?.set) return null;
 
+  const IS_ELEMENT = useMemo(
+    () => new Set(statsMeta.filter(m => m.isElement).map(m => m.key)),
+    []
+  );
+
   return (
     <div className="space-y-3">
       {pieces.map((piece) => {
@@ -87,34 +112,70 @@ function EffectsList({ which, selSet, pieces }) {
         if (!data) return null;
         const effects = data.effects || [];
         return (
-          <div key={piece} className="space-y-1">
-            <div className="text-base font-semibold">
-              {PIECE_TITLE[piece] ?? piece.toUpperCase()}
+          <div key={piece} className="space-y-2">
+            {/* Title row with set icon + name + piece header */}
+            <div className="flex items-center gap-2">
+              <img
+                src={getEchoSetImageUrl(Number(selSet.id))}
+                className="h-6 w-6 rounded"
+                alt=""
+              />
+              <p className="font-medium">{selSet.name}</p>
+              <span className="ml-2 text-sm opacity-80">
+                {PIECE_TITLE[piece] ?? piece.toUpperCase()}
+              </span>
             </div>
-            {data.desc && <p className="tracking-tight">{data.desc}</p>}
 
+            {/* Description with BuffCard-style colored tokens */}
+            {data.desc && (
+              <p className="tracking-tight">
+                {tokenizeDescription(data.desc).map((part, i) => {
+                  if (!part.highlight) return <span key={i}>{part.text}</span>;
+                  const color = colorForToken(part.text);
+                  return (
+                    <span
+                      key={i}
+                      className={color ? "font-medium" : "text-[var(--color-highlight)] font-medium"}
+                      style={color ? { color } : undefined}
+                    >
+                      {part.text}
+                    </span>
+                  );
+                })}
+              </p>
+            )}
+
+            {/* Effects list */}
             <div className="space-y-1">
               {effects.map((ef, idx) => {
                 const key = `${piece}-${idx}`;
                 const curStacks = stacks?.[which]?.[key] ?? 0;
-                const max = ef.maxStack;
+                const max =
+                  typeof ef.maxStack === "number"
+                    ? ef.maxStack
+                    : typeof ef.maxStacks === "number"
+                    ? ef.maxStacks
+                    : 10;
                 const totalVal = (ef?.stack ? (ef.value * curStacks) : ef.value) || 0;
+
                 const icon = getIconForStat(ef.stat);
-                const isElement = buffMeta.some(m => m.key === ef.stat && m.isElement);
+                const isElement = IS_ELEMENT.has(ef.stat);
                 const tint = isElement ? "" : "brightness-[var(--color-img)]";
+
                 return (
                   <div
                     key={key}
                     className="flex items-center justify-between gap-3 rounded-md bg-gray-500/10 px-2 py-1"
                   >
-                    <div className="flex gap-2">
-                    <img src={icon} className={`w-6 h-6 ${tint}`}/>
-                    <p className="font-medium">{prettyStatLabel(ef.stat)}</p>{" "}
+                    <div className="flex items-center gap-2">
+                      {icon && <img src={icon} alt="" className={`w-6 h-6 ${tint}`} />}
+                      <p className="font-medium">{prettyStatLabel(ef.stat)}</p>
                     </div>
+
                     <div className="flex items-center gap-2">
                       {ef.stack && (
                         <>
-                          <p className="">Stack: </p> 
+                          <span className="text-sm opacity-80">Stack:</span>
                           <input
                             type="number"
                             min={0}
@@ -157,13 +218,14 @@ function Section({ title, which, pieces }) {
   return (
     <div className="rounded-xl border shadow-md border-gray-600/40 p-3 space-y-2">
       <div className="font-medium">{title}</div>
+
       <select
         className="w-full border rounded px-2 py-1 text-sm bg-[var(--color-bg)] text-[var(--color-text)]"
         value={selectedId ?? ""}
         onChange={(e) => setSelectedSet(which, e.target.value || null)}
       >
         <option value="">
-          {which === "first" ? "Choose a 2-Set" : "Choose a 5-Set / 3-Set"}
+          {which === "first" ? "Choose a 2-Set" : "Choose a 3-Set / 5-Set"}
         </option>
         {available.map((s) => (
           <option key={s.id} value={s.id}>
@@ -186,12 +248,11 @@ function Section({ title, which, pieces }) {
 }
 
 export default function EchoSet() {
-
   return (
     <div className="space-y-4">
       <p className="text-lg font-semibold mt-2">Set Bonuses</p>
       <Section title="Choose 2-Pc Set Effect" which="first" pieces={["2pc"]} />
-      <Section title="Choose 3-PC/5-Pc Set Effect" which="second" pieces={["5pc", "3pc"]} />
+      <Section title="Choose 3-Pc/5-Pc Set Effect" which="second" pieces={["5pc", "3pc"]} />
     </div>
   );
 }

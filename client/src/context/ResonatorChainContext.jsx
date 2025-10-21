@@ -5,7 +5,7 @@ const ResonatorChainContext = createContext(null);
 
 export function ResonatorChainProvider( { children }) {
 
-    const {current} = useResonator();
+    const {current, trackEnable} = useResonator();
 
     const [enabledChain, setEnabledChain] = useState({});
     const [chainStacks, setChainStacks] = useState({});
@@ -63,11 +63,13 @@ export function ResonatorChainProvider( { children }) {
             stat: e.stat,          
             amount: (Number(e.value) || 0) * stacks,
             appliesTo: e.tags ?? null,
+            maxStack: e.maxStack ?? null
           });
         }
       }
       return out;
   }, [current?.id, enabledChain, chainStacks]);
+
 
     const value = useMemo(() => ({
     enabledChain, chainStacks,

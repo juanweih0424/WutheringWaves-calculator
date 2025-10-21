@@ -3,10 +3,9 @@ import React, { createContext, useContext, useMemo, useState } from "react";
 const EchoSetContext = createContext(undefined);
 
 export function EchoSetProvider({ setsCatalog = [], children }) {
-  const [set1Id, setSet1Id] = useState(null); // first: 2pc only
-  const [set2Id, setSet2Id] = useState(null); // second: 5pc (+ 3pc if present)
+  const [set1Id, setSet1Id] = useState(null); 
+  const [set2Id, setSet2Id] = useState(null); 
 
-  // stacks per selector
   const [stacks, setStacks] = useState({ first: {}, second: {} });
 
   const getSetById = (id) =>
@@ -16,7 +15,7 @@ export function EchoSetProvider({ setsCatalog = [], children }) {
     if (which !== "first" && which !== "second") return;
     if (which === "first") setSet1Id(id ?? null);
     else setSet2Id(id ?? null);
-    // reset stacks when changing selected set
+
     setStacks((prev) => ({ ...prev, [which]: {} }));
   };
 
@@ -31,7 +30,6 @@ export function EchoSetProvider({ setsCatalog = [], children }) {
     }));
   };
 
-  // ---------- totals (first: 2pc only; second: 5pc + optional 3pc) ----------
   const sumSetPieces = (selSet, which, pieces) => {
     if (!selSet?.set) return {};
     const out = {};
@@ -67,7 +65,7 @@ export function EchoSetProvider({ setsCatalog = [], children }) {
     return total;
   }, [set1Id, set2Id, stacks, setsCatalog]);
 
-  console.log(setTotals)
+
   const value = useMemo(
     () => ({
       setsCatalog,

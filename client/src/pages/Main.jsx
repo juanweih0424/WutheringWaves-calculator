@@ -16,6 +16,10 @@ import Intro from "../components/Intro";
 import Outro from "../components/Outro";
 import { EchoProvider } from "../context/EchoContext";
 import { EchoSetProvider } from "../context/EchoSetContext";
+import { BuffProvider } from "../context/TeamBuffContext";
+import { WeaponBuffProvider } from "../context/WeaponBuffContext";
+import { ResonatorBuffProvider } from "../context/ResonatorBuffContext";
+
 export default function Main() {
   const { activePage } = useOutletContext();
   
@@ -92,6 +96,9 @@ export default function Main() {
       <WeaponProvider weapons={weapons}>
         <EchoProvider echoes={echoes}>
           <EchoSetProvider setsCatalog={echoSet}>
+          <BuffProvider>
+            <ResonatorBuffProvider>
+            <WeaponBuffProvider>
         <EnemyProvider>
         <div className="w-full p-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 p-4">
@@ -115,6 +122,9 @@ export default function Main() {
           </div>
         </div>
         </EnemyProvider>
+        </WeaponBuffProvider>
+        </ResonatorBuffProvider>
+        </BuffProvider>
         </EchoSetProvider>
         </EchoProvider>
       </WeaponProvider>

@@ -14,16 +14,19 @@
         "weapon":"Gauntlet",
         "passive": {
             "name": "Plenilune Radiance",
-            "description":"Increases ATK by {atkPct}%. Casting Intro Skill or Resonance Liberation increases Resonance Liberation DMG by {ult}% for 15s. Obtaining Shield allows Resonance Liberation DMG to ignore {defIgnorePerStack}% of the target's DEF for 7s, stacking up to 5 times. This effect is triggered once every 0.5s. Upon casting Intro Skill, this effect reaches max stacks immediately, lasting for 3s.",
+            "description":"Increases ATK by {atkPct}%. Casting Intro Skill or Resonance Liberation increases Resonance Liberation DMG by {ult}% for 15s. Obtaining Shield allows Resonance Liberation DMG to ignore {defIgnore}% of the target's DEF for 7s, stacking up to 5 times. This effect is triggered once every 0.5s. Upon casting Intro Skill, this effect reaches max stacks immediately, lasting for 3s.",
             "ranks":[
-                {"atkPct":0.12, "ult": 0.2, "defIgnorePerStack":0.072},
-                {"atkPct":0.15, "ult": 0.25, "defIgnorePerStack":0.084},
-                {"atkPct":0.18, "ult": 0.3, "defIgnorePerStack":0.096},
-                {"atkPct":0.21, "ult": 0.35, "defIgnorePerStack":0.108},
-                {"atkPct":0.24, "ult": 0.40, "defIgnorePerStack":0.12}
+                {"atkPct":0.12, "ult": 0.2, "defIgnore":0.072},
+                {"atkPct":0.15, "ult": 0.25, "defIgnore":0.084},
+                {"atkPct":0.18, "ult": 0.3, "defIgnore":0.096},
+                {"atkPct":0.21, "ult": 0.35, "defIgnore":0.108},
+                {"atkPct":0.24, "ult": 0.40, "defIgnore":0.12}
             ],
-            "defIgnoreScope": "ult",
-            "stack":true    
+            "stackScope":"defIgnore",
+            "defIgnore":true,
+            "defIgnoreScope":"ult",    
+            "stack":true,
+            "maxStack":5
         }
     },
     {
@@ -42,16 +45,18 @@
 
         "passive": {
             "name": "Thunderblaze Eminence",
-            "description":"Increases ATK by {atkPct}%. Casting Intro Skill or Resonance Skill increases Heavy Attack DMG by {haDmg}% for 15s. Obtaining Shield allows Heavy Attack DMG to ignore {defIgnorePerStack}% of the target's DEF for 7s, stacking up to 5 times (triggers once every 0.5s).",
+            "description":"Increases ATK by {atkPct}%. Casting Intro Skill or Resonance Skill increases Heavy Attack DMG by {haDmg}% for 15s. Obtaining Shield allows Heavy Attack DMG to ignore {defIgnore}% of the target's DEF for 7s, stacking up to 5 times (triggers once every 0.5s).",
             "ranks":[
-                {"atkPct":0.12, "haDmg": 0.2, "defIgnorePerStack":0.072},
-                {"atkPct":0.15, "haDmg": 0.25, "defIgnorePerStack":0.084},
-                {"atkPct":0.18, "haDmg": 0.3, "defIgnorePerStack":0.096},
-                {"atkPct":0.21, "haDmg": 0.35, "defIgnorePerStack":0.108},
-                {"atkPct":0.24, "haDmg": 0.40, "defIgnorePerStack":0.12}
+                {"atkPct":0.12, "haDmg": 0.2, "defIgnore":0.072},
+                {"atkPct":0.15, "haDmg": 0.25, "defIgnore":0.084},
+                {"atkPct":0.18, "haDmg": 0.3, "defIgnore":0.096},
+                {"atkPct":0.21, "haDmg": 0.35, "defIgnore":0.108},
+                {"atkPct":0.24, "haDmg": 0.40, "defIgnore":0.12}
             ],
-            "defIgnoreScope": "haDmg",    
-            "stack":true
+            "stackScope":"defIgnore",
+            "stack":true,
+            "maxStack":5,
+            "defIgnoreScope": "haDmg"
         }
     },
     {
@@ -71,6 +76,7 @@
             "name":"Ad Veritatem",
             "description":"Gain {allAtr}% Attribute DMG Bonus. When using Resonance Liberation, the wielder gains {ult}% Resonance Liberation DMG Bonus for 8s. This effect can be extended by 5s each time Resonance Skills are cast, up to 3 times.",
             "stack":false,
+            "defIgnore":false,
             "ranks": [
                 {"allAtr":0.12, "ult":0.48},
                 {"allAtr":0.15, "ult":0.60},
@@ -137,16 +143,16 @@
         "icon": "blazing-justice",
         "substat":"cd",
         "subval":{
-            "base":0.081,
-            "max":0.3645
+            "base":0.108,
+            "max":0.486
         },
         "atk":{
             "base":47,
             "max":587.5
         },
-        "weapon":"Broadblade",
+        "weapon":"Gauntlet",
         "passive":{
-            "name":"Stormy Resolution",
+            "name":"Darkness Breaker",
             "description":"Increases ATK by {atkPct}%. Casting Basic Attack grants the following effects: Dealing damage ignores {defIgnore}% of the target's DEF and Amplifies Spectro Frazzle DMG dealt by {frazzle}% for 6s. Retriggering the effect resets its duration.",
             "stack":false,
             "defIgnoreScope":"all",
@@ -164,8 +170,8 @@
         "icon": "lustrous-razor",
         "substat":"atk",
         "subval":{
-            "base":0.108,
-            "max":0.486
+            "base":0.081,
+            "max":0.3645
         },
         "atk":{
             "base":47,
@@ -174,17 +180,592 @@
         "weapon":"Broadblade",
         "passive":{
             "name":"Stormy Resolution",
-            "description":"Increases Energy Regen by {er}%. When Resonance Skill is cast, Resonance Liberation DMG Bonus is increased by {ult}%(Stack is capped at 3), stacking up to 3 times. This effect lasts for 12s.",
+            "description":"Increases Energy Regen by {er}%. When Resonance Skill is cast, Resonance Liberation DMG Bonus is increased by {ult}%, stacking up to 3 times. This effect lasts for 12s.",
             "stack":true,
             "ranks": [
-                {"er":0.128,"ult":0.21},
-                {"er":0.16,"ult":0.2625},
-                {"er":0.192,"ult":0.315},
-                {"er":0.224,"ult":0.37},
-                {"er":0.256,"ult":0.42}
+                {"er":0.128,"ult":0.07},
+                {"er":0.16,"ult":0.0875},
+                {"er":0.192,"ult":0.105},
+                {"er":0.224,"ult":0.1225},
+                {"er":0.256,"ult":0.14}
+            ],
+            "stackScope":"ult",
+            "maxStack":3
+        }
+    },
+    {
+        "name":"Ages of Harvest",
+        "icon": "ages-of-harvest",
+        "substat": "cr",
+        "subval": {
+            "base": 0.054,
+            "max":0.243
+        },
+        "atk": {
+            "base":47,
+            "max":587.5
+        },
+        "weapon":"Broadblade",
+        "passive":{
+            "name":"Divine Blessing",
+            "description":"Grants {allAtr}% Attribute DMG Bonus. Casting Intro Skill gives the equipper Ageless Marking, which grants {skill}% Resonance Skill DMG Bonus for 12s. Casting Resonance Skill gives the equipper Ethereal Endowment, which grants{skill}% Resonance Skill DMG Bonus for 12s.",
+            "stack":true,
+            "stackScope":"skill",
+            "maxStack":2,
+            "ranks": [
+                {"allAtr":0.12,"skill":0.24},
+                {"allAtr":0.15,"skill":0.30},
+                {"allAtr":0.18,"skill":0.36},
+                {"allAtr":0.21,"skill":0.42},
+                {"allAtr":0.24,"skill":0.48}
+            ]
+        }
+    },
+    {
+        "name":"Verdant Summit",
+        "icon": "verdant-summit",
+        "substat": "cd",
+        "subval": {
+            "base": 0.108,
+            "max":0.486
+        },
+        "atk": {
+            "base":47,
+            "max":587.5
+        },
+        "weapon":"Broadblade",
+        "passive":{
+            "name":"Swordsworn",
+            "description":"Increases Attribute DMG Bonus by {allAtr}%. Every time Intro Skill or Resonance Liberation is cast, increases Heavy Attack DMG Bonus by {haDmg}%, stacking up to 2 time(s). This effect lasts for 14s.",
+            "stack":true,
+            "stackScope":"haDmg",
+            "maxStack":2,
+            "ranks": [
+                {"allAtr":0.12,"haDmg":0.24},
+                {"allAtr":0.15,"haDmg":0.30},
+                {"allAtr":0.18,"haDmg":0.36},
+                {"allAtr":0.21,"haDmg":0.42},
+                {"allAtr":0.24,"haDmg":0.48}
+            ]
+        }
+    },
+    {
+        "name":"Wildfire Mark",
+        "icon": "wildfire-mark",
+        "substat": "cd",
+        "subval": {
+            "base": 0.108,
+            "max":0.486
+        },
+        "atk": {
+            "base":47,
+            "max":587.5
+        },
+        "weapon":"Broadblade",
+        "passive":{
+            "name":"Blazing Starfire",
+            "description":"Increases ATK by {atkPct}%. Performing Intro Skill or Resonance Liberation increases Resonance Liberation DMG by {ult}% for 6s. Dealing Heavy Attack DMG extends this effect by 4s, up to 1 time. Each successful extension gives {fusion}% Fusion DMG Bonus to all Resonators in the team for 30s. Effects of the same name cannot be stacked.",
+            "stack":false,
+            "ranks": [
+                {"atkPct":0.12,"ult":0.24,"fusion":0.24},
+                {"atkPct":0.15,"ult":0.30,"fusion":0.30},
+                {"atkPct":0.18,"ult":0.36,"fusion":0.36},
+                {"atkPct":0.21,"ult":0.42,"fusion":0.42},
+                {"atkPct":0.24,"ult":0.48,"fusion":0.48}
+            ]
+        },
+        "buff":{
+            "description":"Each successful extension gives {fusion}% Fusion DMG Bonus to all Resonators in the team for 30s. Effects of the same name cannot be stacked.",
+            "effects":[
+                {"fusion":0.24},
+                {"fusion":0.3},
+                {"fusion":0.36},
+                {"fusion":0.42},
+                {"fusion":0.48}
+            ]
+        }
+    },
+    {
+        "name":"Lethean Elegy",
+        "icon": "lethean-elegy",
+        "substat": "cr",
+        "subval": {
+            "base": 0.054,
+            "max":0.243
+        },
+        "atk": {
+            "base":47,
+            "max":587.5
+        },
+        "weapon":"Rectifier",
+        "passive":{
+            "name":"Underworld Requiem",
+            "description":"ATK is increased by {atkPct}%. Within 12s after dealing Echo Skill DMG, gain {skill}% Resonance Skill DMG Bonus and {echoDmgAmp}% Echo Skill DMG Amplification, and ignore {defIgnore}% of the target's DEF when dealing damage.",
+            "stack":false,
+            "defIgnoreScope":"all",
+            "ranks": [
+                {"atkPct":0.12,"skill":0.32,"echoDmgAmp":0.32, "defIgnore":0.08},
+                {"atkPct":0.15,"skill":0.40,"echoDmgAmp":0.40, "defIgnore":0.1},
+                {"atkPct":0.18,"skill":0.48,"echoDmgAmp":0.48, "defIgnore":0.12},
+                {"atkPct":0.21,"skill":0.56,"echoDmgAmp":0.56, "defIgnore":0.14},
+                {"atkPct":0.24,"skill":0.64,"echoDmgAmp":0.64, "defIgnore":0.16}
+            ]
+        }
+    },
+    {
+        "name":"Cosmic Ripples",
+        "icon": "cosmic-ripples",
+        "substat": "atk",
+        "subval": {
+            "base": 0.012,
+            "max":0.54
+        },
+        "atk": {
+            "base":40,
+            "max":500
+        },
+        "weapon":"Rectifier",
+        "passive":{
+            "name":"Stormy Resolution",
+            "description":"Increases Energy Regen by {er}%. When dealing Basic Attack DMG, increases Basic Attack DMG Bonus by {baDmg}%, stacking up to 5 times. This effect lasts for 8s and can be triggered 1 time(s) every 0.5s.",
+            "stack":true,
+            "stackScope":"baDmg",
+            "maxStack":5,
+            "ranks": [
+                {"er":0.128,"baDmg":0.032},
+                {"er":0.16,"baDmg":0.04},
+                {"er":0.192,"baDmg":0.048},
+                {"er":0.224,"baDmg":0.056},
+                {"er":0.256,"baDmg":0.064}
+            ]
+        }
+    },
+    {
+        "name":"Stellar Symphony",
+        "icon": "stellar-symphony",
+        "substat": "er",
+        "subval": {
+            "base": 0.1712,
+            "max":0.7704
+        },
+        "atk": {
+            "base":33,
+            "max":412.5
+        },
+        "weapon":"Rectifier",
+        "passive":{
+            "name":"Astral Evolvement",
+            "description":"Increase HP by {hpPct}%. Restore 8/10/12/14/16 Concerto Energy when casting Resonance Liberation. This effect can be triggered 1 time(s) every 20s. When casting Resonance Skill that heals, increase nearby party members' ATK by {atkPctTm}% for 30s. Effects of the same name cannot be stacked.",
+            "stack":false,
+            "ranks": [
+                {"hpPct":0.12, "atkPctTm":0.14},
+                {"hpPct":0.15,"atkPctTm":0.175},
+                {"hpPct":0.18, "atkPctTm":0.21},
+                {"hpPct":0.21,"atkPctTm":0.245},
+                {"hpPct":0.24, "atkPctTm":0.28}
+            ]
+        },
+        "buff":{
+            "description":"When casting Resonance Skill that heals, increase nearby party members' ATK by {atkPct}% for 30s. Effects of the same name cannot be stacked.",
+            "effects":[
+                {"atkPct":0.14},
+                {"atkPct":0.175},
+                {"atkPct":0.21},
+                {"atkPct":0.24},
+                {"atkPct":0.28}
+            ]
+        }
+    },
+    {
+        "name":"Stringmaster",
+        "icon": "stringmaster",
+        "substat": "cr",
+        "subval": {
+            "base": 0.08,
+            "max":0.36
+        },
+        "atk": {
+            "base":40,
+            "max":500
+        },
+        "weapon":"Rectifier",
+        "passive":{
+            "name":"Electric Amplification",
+            "description":"Grants {allAtr}% Attribute DMG Bonus. When dealing Resonance Skill DMG, increases ATK by {atkPct}%, stacking up to 2 times. This effect lasts for 5s. When the wielder is not on the field, increases their ATK by an additional {additionalAtk}%",
+            "stack":true,
+            "maxStack": 2,
+            "stackScope":"atkPct",
+            "ranks": [
+                {"allAtr":0.12, "atkPct":0.12, "additionalAtk": 0.12},
+                {"allAtr":0.15, "atkPct":0.15, "additionalAtk": 0.15},
+                {"allAtr":0.18, "atkPct":0.18, "additionalAtk": 0.18},
+                {"allAtr":0.21, "atkPct":0.21, "additionalAtk": 0.21},
+                {"allAtr":0.24, "atkPct":0.24, "additionalAtk": 0.24}
+            ]
+        }
+    },
+    {
+        "name":"Luminous Hymn",
+        "icon": "luminous-hymn",
+        "substat": "cr",
+        "subval": {
+            "base": 0.08,
+            "max":0.36
+        },
+        "atk": {
+            "base":40,
+            "max":500
+        },
+        "weapon":"Rectifier",
+        "passive":{
+            "name":"Homebuilder's Anthem",
+            "description":"Increase ATK by {atkPct}%. Dealing DMG to targets with Spectro Frazzle grants the wielder {baDmg}% Basic Attack DMG Bonus and {haDmg}% Heavy Attack DMG Bonus, stacking up to 3 for 6s. Casting Outro Skill Amplifies the Spectro Frazzle DMG on targets around the active Resonator by {frazzleTm}% for 30s. Effects of the same name cannot be stacked.",
+            "stack":false,
+            "ranks": [
+                {"atkPct":0.12, "baDmg":0.14, "haDmg": 0.14,"frazzleTm": 0.3},
+                {"atkPct":0.15, "baDmg":0.175, "haDmg": 0.175,"frazzleTm": 0.375},
+                {"atkPct":0.18, "baDmg":0.21, "haDmg": 0.21,"frazzleTm": 0.45},
+                {"atkPct":0.21, "baDmg":0.245, "haDmg": 0.245,"frazzleTm": 0.525},
+                {"atkPct":0.24, "baDmg":0.28, "haDmg": 0.28,"frazzleTm": 0.6}
+            ]
+        },
+        "buff":{
+            "description":"Casting Outro Skill Amplifies the Spectro Frazzle DMG on targets around the active Resonator by {frazzleTm}% for 30s. Effects of the same name cannot be stacked.",
+            "effects":[
+                {"frazzleTm":0.3},
+                {"frazzleTm":0.375},
+                {"frazzleTm":0.45},
+                {"frazzleTm":0.525},
+                {"frazzleTm":0.6}
+            ]
+        }
+    },
+    {
+        "name":"Rime-Draped Sprouts",
+        "icon": "rime-draped-sprouts",
+        "substat": "cd",
+        "subval": {
+            "base": 0.16,
+            "max":0.72
+        },
+        "atk": {
+            "base":40,
+            "max":500
+        },
+        "weapon":"Rectifier",
+        "passive":{
+            "name":"Panorama",
+            "description":"Increase ATK by {atkPct}%. While the wielder is on the field, using Resonance Skill grants {baDmgStack}% Basic Attack DMG Bonus, stacking up to 3 times for 6s. At 3 stacks or above, casting Outro Skill consumes all stacks of this effect and grants the wielder {baDmg} Basic Attack DMG Bonus for 27s, effective when the wielder is off the field.",
+            "stack":true,
+            "maxStack":3,
+            "stackScope":"baDmgStack",
+            "ranks": [
+                {"atkPct":0.12, "baDmg":0.52, "baDmgStack":0.12},
+                {"atkPct":0.15, "baDmg":0.65, "baDmgStack":0.15},
+                {"atkPct":0.18, "baDmg":0.78, "baDmgStack":0.18},
+                {"atkPct":0.21, "baDmg":0.91, "baDmgStack":0.21},
+                {"atkPct":0.24, "baDmg":1.04, "baDmgStack":0.24}
+            ]
+        }
+    },
+    {
+        "name":"Whispers of Sirens",
+        "icon": "whispers-of-sirens",
+        "substat": "cd",
+        "subval": {
+            "base": 0.16,
+            "max":0.72
+        },
+        "atk": {
+            "base":40,
+            "max":500
+        },
+        "weapon":"Rectifier",
+        "passive":{
+            "name":"From the Deep",
+            "description":"Increases ATK by {atkPct}%. Casting Echo Skill within 10s after casting Intro Skill or Basic Attacks grants 1 of Gentle Dream. Echoes with the same name can only trigger this effect once, stacking up to 2 times, lasting for 10s. When reaching 2 stacks, casting Echo Skill no longer resets the duration of this effect. This effect activates up to once per 10s. Switching to another Resonator ends this effect early. With 1: Grants {baDmg}% Basic Attack DMG Bonus. With 2: Ignores {havocShred}% of the target's Havoc RES.",
+            "stack":false,
+            "ranks": [
+                {"atkPct":0.12, "baDmg":0.4, "havocShred":0.12},
+                {"atkPct":0.15, "baDmg":0.5, "havocShred":0.15},
+                {"atkPct":0.18, "baDmg":0.6, "havocShred":0.18},
+                {"atkPct":0.21, "baDmg":0.7, "havocShred":0.21},
+                {"atkPct":0.24, "baDmg":0.8, "havocShred":0.24}
+            ]
+        }
+    },
+    {
+        "name":"Blazing Brilliance",
+        "icon": "blazing-brilliance",
+        "substat": "cd",
+        "subval": {
+            "base": 0.108,
+            "max":0.486
+        },
+        "atk": {
+            "base":47,
+            "max":587.5
+        },
+        "weapon":"Sword",
+        "passive":{
+            "name":"Crimson Phoenix",
+            "description":"ATK increased by {atkPct}%. The wielder gains 1 stack of Searing Feather upon dealing damage, which can be triggered once every 0.5s, and gains 5 stacks of the same effect upon casting Resonance Skill. Each stack of Searing Feather gives {skill}% additional Resonance Skill DMG Bonus for up to 14 stacks. After reaching the max stacks, all stacks will be removed in 12s.",
+            "stack":true,
+            "maxStack":14,
+            "stackScope":"skill",
+            "ranks": [
+                {"atkPct":0.12,"skill":0.04},
+                {"atkPct":0.15,"skill":0.05},
+                {"atkPct":0.18,"skill":0.06},
+                {"atkPct":0.21,"skill":0.07},
+                {"atkPct":0.24,"skill":0.08}
+            ]
+        }
+    },
+    {
+        "name":"Defier's Thorn",
+        "icon": "defier-s-thorn",
+        "substat": "hp",
+        "subval": {
+            "base": 0.1605,
+            "max":0.7223
+        },
+        "atk": {
+            "base":33,
+            "max":412.5
+        },
+        "weapon":"Sword",
+        "passive":{
+            "name":"A Free Knight's Tarantella",
+            "description":"Max HP is increased by {hpPct}%. 15s after casting Intro Skill or Basic Attacks, ignore {defIgnore}% of the target's DEF when dealing damage. If the target has at least 1 stack of Aero Erosion, the DMG taken by the target is Amplified by {allAmp}%.",
+            "stack":false,
+            "defIgnoreScope":"all",
+            "ranks": [
+                {"hpPct":0.12,"defIgnore":0.08, "allAmp":0.2},
+                {"hpPct":0.15,"defIgnore":0.1, "allAmp":0.25},
+                {"hpPct":0.18,"defIgnore":0.12, "allAmp":0.3},
+                {"hpPct":0.21,"defIgnore":0.14, "allAmp":0.35},
+                {"hpPct":0.24,"defIgnore":0.16, "allAmp":0.4}
+            ]
+        }
+    },
+    {
+        "name":"Bloodpact's Pledge",
+        "icon": "bloodpact-s-pledge",
+        "substat": "er",
+        "subval": {
+            "base": 0.0864,
+            "max":0.3888
+        },
+        "atk": {
+            "base":47,
+            "max":587.5
+        },
+        "weapon":"Sword",
+        "passive":{
+            "name":"Harmonious Vibrancy",
+            "description":"Providing Healing increases Resonance Skill DMG by {skill}% for 6s. When Rover: Aero casts Resonance Skill Unbound Flow, Aero DMG dealt by nearby Resonators on the field is Amplified by {aeroAmpTm}% for 30s.",
+            "stack":false,
+            "ranks": [
+                {"skill":0.1, "aeroAmpTm":0.1},
+                {"skill":0.14, "aeroAmpTm":0.14},
+                {"skill":0.18, "aeroAmpTm":0.18},
+                {"skill":0.22, "aeroAmpTm":0.22},
+                {"skill":0.26, "aeroAmpTm":0.26}
+            ]
+        },
+        "buff":{
+            "description":"When Rover: Aero casts Resonance Skill Unbound Flow, Aero DMG dealt by nearby Resonators on the field is Amplified by {aeroAmp}% for 30s.",
+            "effects":[
+                {"aeroAmp":0.1},
+                {"aeroAmp":0.14},
+                {"aeroAmp":0.18},
+                {"aeroAmp":0.22},
+                {"aeroAmp":0.26}
+            ]
+        }
+    },
+    {
+        "name":"Unflickering Valor",
+        "icon": "unflickering-valor",
+        "substat": "er",
+        "subval": {
+            "base": 0.1712,
+            "max":0.7704
+        },
+        "atk": {
+            "base":33,
+            "max":412.5
+        },
+        "weapon":"Sword",
+        "passive":{
+            "name":"Laughter Prevails",
+            "description":"Increase Crit. Rate by {cr}%. Casting Resonance Liberation gives {baDmg}% Basic Attack DMG Bonus for 10s. Dealing Basic Attack DMG gives {baDmg}% Basic Attack DMG Bonus for 4s.",
+            "stack":true,
+            "maxStack":2,
+            "stackScope":"baDmg",
+            "ranks": [
+                {"cr":0.08, "baDmg":0.24},
+                {"cr":0.10, "baDmg":0.30},
+                {"cr":0.12, "baDmg":0.36},
+                {"cr":0.14, "baDmg":0.42},
+                {"cr":0.16, "baDmg":0.48}
+            ]
+        }
+    },
+    {
+        "name":"Emerald of Genesis",
+        "icon": "emerald-of-genesis",
+        "substat": "cr",
+        "subval": {
+            "base": 0.054,
+            "max":0.243
+        },
+        "atk": {
+            "base":47,
+            "max":587.5
+        },
+        "weapon":"Sword",
+        "passive":{
+            "name":"Stormy Resolution",
+            "description":"Increases Energy Regen by {er}%. When Resonance Skill is cast, increases ATK by {atkPct}%, stacking up to 2 time(s). This effect lasts for 10s.",
+            "stack":true,
+            "stackScope":"atkPct",
+            "maxStack":2,
+            "ranks": [
+                {"er":0.128, "atkPct":0.06},
+                {"er":0.16, "atkPct":0.075},
+                {"er":0.192, "atkPct":0.09},
+                {"er":0.224, "atkPct":0.105},
+                {"er":0.256, "atkPct":0.12}
+            ]
+        }
+    },
+    {
+        "name":"Red Spring",
+        "icon": "red-spring",
+        "substat": "cr",
+        "subval": {
+            "base": 0.054,
+            "max":0.243
+        },
+        "atk": {
+            "base":47,
+            "max":587.5
+        },
+        "weapon":"Sword",
+        "passive":{
+            "name":"Beyond the Cycle",
+            "description":"Increase ATK by {atkPct}%. When dealing Basic Attack DMG, the wielder gains {baDmgStack}% Basic Attack DMG Bonus for 14s. This effect can be triggered once per second, stacking up to 3 times. When the wielder's Concerto Energy is consumed, gain {baDmg}% Basic DMG Bonus for 10. This effect can be triggered once per second and ends when the wielder is switched off the field.",
+            "stack":true,
+            "stackScope":"baDmgStack",
+            "maxStack":3,
+            "ranks": [
+                {"atkPct":0.12, "baDmgStack":0.1, "baDmg":0.4},
+                {"atkPct":0.15, "baDmgStack":0.125, "baDmg":0.5},
+                {"atkPct":0.18, "baDmgStack":0.15, "baDmg":0.6},
+                {"atkPct":0.21, "baDmgStack":0.175, "baDmg":0.7},
+                {"atkPct":0.24, "baDmgStack":0.2, "baDmg":0.8}
+            ]
+        }
+    },
+    {
+        "name":"The Last Dance",
+        "icon": "the-last-dance",
+        "substat": "cd",
+        "subval": {
+            "base": 0.16,
+            "max":0.72
+        },
+        "atk": {
+            "base":40,
+            "max":500
+        },
+        "weapon":"Pistol",
+        "passive":{
+            "name":"Silent Eulogy",
+            "description":"Increases ATK by {atkPct}%. Every time Intro Skill or Resonance Liberation is cast, Resonance Skill DMG Bonus increases by {skill}% for 5s.",
+            "stack":false,
+            "ranks": [
+                {"atkPct":0.12, "skill":0.48},
+                {"atkPct":0.15, "skill":0.60},
+                {"atkPct":0.18, "skill":0.72},
+                {"atkPct":0.21, "skill":0.84},
+                {"atkPct":0.24, "skill":0.96}
+            ]
+        }
+    },
+    {
+        "name":"Static Mist",
+        "icon": "static-mist",
+        "substat": "cr",
+        "subval": {
+            "base": 0.054,
+            "max":0.243
+        },
+        "atk": {
+            "base":47,
+            "max":587.5
+        },
+        "weapon":"Pistol",
+        "passive":{
+            "name":"Stormy Resolution",
+            "description":"Increases Energy Regen by {er}%. Incoming Resonator's ATK is increased by {atkPct}% for 14s, stackable up to 1 times after the wielder casts Outro Skill.",
+            "stack":false,
+            "ranks": [
+                {"er":0.128, "atkPct":0.1},
+                {"er":0.16, "atkPct":0.125},
+                {"er":0.192, "atkPct":0.15},
+                {"er":0.224, "atkPct":0.175},
+                {"er":0.256, "atkPct":0.2}
+            ]
+        },
+        "buff":{
+            "description":"Incoming Resonator's ATK is increased by {atkPct}% for 14s, stackable up to 1 times after the wielder casts Outro Skill.",
+            "effects":[
+                {"atkPct":0.1},
+                {"atkPct":0.125},
+                {"atkPct":0.15},
+                {"atkPct":0.175},
+                {"atkPct":0.2}
+            ]
+        }
+    },
+    {
+        "name":"Woodland Aria",
+        "icon": "woodland-aria",
+        "substat": "cr",
+        "subval": {
+            "base": 0.8,
+            "max":0.36
+        },
+        "atk": {
+            "base":40,
+            "max":500
+        },
+        "weapon":"Pistol",
+        "passive":{
+            "name":"Lingering Summer Tune",
+            "description":"ATK is increased by {atkPct}%. Inflicting Aero Erosion on the target gives {aeroBouns}% Aero DMG Bonus for 10s. Hitting targets with Aero Erosion reduces their Aero RES by {aeroShred}% for 20s. Effects of the same name cannot be stacked.",
+            "stack":false,
+            "ranks": [
+                {"atkPct":0.12, "aeroBouns": 0.24, "aeroShred": 0.1},
+                {"atkPct":0.15, "aeroBouns": 0.3, "aeroShred": 0.115},
+                {"atkPct":0.18, "aeroBouns": 0.36, "aeroShred": 0.13},
+                {"atkPct":0.21, "aeroBouns": 0.42, "aeroShred": 0.145},
+                {"atkPct":0.24, "aeroBouns": 0.48, "aeroShred": 0.16}
+            ]
+        },
+        "buff":{
+            "description":"Hitting targets with Aero Erosion reduces their Aero RES by {aeroShred}% for 20s. Effects of the same name cannot be stacked.",
+            "effects":[
+                {"aeroShred":0.1},
+                {"aeroShred":0.115},
+                {"aeroShred":0.13},
+                {"aeroShred":0.145},
+                {"aeroShred":0.16}
             ]
         }
     }
-
-
 ]
+
