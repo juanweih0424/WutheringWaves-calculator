@@ -195,7 +195,7 @@ export default function Basic() {
         skillTypeAmp += stats.erosionAmp;
       }
 
-      console.log(row)
+      
 
     const finalStat = current?.hpDmgBase ? row.hp : row.atk;
     

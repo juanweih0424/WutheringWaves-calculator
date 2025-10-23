@@ -278,7 +278,7 @@
                 {
                     "stack":false,
                     "value":0.4,
-                    "stat":"allAmp",
+                    "stat":"receivedAmp",
                     "tags":"chain63"
                 }
             ]    

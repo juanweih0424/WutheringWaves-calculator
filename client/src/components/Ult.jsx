@@ -23,6 +23,8 @@ export default function Ult() {
     shred = stats.aeroShred;
   } else if (current?.element === "Havoc"){
     shred = stats.havocShred;
+  } else if (current?.element === "Spectro"){
+    shred = stats.spectroShred;
   }
 
   
@@ -33,6 +35,8 @@ export default function Ult() {
     return Object.entries(ability).map(([label, row]) => ({
       label,
       type: row.type,
+      frazzle: row.frazzle ?? null,
+      erosion: row.erosion ?? null,
       mv: talentMv(1, 10, row.base, row.max, ult),
       tags: row.tags ?? [],
     }));
@@ -69,9 +73,11 @@ export default function Ult() {
       let addAllAmp = 0;      // extra amplification
       let addTypeBonus = 0;   // extra type DMG bonus (only if matches row.type)
       let addElemBonus = 0;   // extra element DMG bonus (only if matches element)
-      let atkPct = stats?.atkPct;
-      let hpPct = stats?.hpPct;
-      let defPct = stats?.defPct;
+      let receivedAmp = 0;
+      let atkPct = stats?.atkPct ?? 0;
+      let hpPct = stats?.hpPct ?? 0;
+      let defPct = stats?.defPct ?? 0;
+
       for (const eff of pool) {
         if (!matches(eff.appliesTo, row)) continue;
         const amt = Number(eff.amount ?? eff.value ?? 0);
@@ -88,6 +94,10 @@ export default function Ult() {
           // Amplification
           case "allAmp":
             addAllAmp += amt;
+            break;
+
+          case "receivedAmp":
+            receivedAmp += amt;
             break;
 
           // Type DMG bonus (apply only if matches row.type)
@@ -127,11 +137,11 @@ export default function Ult() {
       const atk = baseAtk * (1+atkPct) +stats.flatAtk
       const hp = baseHp * (1+hpPct) + stats.flatHp;
       const def = baseDef * (1+defPct) + stats.flatDef;
-
       // add global defIgnore if scope matches
       if (defIgnoreScope === "all" || defIgnoreScope === row.type) {
         rowDefIgnore += defIgnoreGlobal;
       }
+
       return {
         ...row,
         baseMv,
@@ -144,6 +154,7 @@ export default function Ult() {
         addAllAmp,
         addTypeBonus,
         addElemBonus,
+        receivedAmp,
       };
     });
   }, [rows, stats, scopedInherent, scopedChain, defIgnoreGlobal, defIgnoreScope, current?.element, ]);
@@ -161,6 +172,9 @@ export default function Ult() {
 
     const elementKey = (current.element ?? "").toLowerCase();
     const baseElemBonus = Number(stats?.[elementKey] ?? 0);
+    const baseReceivedAmp = stats?.receivedAmp;
+    const dmgInc = stats?.dmgInc;
+
   
     const elementAmp =
       current.element === "Aero"    ? Number(stats.aeroAmp ?? 0) :
@@ -168,16 +182,14 @@ export default function Ult() {
       current.element === "Glacio"  ? Number(stats.glacioAmp ?? 0) :
       current.element === "Spectro" ? Number(stats.spectroAmp ?? 0) :
       current.element === "Electro" ? Number(stats.electroAmp ?? 0) :
-      current.element === "Havoc"   ? Number(stats.havocAmp ?? 0) :
-      
+      current.element === "Havoc"   ? Number(stats.havocAmp ?? 0) : 
       0;
     
     return rowsWithMods.map((row) => {
       const tbKey = typeBonusKey(row.type);
       const baseTypeBonus = Number(tbKey ? stats?.[tbKey] ?? 0 : 0);
-
-
-      const skillTypeAmp =
+      
+      let skillTypeAmp =
         row.type === "baDmg" ? Number(stats.baAmp ?? 0) :
         row.type === "haDmg" ? Number(stats.haAmp ?? 0) :
         row.type === "skill" ? Number(stats.skillAmp ?? 0) :
@@ -185,12 +197,23 @@ export default function Ult() {
         row.type === "echoDmg" ? Number(stats.echoDmgAmp ?? 0):
         0;
       
+      if (row.frazzle) {
+          skillTypeAmp += stats.frazzleAmp;
+      }
+      
+      if (row.erosion){
+        skillTypeAmp += stats.erosionAmp;
+      }
+
+
+    const finalStat = current?.hpDmgBase ? row.hp : row.atk;
+
 
       const { nonCrit, crit, avg } = finalHit({
-        atk: row.atk,
+        atk: finalStat,
         mv: Number(row.mv ?? 0),
-        scalingBonus: 0, // already baked into mv
-        elementBonus: baseElemBonus + (row.addElemBonus ?? 0),
+        scalingBonus: 0, 
+        elementBonus: baseElemBonus + (row.addElemBonus ?? 0) + dmgInc,
         skillBonus: baseTypeBonus + (row.addTypeBonus ?? 0),
         allAmp: Number(stats.allAmp ?? 0) + (row.addAllAmp ?? 0),
         elementAmp: elementAmp,
@@ -202,7 +225,8 @@ export default function Ult() {
         resistance: Number(stats.enemyRes ?? 0) / 100, // 20 -> 0.20
         resShred: shred,
         critRate: Math.max(0, Math.min(1, (stats.cr ?? 0) / 100)),    
-        critDmgMult:  Number(stats.cd ?? 0) / 100,                 
+        critDmgMult:  Number(stats.cd ?? 0) / 100,
+        receivedAmp: baseReceivedAmp + row.receivedAmp                 
       });
 
       return { ...row, nonCrit, avg, crit };

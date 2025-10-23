@@ -1,0 +1,338 @@
+{
+    "id":40,
+    "name": "Galbrena",
+    "rarity": 5,
+    "element":"Fusion",
+    "weapon":"Pistol",
+    "stats":{
+        "hp":{
+            "base":824,
+            "max":10300
+        },
+        "atk":{
+            "base":37,
+            "max":463
+        },
+        "def":{
+            "base":91,
+            "max":1112
+        }
+    },
+    "minor":{"atkPct":0.12, "cd": 0.16},
+
+    "basic": {
+    "name": "Normal Attack: Slayer's Trigger",
+    "detail": {
+        "Basic Attack Stage 1 DMG": {
+        "base": 0.2977,
+        "max": 0.5918,
+        "type": "baDmg"
+        },
+        "Basic Attack Stage 2 DMG": {
+        "base": 0.6631,
+        "max": 1.3179,
+        "type": "baDmg"
+        },
+        "Basic Attack Stage 3 DMG": {
+        "base": 0.7235,
+        "max": 1.4320,
+        "type": "baDmg"
+        },
+        "Basic Attack Stage 4 DMG": {
+        "base": 0.8946,
+        "max": 1.7786,
+        "type": "echoDmg"
+        },
+        "Dodge Counter - Blood for Blood DMG": {
+        "base": 1.0354,
+        "max": 2.0556,
+        "type": "haDmg"
+        },
+        "Mid-air Attack - Ashfall Barrage Plunging Attack DMG": {
+        "base": 0.7200,
+        "max": 1.4315,
+        "type": "baDmg"
+        },
+        "Mid-air Attack - Ashfall Barrage Sustained Fire DMG": {
+        "base": 0.1350,
+        "max": 0.2684,
+        "type": "baDmg"
+        },
+        "Heavy Attack - Volley of Death Stage 1 DMG": {
+        "base": 0.5362,
+        "max": 1.0660,
+        "type": "haDmg"
+        },
+        "Heavy Attack - Volley of Death Stage 2 DMG": {
+        "base": 0.3480,
+        "max": 0.6918,
+        "type": "haDmg"
+        },
+        "Heavy Attack - Volley of Death Stage 3 DMG": {
+        "base": 0.7677,
+        "max": 1.6739,
+        "type": "echoDmg"
+        }
+    }
+    },
+    "skill": {
+    "name": "Resonance Skill: Edge Transcended",
+    "detail": {
+        "Resonance Skill - Encroach DMG": {
+        "base": 0.1800,
+        "max": 0.3580,
+        "type": "haDmg",
+        "tags": ["chain5"]
+        },
+        "Resonance Skill - Ascent of Malice DMG": {
+        "base": 0.5188,
+        "max": 1.0314,
+        "type": "haDmg",
+        "tags": ["chain5"]
+        }
+    }
+    },
+    "ult": {
+    "name": "Resonance Liberation: Hellfire Absolution",
+    "detail": {
+        "Resonance Liberation - Hellfire Absolution DMG": {
+        "base": 5.5783,
+        "max": 11.0904,
+        "type": "echoDmg",
+        "tags": ["chain3"]
+        }
+    }
+    },
+    "forte": {
+    "name": "Forte Circuit: Hellstride",
+    "detail": {
+        "Basic Attack - Seraphic Execution Stage 1 DMG": {
+        "base": 0.2967,
+        "max": 0.5899,
+        "type": "haDmg",
+        "tags":["afterflame","inherent", "chain1", "chain6","chain61"]
+        },
+        "Basic Attack - Seraphic Execution Stage 2 DMG": {
+        "base": 0.7000,
+        "max": 1.3960,
+        "type": "haDmg",
+        "tags":["afterflame","inherent", "chain1", "chain6","chain61"]
+        },
+        "Basic Attack - Seraphic Execution Stage 3 DMG": {
+        "base": 1.2230,
+        "max": 2.4320,
+        "type": "haDmg",
+        "tags":["afterflame","inherent", "chain1", "chain6","chain61"]
+        },
+        "Basic Attack - Seraphic Execution Stage 4 DMG": {
+        "base": 0.9190,
+        "max": 1.8120,
+        "type": "echoDmg",
+        "tags":["afterflame","inherent", "chain1", "chain6","chain61"]
+        },
+        "Basic Attack - Seraphic Execution Stage 5 DMG": {
+        "base": 1.1280,
+        "max": 1.8390,
+        "type": "echoDmg",
+        "tags":["afterflame","inherent", "chain1", "chain6","chain61"]
+        },
+        "Heavy Attack - Flamewing Verdict Stage 1 DMG": {
+        "base": 0.5958,
+        "max": 1.1840,
+        "type": "haDmg",
+        "tags":["afterflame","inherent", "chain1", "chain6","chain61"]
+        },
+        "Heavy Attack - Flamewing Verdict Stage 2 DMG": {
+        "base": 0.3858,
+        "max": 0.7671,
+        "type": "haDmg",
+        "tags":["afterflame","inherent", "chain1", "chain6","chain61"]
+        },
+        "Heavy Attack - Flamewing Verdict Stage 3 DMG": {
+        "base": 0.8858,
+        "max": 1.9437,
+        "type": "echoDmg",
+        "tags":["afterflame","inherent", "chain1", "chain6","chain61"]
+        },
+        "Dodge Counter - Purgatory Scourge": {
+        "base": 1.4448,
+        "max": 2.8787,
+        "type": "haDmg",
+        "tags":["afterflame","inherent", "chain1", "chain6","chain61"]
+        },
+        "Mid-air Attack - Hellsent Barrage Plunging Attack DMG": {
+        "base": 0.8,
+        "max": 1.5905,
+        "type": "haDmg",
+        "tags":["afterflame","inherent", "chain1", "chain6","chain61"]
+        },
+        "Mid-air Attack - Hellsent Barrage Sustained Fire DMG": {
+        "base": 0.15,
+        "max": 0.2983,
+        "type": "haDmg",
+        "tags":["afterflame","inherent", "chain1", "chain6","chain61"]
+        },
+        "Resonance Skill - Ravage DMG": {
+        "base": 0.18,
+        "max": 0.3578,
+        "type": "haDmg",
+        "tags":["afterflame", "chain1","chain5", "chain61"]
+        }
+    }
+    },
+    "intro": {
+    "name": "Intro Skill: Hellflare Overload",
+    "detail": {
+        "Intro Skill - Hellflare Overload DMG": {
+        "base": 0.4734,
+        "max": 0.9412,
+        "type": "intro"
+        }
+    }
+    },
+    "outro": {
+    "name": "Outro Skill: Ashen Pursuit",
+    "detail": {
+        "Outro Skill - Ashen Pursuit DMG": {
+        "base": 7.951,
+        "max": 7.951,
+        "type": "outro"
+        }
+        }
+    },
+    "buff": {
+        "Burning Drive":{
+            "desc": "Casting {Intro Skill, Hellstride, Normal Attack - Seraphic Execution Basic Attack Stage 4, Resonance Skill - Encroach, Resonance Skill - Ascent of Malice, and Resonance Skill - Ravage} increases Galbrena's resistance to interruptions and ATK by 20% for 4s.",
+            "effects": [
+                {
+                    "stack":false,
+                    "value":0.2,
+                    "stat":"atkPct",
+                    "receive":"chain2"
+                }
+            ]
+        },
+        "Afterflame":{
+            "desc": "While in {Demon Hypostasis}, every point of {Afterflame} increases the DMG of {Basic Attack - Seraphic Execution, Heavy Attack - Flamewing Verdict, Mid-air Attack - Hellsent Barrage, Resonance Skill - Ravage}, and {Dodge Counter - Purgatory Scourge} by 1.5%, up to 60%, which is removed upon exiting {Demon Hypostasis}.",
+            "effects": [
+                {
+                    "stack":true,
+                    "maxStack": 40,
+                    "value":0.015,
+                    "stat":"receivedAmp",
+                    "tags": "afterflame"
+                }
+            ]
+        },
+        "Resonance Liberation: Hellfire Absolution":{
+            "desc": "Attack the target and deal Fusion DMG, considered Echo Skill DMG. Gain 85% DMG Multiplier increase for {Basic Attack - Seraphic Execution, Heavy Attack - Flamewing Verdict, Mid-air Attack - Hellsent Barrage}, and {Dodge Counter - Purgatory Scourge} for 14s while in {Demon Hypostasis}.",
+            "effects": [
+                {
+                    "stack":false,
+                    "value":0.85,
+                    "stat":"skillBouns",
+                    "tags": "inherent"
+                }
+            ]
+        },
+        "Inherent Skill: Oathbound Hunt":{
+            "desc": "Each stack Amplifies the DMG directly dealt by Galbrena's {Normal Attack, Resonance Skill, Forte Circuit, Resonance Liberation, Intro Skill}, and {Outro Skill} by 5% for 5.5s. The same type of skill can trigger this effect on the same target once every 5s.",
+            "effects": [
+                {
+                    "stack":true,
+                    "maxStack":4,
+                    "value":0.05,
+                    "stat":"allAmp"
+                }
+            ]
+        }
+    },
+    "chain":{
+        "Sequence Node 1: Heart of Defiance Ever Ablaze":{
+            "desc":"When casting {Resonance Skill - Ascent of Malice}, each point of {Afterflame} additionally grants 2% Crit. DMG to {Basic Attack - Seraphic Execution, Heavy Attack - Flamewing Verdict, Mid-air Attack - Hellsent Barrage, Resonance Skill - Ravage}, and {Dodge Counter - Purgatory Scourge}, up to 80%. This effect is removed upon exiting {Demon Hypostasis}.",
+            "effects":[
+                {
+                    "stack":true,
+                    "maxStack": 40,
+                    "value":0.02,
+                    "stat":"cd",
+                    "tags":"chain1"
+                }
+            ]
+        },
+        "Sequence Node 2: Hellbound Dive of Fire and Abyss":{
+            "desc":"{Burning Drive} grants 350% more ATK Bonus.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":3.5,
+                    "stat":"skillBouns",
+                    "tags":"chain2"
+                }
+            ]
+        },
+        "Sequence Node 3: Hunter's Blood Oath Rekindled":{
+            "desc":"Resonance Liberation DMG Multiplier is increased by 130%.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":1.3,
+                    "stat":"skillBouns",
+                    "tags":"chain3"
+                }
+            ]
+        },
+        "Sequence Node 4: Carry Forth This Fading Spark":{
+            "desc":"When Resonators in the team cast Echo Skill, all Resonators in the team gain 20% all-Attribute DMG Bonus for 20s.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.2,
+                    "stat":"allAtr"
+                }
+            ]
+        },
+        "Sequence Node 5: Though Light Fades, Torment Consumes":{
+            "desc":"The DMG Multipliers of {Resonance Skill - Encroach, Resonance Skill - Ascent of Malice}, and {Resonance Skill - Ravage} are increased by 150%.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":1.5,
+                    "stat":"skillBouns",
+                    "tags":"chain5"
+                }
+            ]
+        },
+        "Sequence Node 6: I Remain Who I am, Eternal My Flame":{
+            "desc":"{Demon Hypostasis} becomes {Eternal Hypostasis}. {Eternal Hypostasis} retains all effects of {Demon Hypostasis}. Additionally, {Eternal Hypostasis} lasts, the DMG Multipliers of {Basic Attack - Seraphic Execution, Heavy Attack - Flamewing Verdict, Mid-air Attack - Hellsent Barrage}, and {Dodge Counter -Purgatory Scourge} are additionally increased by 60%. When casting {Resonance Skill - Ascent of Malice}, for every 1 point of {Afterflame} consumed, Galbrena's {Basic Attack - Seraphic Execution, Heavy Attack - Flamewing Verdict, Mid-air Attack - Hellsent Barrage, Resonance Skill - Ravage}, and {Dodge Counter -Purgatory Scourge} gain 0.875% Fusion DMG Amplification, up to 35%, which is removed upon exiting {Eternal Hypostasis}.",
+            "effects":[
+                {
+                    "stack":false,
+                    "value":0.6,
+                    "stat":"skillBouns",
+                    "tags":"chain6"
+                },
+                {
+                    "stack":true,
+                    "maxStack": 40,
+                    "value":0.00875,
+                    "stat":"fusionAmp",
+                    "tags":"chain61"
+                }
+            ]
+        }
+    },
+    "teamBuff":[
+        {
+            "name":"Sequence Node 4: Carry Forth This Fading Spark",
+            "desc":"When Resonators in the team cast Echo Skill, all Resonators in the team gain 20% all-Attribute DMG Bonus for 20s.",
+            "effects": [
+                {
+                    "stack":false,
+                    "stat":"allAtr",
+                    "value":0.2
+                }
+            ]
+        }
+    ]
+}

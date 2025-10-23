@@ -73,9 +73,13 @@ export default function Forte() {
       let addAllAmp = 0;      // extra amplification
       let addTypeBonus = 0;   // extra type DMG bonus (only if matches row.type)
       let addElemBonus = 0;   // extra element DMG bonus (only if matches element)
+      let receivedAmp = 0;
       let atkPct = stats?.atkPct ?? 0;
       let hpPct = stats?.hpPct ?? 0;
       let defPct = stats?.defPct ?? 0;
+      let specificCd = 0;
+      let fusionAmp = 0;
+
       for (const eff of pool) {
         if (!matches(eff.appliesTo, row)) continue;
         const amt = Number(eff.amount ?? eff.value ?? 0);
@@ -92,6 +96,17 @@ export default function Forte() {
           // Amplification
           case "allAmp":
             addAllAmp += amt;
+            break;
+          case "cd":
+            specificCd += amt;
+            break;
+
+          case "receivedAmp":
+            receivedAmp += amt;
+            break;
+
+          case "fusionAmp": 
+            fusionAmp += amt;
             break;
 
           // Type DMG bonus (apply only if matches row.type)
@@ -143,11 +158,14 @@ export default function Forte() {
         hp,
         def,
         mv,
+        specificCd,
+        fusionAmp,
         scalingBonus,
         defIgnore: rowDefIgnore,
         addAllAmp,
         addTypeBonus,
         addElemBonus,
+        receivedAmp,
       };
     });
   }, [rows, stats, scopedInherent, scopedChain, defIgnoreGlobal, defIgnoreScope, current?.element, ]);
@@ -165,6 +183,9 @@ export default function Forte() {
 
     const elementKey = (current.element ?? "").toLowerCase();
     const baseElemBonus = Number(stats?.[elementKey] ?? 0);
+    const baseReceivedAmp = stats?.receivedAmp;
+    const dmgInc = stats?.dmgInc;
+
   
     const elementAmp =
       current.element === "Aero"    ? Number(stats.aeroAmp ?? 0) :
@@ -179,6 +200,7 @@ export default function Forte() {
       const tbKey = typeBonusKey(row.type);
       const baseTypeBonus = Number(tbKey ? stats?.[tbKey] ?? 0 : 0);
       
+    
       let skillTypeAmp =
         row.type === "baDmg" ? Number(stats.baAmp ?? 0) :
         row.type === "haDmg" ? Number(stats.haAmp ?? 0) :
@@ -195,17 +217,21 @@ export default function Forte() {
         skillTypeAmp += stats.erosionAmp;
       }
 
-      
-
     const finalStat = current?.hpDmgBase ? row.hp : row.atk;
+
+    let specificAmp = 0
+    if (current.element == "Fusion"){
+      specificAmp += row.fusionAmp
+    }
+
 
       const { nonCrit, crit, avg } = finalHit({
         atk: finalStat,
         mv: Number(row.mv ?? 0),
         scalingBonus: 0, 
-        elementBonus: baseElemBonus + (row.addElemBonus ?? 0),
+        elementBonus: baseElemBonus + (row.addElemBonus ?? 0) + dmgInc,
         skillBonus: baseTypeBonus + (row.addTypeBonus ?? 0),
-        allAmp: Number(stats.allAmp ?? 0) + (row.addAllAmp ?? 0),
+        allAmp: Number(stats.allAmp ?? 0) + (row.addAllAmp ?? 0) + specificAmp,
         elementAmp: elementAmp,
         skillTypeAmp: skillTypeAmp,
         attackerLevel: Number(current.level ?? 90),
@@ -215,7 +241,8 @@ export default function Forte() {
         resistance: Number(stats.enemyRes ?? 0) / 100, // 20 -> 0.20
         resShred: shred,
         critRate: Math.max(0, Math.min(1, (stats.cr ?? 0) / 100)),    
-        critDmgMult:  Number(stats.cd ?? 0) / 100,                 
+        critDmgMult:  Number(stats.cd ?? 0) / 100 + row.specificCd,
+        receivedAmp: baseReceivedAmp + row.receivedAmp                 
       });
 
       return { ...row, nonCrit, avg, crit };

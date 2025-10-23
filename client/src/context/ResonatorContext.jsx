@@ -129,7 +129,7 @@ export function ResonatorProvider({ items=[], children }) {
                 amount: (value ?? 0) * stacks,
                 stacks,
                 appliesTo: e.tags ?? null,
-                receive: e.receive ?? null
+                receive: e.receive ?? null,
             });
             }
             }

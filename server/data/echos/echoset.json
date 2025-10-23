@@ -660,5 +660,26 @@
                 }
             ]
         }
+    },
+    {
+        "id": 1023,
+        "name": "Flamewing's Shadow",
+        "set":{
+            "3pc": {
+                "desc": "Dealing {Echo Skill DMG} increases Heavy Attack {Crit. Rate} by 20% for 6s. Dealing Heavy Attack DMG increases Echo Skill {Crit. Rate} by 20% for 6s. While both effects are active, gain 16% {Fusion DMG Bonus}.",
+                "effects":[
+                    {
+                        "stack":false,
+                        "value":0.2,
+                        "stat":"cr"
+                    },
+                    {
+                        "stack":false,
+                        "value":0.16,
+                        "stat":"fusion"
+                    }
+                ]
+            }
+        }
     }
 ]

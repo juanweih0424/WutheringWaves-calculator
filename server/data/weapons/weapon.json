@@ -766,6 +766,71 @@
                 {"aeroShred":0.16}
             ]
         }
+    },
+    {
+        "name":"Lux & Umbra",
+        "icon": "lux-umbra",
+        "substat": "cd",
+        "subval": {
+            "base": 0.108,
+            "max":0.486
+        },
+        "atk": {
+            "base":47,
+            "max":587.5
+        },
+        "weapon":"Pistol",
+        "passive":{
+            "name":"To Fire She Returns",
+            "description":"ATK is increased by {atkPct}%. Upon dealing Echo Skill DMG, gain {haDmgAmp}% Heavy Attack DMG Amplification for 6s. Upon dealing Heavy Attack DMG, gain {echoDmgAmp}% Echo Skill DMG Amplification for 6s. DMG Amplification on each attack is capped at 24%. While both effects are active, dealing damage ignores {defIgnore}% of the target's DEF.",
+            "stack":false,
+            "defIgnoreScope":"all",
+            "ranks": [
+                {"atkPct":0.12, "haDmgAmp": 0.24,"echoDmgAmp":0.24, "defIgnore":0.08},
+                {"atkPct":0.15, "haDmgAmp": 0.3, "echoDmgAmp":0.3, "defIgnore":0.1},
+                {"atkPct":0.18, "haDmgAmp": 0.36,"echoDmgAmp":0.36, "defIgnore":0.12},
+                {"atkPct":0.21, "haDmgAmp": 0.42, "echoDmgAmp":0.42, "defIgnore":0.14},
+                {"atkPct":0.24, "haDmgAmp": 0.48, "echoDmgAmp":0.48, "defIgnore":0.16}
+            ]
+        }
+    },
+    {
+        "name":"Emerald Sentence",
+        "icon": "emerald-sentence",
+        "substat": "cr",
+        "subval": {
+            "base": 0.054,
+            "max":0.243
+        },
+        "atk": {
+            "base":47,
+            "max":587.5
+        },
+        "weapon":"Sword",
+        "passive":{
+            "name":"When A Heart Settles",
+            "description":"ATK is increased by {atkPct}%. Casting Echo Skill grants 1 stack of Bamboo Cleaver, which grants {haDmg}% Heavy Attack DMG Bonus to the wielder. This effect can be triggered by Echoes of the same name once only, stacking up to 2 times, lasting for 30s. When Bamboo Cleaver reaches max stacks, casting Echo Skill resets its duration. Casting Intro Skill grants {echoDmgTm}% Echo Skill DMG Bonus to all Resonators in the team for 10s. Effects of the same name cannot be stacked.",
+            "stack":true,
+            "stackScope":"haDmg",
+            "maxStack":2,
+            "ranks": [
+                {"atkPct":0.12, "haDmg": 0.3, "echoDmgTm": 0.2},
+                {"atkPct":0.15, "haDmg": 0.375, "echoDmgTm": 0.25},
+                {"atkPct":0.18, "haDmg": 0.45, "echoDmgTm": 0.30},
+                {"atkPct":0.21, "haDmg": 0.525, "echoDmgTm": 0.35},
+                {"atkPct":0.24, "haDmg": 0.6, "echoDmgTm": 0.4}
+            ]
+        },
+        "buff":{
+            "description":"Casting Intro Skill grants {echoDmg}% Echo Skill DMG Bonus to all Resonators in the team for 10s. Effects of the same name cannot be stacked.",
+            "effects":[
+                {"echoDmg":0.2},
+                {"echoDmg":0.25},
+                {"echoDmg":0.3},
+                {"echoDmg":0.35},
+                {"echoDmg":0.4}
+            ]
+        }
     }
 ]
 

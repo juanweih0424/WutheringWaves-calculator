@@ -36,7 +36,9 @@ const LABELS = {
   cr:"Increases Crit Rate by",
   aeroShred: "Ignore Enemy Aero RES by ",
   aeroBouns : "Increase Aero Bouns by",
-  echoDmgAmp: "Amplifies Echo DMG by "
+  echoDmgAmp: "Amplifies Echo DMG by ",
+  haDmgAmp: "Amplifies Heavy Attack DMG by ",
+  echoDmgTm: "Increase Teammates Echo Skill DMG by ",
 }
 
 const formatSubVal = (type, v) => {

@@ -38,13 +38,14 @@ export function expectedNonCrit({
   defReduction = 0,
   resistance = 0,
   resShred = 0,
+  receivedAmp = 0
 }) {
   const base = skillHit(atk, mv, scalingBonus);
   const damageBonusFactor = 1 + (elementBonus ?? 0) + (skillBonus ?? 0);
   const deepenFactor = 1 + (allAmp ?? 0) + (elementAmp ?? 0) + (skillTypeAmp ?? 0);
   const defMult = defMultiplier(attackerLevel, enemyLevel, defIgnore, defReduction);
   const resMult = resMultiplier(resistance, resShred);
-  return base * damageBonusFactor * deepenFactor * defMult * resMult;
+  return base * damageBonusFactor * deepenFactor * defMult * resMult * (1+receivedAmp);
 }
 
 export function finalHit({
@@ -64,13 +65,14 @@ export function finalHit({
   resShred = 0,
   critRate = 0,     // 0..1
   critDmgMult = 1,  // crit damage multiplier, e.g. 2.4 for +140%
+  receivedAmp = 0
 }) {
   const nonCrit = expectedNonCrit({
     atk, mv, scalingBonus,
     elementBonus, skillBonus,
     allAmp, elementAmp, skillTypeAmp,
     attackerLevel, enemyLevel, defIgnore, defReduction,
-    resistance, resShred,
+    resistance, resShred, receivedAmp
   });
 
   const crit = nonCrit * (critDmgMult ?? 1);

@@ -62,6 +62,9 @@ export function useStats() {
         let frazzleAmp = 0;
         let echoDmgAmp = 0;
         let erosionAmp = 0;
+        let receivedAmp = 0;
+        let haAmp = 0;
+        let dmgInc = 0;
 
         //declare multiplier
         let atkPct = 0;
@@ -110,6 +113,49 @@ export function useStats() {
         }
         }
 
+        // handle chain-> buff inherent logic
+
+        {
+        // 1) collect total multiplier per receive key from scopedChain
+        const receiveMulByKey = {};
+
+        for (const c of scopedChain) {
+            if (!c?.appliesTo) continue;
+            if (c.stat === "skillBouns") {
+            const amt = Number(c.amount) || 0;
+            // combine multiple sources multiplicatively
+            receiveMulByKey[c.appliesTo] = (receiveMulByKey[c.appliesTo] ?? 1) * (1 + amt);
+            }
+        }
+
+
+        // 2) apply to scopedInherent from a stable baseline so toggling doesn’t stack
+        for (const e of scopedInherent) {
+            // remember the original amount once
+            const base = e.__baseAmount ?? (e.__baseAmount = Number(e.amount) || 0);
+            
+            // check if this inherent receives multiplier from chain
+            const recv = e?.receive;
+            const mul = recv ? (receiveMulByKey[recv] ?? 1) : 1;
+
+            // recompute every time from base (not cumulative)
+            e.amount = base * mul;
+        }
+        for (const e of trackEnable) {
+            // remember the original amount once
+            const base = e.__baseAmount ?? (e.__baseAmount = Number(e.amount) || 0);
+            
+            // check if this inherent receives multiplier from chain
+            const recv = e?.receive;
+            const mul = recv ? (receiveMulByKey[recv] ?? 1) : 1;
+
+            // recompute every time from base (not cumulative)
+            e.amount = base * mul;
+        }
+        }
+
+
+
         // Weapon Passive stats
         for (const [key, raw] of Object.entries(passiveStats ?? {})) {
             const v = Number(raw) || 0;
@@ -138,6 +184,7 @@ export function useStats() {
                 case "havocShred": havocShred +=v; break;
                 case "echoDmgAmp": echoDmgAmp += v; break;
                 case "frazzleAmp": frazzleAmp += v; break;
+                case "haDmgAmp": haAmp += v; break;
                 default:break;
             }
         }
@@ -173,7 +220,8 @@ export function useStats() {
 
                     case "frazzleAmp": frazzleAmp += e.amount;break;
                     case "erosionAmp": erosionAmp += e.amount;break;
-
+                    case "receivedAmp": receivedAmp += e.amount;break;
+                    case "dmgInc": dmgInc += e.amount;break;
                     default: break;
                 } 
             }
@@ -215,35 +263,8 @@ export function useStats() {
             } 
         }
 
-        // handle chain-> buff inherent logic
 
-        {
-        // 1) collect total multiplier per receive key from scopedChain
-        const receiveMulByKey = {};
-        for (const c of scopedChain) {
-            if (!c?.appliesTo) continue;
-            if (c.stat === "skillBouns") {
-            const amt = Number(c.amount) || 0;
-            // combine multiple sources multiplicatively
-            receiveMulByKey[c.appliesTo] = (receiveMulByKey[c.appliesTo] ?? 1) * (1 + amt);
-            }
-        }
-
-        // 2) apply to scopedInherent from a stable baseline so toggling doesn’t stack
-        for (const e of scopedInherent) {
-            // remember the original amount once
-            const base = e.__baseAmount ?? (e.__baseAmount = Number(e.amount) || 0);
-
-            // check if this inherent receives multiplier from chain
-            const recv = e?.receive;
-            const mul = recv ? (receiveMulByKey[recv] ?? 1) : 1;
-
-            // recompute every time from base (not cumulative)
-            e.amount = base * mul;
-        }
-        }
-
-
+        
 
         for (const [key, value] of Object.entries(echoTotals)) {
             switch (key) {
@@ -331,12 +352,12 @@ export function useStats() {
                 case "aeroShred":   aeroShred   += value; break;
                 case "aeroAmp":    aeroAmp    += value; break;
                 case "frazzleTm":  frazzleAmp  += value; break;
+                case "echoDmg": echoDmg += value;break;
                 default:break;
             }
         }
 
         // define scope buff amp: aero amp predefiend and frazzleAmp predefined
-        let haAmp = 0;
         let baAmp = 0;
         let skillAmp = 0;
         let ultAmp = 0;
@@ -369,9 +390,10 @@ export function useStats() {
                 case "allAtr": havoc += value; electro += value; spectro += value; glacio += value; aero += value; fusion += value; break;
                 case "skill": skillDmg += value; break;
                 case "atkPct": atkPct += value;break;
-                case "cr" : cr += value; break;
-                case "cd": cd += value; break;
+                case "cr" : cr += value * 100; break;
+                case "cd": cd += value * 100; break;
                 case "spectroShred": spectroShred += value; break;
+                case "echoDmg": echoDmg += value;break;
                 case "aero": aero += value; break;
                 default: break;
             }
@@ -394,7 +416,7 @@ export function useStats() {
         return {
             atkPct, atk, hp, hpPct, def, defPct, cr, cd, er, baDmg, haDmg, ult:ultDmg, skill:skillDmg, echoDmg, allAmp, defIgnore, baseAtk, flatAtk, flatDef, flatHp, baseHp, baseDef,
             fusion, aero, electro,spectroShred, spectro,havoc,glacio, heal, defIgnoreScope, enemylevel, enemyRes, aeroShred,havocShred, scopedInherent, scopedChain, aeroAmp, frazzleAmp,
-            haAmp, baAmp, skillAmp,ultAmp, havocAmp,electroAmp, echoDmgAmp, fusionAmp, glacioAmp, spectroAmp, erosionAmp, 
+            haAmp, baAmp, skillAmp,ultAmp, havocAmp,electroAmp, echoDmgAmp, fusionAmp, glacioAmp, spectroAmp, erosionAmp,  receivedAmp , dmgInc
         }
 
     }, [charBaseStats, weaponStats,passiveStats,minor,enemylvl,enemyres, trackEnable, activeChain, echoTotals, setTotals, echoTeamTotals,activeStats, activeStatsResonator, scopedChain,

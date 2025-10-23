@@ -94,6 +94,7 @@ const LABEL_TO_KEY = {
   "Heavy Bouns DMG": "haDmg",
   "Resonance Skill Bouns DMG": "skill",
   "Resonance Liberation Bouns DMG": "ult",
+  "Echo Skill Bouns DMG": "echoDmg"
 };
 
 const KEY_TO_LABEL = {
@@ -117,6 +118,7 @@ const KEY_TO_LABEL = {
   haDmg: "Heavy Bouns DMG",
   skill: "Resonance Skill Bouns DMG",
   ult: "Resonance Liberation Bouns DMG",
+  echoDmg : "Echo Skill Bouns DMG"
 };
 
 export function statKeyFromLabel(label) {
@@ -347,6 +349,7 @@ export function EchoProvider({ echoes = [], children }) {
     });
     return t;
   }, [equipped]);
+  
 
   const value = useMemo(
     () => ({

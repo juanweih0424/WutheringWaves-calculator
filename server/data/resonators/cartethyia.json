@@ -237,7 +237,7 @@
                 {
                     "stack": false,
                     "value": 0.3,
-                    "stat": "allAmp"
+                    "stat": "dmgInc"
                 }
             ],
             "desc":"Targets with 1 to 3 stacks of Aero Erosion take 30% more DMG from {Cartethyia} and {Fleurdelys}. Targets with more than 3 stacks of Aero Erosion additionally take 10% more DMG from {Cartethyia} and {Fleurdelys} for each stack of Aero Erosion they have, up to 3 stacks."
@@ -247,7 +247,7 @@
                 {
                     "stack": true,
                     "value": 0.1,
-                    "stat": "allAmp",
+                    "stat": "dmgInc",
                     "maxStack": 3
                 }
             ],
@@ -313,7 +313,7 @@
                 {
                     "stack":false,
                     "value":0.4,
-                    "stat":"allAmp",
+                    "stat":"receivedAmp",
                     "tags":"chain6"
                 }
             ]

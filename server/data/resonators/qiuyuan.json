@@ -1,0 +1,59 @@
+{
+    "id": 41,
+    "name": "Qiuyuan",
+    "rarity": 5,
+    "element": "Aero",
+    "weapon": "Sword",
+    "stats": {
+        "hp": { "base": 979, "max": 12238 },
+        "atk": { "base": 30,  "max": 375 },
+        "def": { "base": 98,  "max": 1198 }
+    },
+    "teamBuff":[
+        {
+            "name":"Outro Skill: Strike Before Ready",
+            "desc":"Grant 50% Echo Skill DMG Amplification to the incoming Resonator, lasting for 14s or until the Resonator is switched out.",
+            "effects": [
+                {
+                    "stack":false,
+                    "stat":"echoDmgAmp",
+                    "value":0.5
+                }
+            ]
+        },
+        {
+            "name":"Sundering Strike",
+            "desc":"For every 1% of Qiuyuan's Crit. Rate over 50%, this skill increases the Crit. DMG of all nearby active Resonators in the team by 2% for 30s, up to 30%.",
+            "effects": [
+                {
+                    "stack":true,
+                    "maxStack": 15,
+                    "stat":"cd",
+                    "value":0.02
+                }
+            ]
+        },
+        {
+            "name":"Bamboo's Shade",
+            "desc":"When Qiuyuan reaches 400 points of Swordster's Soliloquy, he gains the {Bamboo's Shade} effect, granting all nearby active Resonators in the team 30% Echo Skill DMG Bonus for 30s.",
+            "effects": [
+                {
+                    "stack":false,
+                    "stat":"echoDmg",
+                    "value":0.3
+                }
+            ]
+        },
+        {
+            "name":"Sequence Node 2: O Blade, I, Who Teach No More",
+            "desc":"{Bamboo's Shade} now grants an additional 30% Echo Skill DMG Amplification to all nearby active Resonators in the team.",
+            "effects": [
+                {
+                    "stack":false,
+                    "stat":"echoDmgAmp",
+                    "value":0.3
+                }
+            ]
+        }
+    ]
+}

@@ -1518,5 +1518,26 @@
             "cd": 8
         },
         "echo_sets": [1019]
+    },
+    {
+        "id": 727,
+        "name": "Corrosaurus",
+        "cost": 3,
+        "class": "Elite",
+        "skill": {
+            "description": "Summon a Corrosaurus to attack enemies, dealing 273.60% {Fusion DMG}. The Resonator with this Echo equipped in the main slot gains 12.00% {Fusion DMG Bonus} and 20.00% {Echo Skill DMG Bonus}.",
+            "cd": 20,
+            "effects":[
+                {
+                    "value":0.12,
+                    "stat":"fusion"
+                },
+                {
+                    "value":0.2,
+                    "stat":"echoDmg"
+                }
+            ]
+        },
+        "echo_sets": [1016,1023]
     }
 ]

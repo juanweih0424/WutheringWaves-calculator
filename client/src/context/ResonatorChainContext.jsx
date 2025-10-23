@@ -63,7 +63,8 @@ export function ResonatorChainProvider( { children }) {
             stat: e.stat,          
             amount: (Number(e.value) || 0) * stacks,
             appliesTo: e.tags ?? null,
-            maxStack: e.maxStack ?? null
+            maxStack: e.maxStack ?? null,
+            extend: e.extend ?? null
           });
         }
       }
