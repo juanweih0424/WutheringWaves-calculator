@@ -3,7 +3,6 @@ import weapon from "../assets/images/ui/weapon.webp"
 import team from "../assets/images/ui/Icon_Team.webp"
 import echo from "../assets/images/ui/databank.webp"
 import resonator from "../assets/images/ui/resonator.png"
-import forte from "../assets/images/ui/Icon_Forte.webp"
 import chain from "../assets/images/ui/chain.png"
 import enemy from "../assets/images/ui/enemy.webp"
 
