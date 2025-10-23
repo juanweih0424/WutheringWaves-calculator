@@ -172,7 +172,7 @@ export function WeaponProvider({weapons=[], children}) {
         
         
         return {
-            hpPct, defPct,atkPct, allAtr, baDmg, haDmg, skill, ult, echoDmg, ult , er, heal, defIgnore, cr,cd, maxStack, currentStackVal, defIgnoreScope, fusion, additionalAtk, haDmgAmp,
+            hpPct, defPct,atkPct, allAtr, baDmg, haDmg, skill, ult, echoDmg , er, heal, defIgnore, cr,cd, maxStack, currentStackVal, defIgnoreScope, fusion, additionalAtk, haDmgAmp,
             weapPassiveName: currWeap.passive.name, weapPassiveDesc: description, stackScope, hasStack,baDmgStack,havocShred,allAmp,aeroAmpTm,aeroBouns, aeroShred, echoDmgAmp,frazzleAmp
         }
     },[currWeap, refineLvl, passiveStack,enabled])
