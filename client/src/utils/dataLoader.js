@@ -1,5 +1,7 @@
 // Base Url
-const BASE_URL = "http://127.0.0.1:5000/v1"
+const API = (import.meta?.env?.VITE_API_URL || 'http://localhost:5000').replace(/\/+$/, '');
+export const BASE_URL = `${API}/v1`;
+
 
 // Cache
 let _cacheResonators = null;

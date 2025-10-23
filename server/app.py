@@ -13,7 +13,11 @@ ECHOSET_FILE = APP_ROOT / "data" / "echos" / "echoset.json"
 
 app = Flask(__name__)
 app.json.sort_keys = False  
-CORS(app, resources={r"/v1/*": {"origins": "*"}})  
+CORS(app, resources={ r"/v1/*": {"origins": [
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
+  "https://<your-gh-username>.github.io"
+]}})
 _slug_re = re.compile(r"[^a-z0-9]+")
 
 def slugify(name: str) -> str:
