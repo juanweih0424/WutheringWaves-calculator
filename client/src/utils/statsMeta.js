@@ -17,10 +17,6 @@ export const statsMeta = [
   { key: "spectro", label: "Spectro DMG Bonus",              fmt: v => `${(v*100).toFixed(1)}%`, isElement: true },
   { key: "havoc",   label: "Havoc DMG Bonus",                fmt: v => `${(v*100).toFixed(1)}%`, isElement: true },
   { key: "heal",    label: "Healing Bonus",                  fmt: v => `${(v*100).toFixed(1)}%` },
-  { key: "defIgnore",    label: "DEF Ignore",                  fmt: v => `${(v*100).toFixed(1)}%` },
-  { key: "allAmp",    label: "Amplification",                  fmt: v => `${(v*100).toFixed(1)}%` },
-  { key: "aeroShred",    label: "Aero Shred",                  fmt: v => `${(v*100).toFixed(1)}%` },
-  { key: "havocShred",    label: "Havoc Shred",                  fmt: v => `${(v*100).toFixed(1)}%` },
 ];
 
 export const buffMeta = [

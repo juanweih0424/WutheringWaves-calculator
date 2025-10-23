@@ -78,8 +78,9 @@ export default function Resonator() {
     
   return (
     <div className='pt-8 flex flex-col'>
-      <div className='flex justify-center'>
-        <button onClick={() => setIsOpen(true)} className='w-35 h-35 border-1 rounded-full border-amber-400 cursor-pointer transition-transform hover:scale-110 duration-300 ease-in-out'>
+      <div className='flex justify-center items-center'>
+        <button onClick={() => setIsOpen(true)} className='w-22 h-22 md:w-30 md:h-30
+        lg:w-35 lg:h-35 border-1 rounded-full border-amber-400 cursor-pointer transition-transform hover:scale-110 duration-300 ease-in-out'>
         {current ? (
             <img src={avatar} className="w-full h-full rounded-full" />
           ) : (
@@ -87,24 +88,24 @@ export default function Resonator() {
         </button>
          {current ? (
             <div className='flex flex-col items-center'>
-              <div className='flex items-center justify-between w-full px-5'>
-                <p className='text-xl font-semibold text-[var(--color-highlight)]'>{current.name}</p>
+              <div className='px-2 flex items-center justify-between w-full lg:px-5'>
+                <p className=' lg:text-xl font-semibold text-[var(--color-highlight)]'>{current.name}</p>
                 <div className='flex items-center'>
-                <img src={element} className='size-12'/>
-                <img src={weapon} className='brightness-[var(--color-img)] size-10'/>
+                <img src={element} className='size-8 lg:size-12'/>
+                <img src={weapon} className='brightness-[var(--color-img)] size-7 lg:size-10'/>
                 </div>
               </div>
               {current.rarity === 5 ? (
-                <img src={fivestars} className='w-70 h-20 brightness-105'/>
+                <img src={fivestars} className='w-40 h-13 lg:w-70 lg:h-20 brightness-105'/>
               ) : (
-                <img src={fourstars} className='w-70 h-20'/>
+                <img src={fourstars} className='lg:w-70 lg:h-20'/>
               )}
             </div>
             ):(
               null
         )}       
       </div>
-      {current? (<div className='border-0 flex flex-col shadow-[0_4px_16px_rgba(0,0,0,0.15)] p-6 rounded-2xl mt-6 mx-4 '>
+      {current? (<div className='border-1 border-gray-500/30 flex flex-col shadow-md p-6 rounded-2xl mt-6 mx-4 '>
         
         <Slider
           label="Level"
@@ -118,7 +119,7 @@ export default function Resonator() {
         />
       </div>) : (null)}
 
-      {current? (<div className='border-0 flex flex-col shadow-[0_4px_16px_rgba(0,0,0,0.15)] p-6 rounded-2xl mt-6 mx-4 mb-4'>
+      {current? (<div className='border-1 border-gray-500/30 flex flex-col shadow-md p-6 rounded-2xl mt-6 mx-4 mb-4'>
         
         <Slider
           label="Basic Attack"
@@ -175,17 +176,17 @@ export default function Resonator() {
           className=""
         />
       </div>) : (null)}
-      <div className="grid grid-cols-2 gap-4 mx-4 mt-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mx-4 mt-4">
         {Object.entries(minor).map(([key, { value, enable }]) => (
           <div
             key={key}
-            className="rounded-xl border-0 shadow-xl px-4 py-3 flex items-center justify-between hover:border-white/20 transition mb-4"
+            className="rounded-xl border-1 border-gray-500/30 shadow-md px-4 py-3 flex items-center justify-between hover:border-white/20 transition mb-4"
           >
             <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <h3 className="font-semibold tracking-tight">{statTitle(key)}</h3>
+                <p className="text-sm lg:text-base font-semibold tracking-tight">{statTitle(key)}</p>
               </div>
-              <p className="text-sm opacity-80 mt-0.5">
+              <p className="text-xs lg:text-sm opacity-80 mt-0.5">
                 {statDesc(key, value)}
               </p>
             </div>

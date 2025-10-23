@@ -102,14 +102,19 @@ export default function Main() {
         <EnemyProvider>
         <div className="w-full p-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 p-4">
-            <aside className="lg:sticky
-              h-fit max-h-[calc(100vh-var(--nav-h,3.5rem))] overflow-y-auto
-              ">
+            <aside className="
+              /* mobile: no inner scroll */
+              overflow-visible max-h-none
+              /* desktop: make it a sticky scroller */
+              lg:sticky lg:overflow-y-auto lg:max-h-[calc(100vh-var(--nav-h,3.5rem))]
+              h-fit
+            ">
                 <LeftPanel activePanel={activePage}/>
             </aside>
 
-            <aside className="lg:sticky
-              h-fit max-h-[calc(100vh-var(--nav-h,3.5rem))] overflow-y-auto flex gap-y-6 flex-col
+            <aside className="    overflow-visible max-h-none
+    lg:sticky lg:overflow-y-auto lg:max-h-[calc(100vh-var(--nav-h,3.5rem))]
+    h-fit flex gap-y-6 flex-col
               ">
                 <Stats/>
                 <Basic/>

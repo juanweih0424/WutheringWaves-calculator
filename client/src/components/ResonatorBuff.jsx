@@ -28,12 +28,12 @@ export default function ResonatorBuff() {
           const stacks = buffStacks[name] ?? 0;
 
           return (
-            <div key={name} className="rounded-xl border-0 shadow-md p-4">
-              <div className="flex items-start justify-between gap-4">
+            <div key={name} className="rounded-xl border-1 border-gray-500/30 shadow-md p-4">
+              <div className="flex flex-col gap-2">
                 <div className="min-w-0">
-                  <div className="font-medium text-lg text-[var(--color-highlight)]">{name}</div>
+                  <div className="text-sm font-medium lg:text-lg text-[var(--color-highlight)]">{name}</div>
                   {data.desc && (
-                    <p className="text-base mt-1">
+                    <p className="text-xs lg:text-base mt-1">
                       {tokenizeDescription(data.desc).map((tok, i) => (
                         <span
                           key={i}
@@ -44,15 +44,13 @@ export default function ResonatorBuff() {
                       ))}
                     </p>
                   )}
-                  <div className="mt-2 flex flex-wrap gap-2">
-                  </div>
                 </div>
                 {/* enable toggle */}
                 <label className="flex items-center gap-2 shrink-0">
-                  <span className="text-sm">Enable</span>
+                  <p className="text-xs lg:text-sm">Enable</p>
                   <input
                     type="checkbox"
-                    className="h-4 w-4 accent-emerald-500"
+                    className="h-3 w-3 lg:h-4 lg:w-4 accent-emerald-500"
                     checked={enabled}
                     onChange={() => toggleBuff(name)}
                   />
@@ -66,7 +64,7 @@ export default function ResonatorBuff() {
                     max={maxStacks}
                     value={stacks}
                     onChange={(e) => setBuffStack(name, Number(e.target.value))}
-                    className="w-16 rounded-md border border-white/10 bg-transparent px-2 py-1 text-center"
+                    className="w-12 h-6 text-sm lg:w-16 rounded-md border border-gray-500/50 bg-transparent px-2 py-1 text-center"
                   />
                   <span className="text-xs opacity-70">/ {maxStacks}</span>
                 </div>

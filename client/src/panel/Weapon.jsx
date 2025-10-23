@@ -76,29 +76,30 @@ export default function Weapon() {
 
   return (
     <div className='pt-8 flex flex-col'>
-        <div className='flex justify-center'>
-            <button onClick={() => setIsOpen(true)} className='w-35 h-35 border-1 place-self-center rounded-full border-amber-400 cursor-pointer transition-transform hover:scale-110 duration-300 ease-in-out'>
+        <div className='flex justify-center items-center'>
+            <button onClick={() => setIsOpen(true)} className='w-24 h-24 md:w-30 md:h-30
+        lg:w-35 lg:h-35 border-1 rounded-full border-amber-400 cursor-pointer transition-transform hover:scale-110 duration-300 ease-in-out'>
             {currWeap ? (
                 <img src={weapon} className="w-full h-full rounded-full" />
             ) : (
             <span>Select a weapon</span>)}
             </button>
             {currWeap ? (
-                <div className='flex flex-col items-center lg:min-w-md p-4'>
-                    <p className='text-xl font-semibold text-[var(--color-highlight)]'>{currWeap.name}</p>
-                    <div className='flex justify-between w-full p-4 border-0 shadow-md my-2 bg-gray-500/20 rounded-2xl'>
-                        <p>ATK</p>
-                        <p>{(weaponStats.weaponAtk).toFixed(1)}</p>
+                <div className='flex flex-col items-center w-[10rem] md:w-md p-4'>
+                    <p className='text-sm lg:text-xl font-semibold text-[var(--color-highlight)]'>{currWeap.name}</p>
+                    <div className='flex justify-between w-full p-2.5 border-0 shadow-md my-2 bg-gray-500/10 rounded-2xl'>
+                        <p className='text-xs lg:text-sm'>ATK</p>
+                        <p className='text-xs lg:text-sm'>{(weaponStats.weaponAtk).toFixed(1)}</p>
                     </div>
-                    <div className='flex justify-between w-full p-4 border-0 shadow-md my-2 bg-gray-500/20 rounded-2xl'>
-                        <p>{SUB_LABEL[weaponStats.subValType]}</p>
-                        <p>{(weaponStats.subVal).toFixed(2)}</p>
+                    <div className='flex justify-between w-full p-2.5 border-0 shadow-md my-2 bg-gray-500/10 rounded-2xl'>
+                        <p className='text-xs lg:text-sm'>{SUB_LABEL[weaponStats.subValType]}</p>
+                        <p className='text-xs lg:text-sm'>{(weaponStats.subVal).toFixed(2)}</p>
                     </div>
                 </div>
             ): (null)}
         </div>
         {currWeap ? (
-            <div className='border-0 flex flex-col shadow-[0_4px_16px_rgba(0,0,0,0.15)] p-6 rounded-2xl mt-6 mx-4'>
+            <div className='border flex flex-col shadow-md p-6 rounded-2xl mt-6 mx-4 border-gray-500/30'>
                 <Slider
                     label="Level"
                     value={currWeapLvl}
@@ -118,19 +119,19 @@ export default function Weapon() {
             </div>
         ) : (null)}
         {currWeap? (
-            <div className='flex flex-col p-6 mx-4 border-1 shadow-lg my-4 rounded-2xl gap-2 border-gray-500/30'>
-                <p className='text-[var(--color-highlight)] font-bold text-lg'>{passiveStats.weapPassiveName}</p>
-                <div dangerouslySetInnerHTML={{ __html: passiveStats.weapPassiveDesc }} />
+            <div className='flex flex-col p-6 mx-4 border-1 shadow-md my-4 rounded-2xl gap-2 border-gray-500/30'>
+                <p className='text-[var(--color-highlight)] font-bold text-sm lg:text-lg'>{passiveStats.weapPassiveName}</p>
+                <div className="text-xs lg:text-base" dangerouslySetInnerHTML={{ __html: passiveStats.weapPassiveDesc }} />
             </div>
         ):(null)}
-    <div className="grid grid-cols-2 gap-5 p-4">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 p-4">
       {keys.map((k) => {
         const isStackLine = passiveStats.stackScope === k;
         const percent = (rank[k] * 100).toLocaleString(undefined, { maximumFractionDigits: 2 });
         return (
-          <div key={k} className="rounded-xl border-1  p-4 shadow-xl border-gray-500/30">
-            <p className="text-md">
-              <span className="font-semibold">
+          <div key={k} className="rounded-xl border-1 p-4 shadow-md border-gray-500/30 flex flex-col">
+            <p className="text-sm lg:text-base">
+              <span className="text-sm lg:text-base font-semibold">
                 {LABELS[k] ?? k}
               </span>{" "}
               <span className="text-[var(--color-highlight)]">{percent}%</span>
@@ -142,18 +143,18 @@ export default function Weapon() {
                   checked={!!enabled[k]}
                   onChange={() => togglePassiveKey(k)}
                 />
-                <span>Enabled?</span>
+                <span className='text-xs opacity-90 lg:text-sm'>Enabled?</span>
               </label>
               {isStackLine && passiveStats.hasStack && (
                 <div className="flex items-center gap-2">
-                  <span>Stacks</span>
+                  <span className='text-xs lg:text-base'>Stacks</span>
                   <input
                     type="number"
                     min={0}
                     max={passiveStats.maxStack}
                     value={passiveStack}
                     onChange={(e) => setPassiveStack(Number(e.target.value || 0))}
-                    className="w-16 h-8 rounded bg-black/6 px-2"
+                    className="w-12 h-6 lg:w-16 lg:h-8 rounded bg-black/6 px-2"
                     disabled={!enabled[k]}
                   />
                   <span className="text-xs opacity-80">(Max {passiveStats.maxStack})</span>

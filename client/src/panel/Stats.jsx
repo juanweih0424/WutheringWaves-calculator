@@ -16,29 +16,33 @@ export default function Stats() {
         baDmg: s.baDmg, haDmg: s.haDmg, skill: s.skill, ult: s.ult,
         glacio: s.glacio, fusion: s.fusion, electro: s.electro,
         spectro: s.spectro, havoc: s.havoc, aero: s.aero, heal: s.heal,
-        allAmp: s.allAmp, echoDmg: s.echoDmg, defIgnore: s.defIgnore, defIgnoreScope:s.defIgnoreScope, aeroShred: s.aeroShred, havocShred:s.havocShred
+        echoDmg: s.echoDmg
     };
 
 
   return (
-    <div className='shadow-xl border-0 m-4 p-4 rounded-2xl'>
-        <p className='text-xl text-[var(--color-highlight)] font-semibold text-center mb-4'>{current.name} Main Stats</p>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-        {statsMeta.map(({ key, label, fmt, isElement }) => {
+    <div className='shadow-md border-1 border-gray-500/30 m-4 pt-4 px-3 py-2 rounded-xl space-y-4'>
+        <p className='text-sm lg:text-lg text-[var(--color-highlight)] font-semibold text-center'>{current.name} Main Stats</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {statsMeta.map(({ key, label, fmt, isElement }, i) => {
             const raw = values[key];
             const display = raw == null ? "—" : fmt(raw);
             const icon = getIconForStat(key);
+            const mobileStripe = i % 2 === 1 ? "bg-gray-500/15" : "";
 
+            
+            const mdRowStripe = Math.floor(i / 2) % 2 === 1 ? "md:bg-gray-500/15" : "md:bg-transparent";
+            const lgRowStripe = Math.floor(i / 3) % 2 === 1 ? "lg:bg-gray-500/15" : "lg:bg-transparent";
             const iconClass = [
-            "h-9 w-9 object-contain",
+            "h-7 w-7 lg:h-9 lg:w-9 object-contain",
             !isElement && "filter brightness-[var(--color-img)]"
             ].filter(Boolean).join(" ");
             return (
-                <div key={key} className="flex items-center gap-3 rounded-xl bg-gray-500/15 px-3 py-2">
+                <div key={key} className={`flex items-center gap-3 p-2 w-full ${mobileStripe} ${mdRowStripe} ${lgRowStripe}`}>
                     {icon && <img src={icon} alt="" className={iconClass} />}
                     <div className="min-w-0">
-                    <div className="text-xs opacity-70 truncate lg:text-sm">{label}</div>
-                    <div className="font-semibold truncate">{display}</div>
+                    <div className="text-xs opacity-80 truncate lg:text-sm">{label}</div>
+                    <div className="text-xs  lg:text-base font-semibold truncate">{display}</div>
                     </div>
                 </div>
             );
