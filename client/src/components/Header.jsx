@@ -1,6 +1,6 @@
 import React from 'react'
 import weapon from "../assets/images/ui/weapon.webp"
-import team from "../assets/images/ui/icon_Team.webp"
+import team from "../assets/images/ui/Icon_Team.webp"
 import echo from "../assets/images/ui/databank.webp"
 import resonator from "../assets/images/ui/resonator.png"
 import forte from "../assets/images/ui/Icon_Forte.webp"
