@@ -120,7 +120,7 @@ export default function Weapon() {
         ) : (null)}
         {currWeap? (
             <div className='flex flex-col p-6 mx-4 border-1 shadow-md my-4 rounded-2xl gap-2 border-gray-500/30'>
-                <p className='text-[var(--color-highlight)] font-bold text-sm lg:text-lg'>{passiveStats.weapPassiveName}</p>
+                <p className='text-[var(--color-highlight)] font-bold text-sm lg:text-base'>{passiveStats.weapPassiveName}</p>
                 <div className="text-xs lg:text-base" dangerouslySetInnerHTML={{ __html: passiveStats.weapPassiveDesc }} />
             </div>
         ):(null)}

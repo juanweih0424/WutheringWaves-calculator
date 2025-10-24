@@ -15,19 +15,21 @@ export default function Forte() {
   const defIgnoreScope = stats?.defIgnoreScope ?? null; // "all" | "baDmg" | "skill" | "ult"
   const defIgnoreGlobal = Number(stats?.defIgnore ?? 0);
 
-  const baseAtk = stats?.baseAtk;
-  const baseHp = stats?.baseHp;
-  const baseDef = stats?.baseDef;
+  const baseAtk = Number(stats?.baseAtk ?? 0);
+  const baseHp = Number(stats?.baseHp ?? 0);
+  const baseDef = Number(stats?.baseDef ?? 0);
+  const flatAtk = Number(stats?.flatAtk ?? 0);
+  const flatHp = Number(stats?.flatHp ?? 0);
+  const flatDef = Number(stats?.flatDef ?? 0);
   let shred = 0;
   if (current?.element === "Aero"){
-    shred = stats.aeroShred;
+    shred = Number(stats?.aeroShred ?? 0);
   } else if (current?.element === "Havoc"){
-    shred = stats.havocShred;
+    shred = Number(stats?.havocShred ?? 0);
   } else if (current?.element === "Spectro"){
-    shred = stats.spectroShred;
+    shred = Number(stats?.spectroShred ?? 0);
   }
 
-  
 
   // ---------- Build base rows ----------
   const rows = useMemo(() => {
@@ -74,9 +76,9 @@ export default function Forte() {
       let addTypeBonus = 0;   // extra type DMG bonus (only if matches row.type)
       let addElemBonus = 0;   // extra element DMG bonus (only if matches element)
       let receivedAmp = 0;
-      let atkPct = stats?.atkPct ?? 0;
-      let hpPct = stats?.hpPct ?? 0;
-      let defPct = stats?.defPct ?? 0;
+      let atkPct = Number(stats?.atkPct ?? 0);
+      let hpPct = Number(stats?.hpPct ?? 0);
+      let defPct = Number(stats?.defPct ?? 0);
       let specificCd = 0;
       let fusionAmp = 0;
 
@@ -142,10 +144,10 @@ export default function Forte() {
       }
 
       const baseMv = row.mv;
-      const mv = baseMv* (1 + scalingBonus) + scalingBounsInc;
-      const atk = baseAtk * (1+atkPct) +stats.flatAtk
-      const hp = baseHp * (1+hpPct) + stats.flatHp;
-      const def = baseDef * (1+defPct) + stats.flatDef;
+      const mv = baseMv * (1 + scalingBonus) + scalingBounsInc;
+      const atk = baseAtk * (1 + atkPct) + flatAtk;
+      const hp = baseHp * (1 + hpPct) + flatHp;
+      const def = baseDef * (1 + defPct) + flatDef;
       // add global defIgnore if scope matches
       if (defIgnoreScope === "all" || defIgnoreScope === row.type) {
         rowDefIgnore += defIgnoreGlobal;
@@ -168,7 +170,7 @@ export default function Forte() {
         receivedAmp,
       };
     });
-  }, [rows, stats, scopedInherent, scopedChain, defIgnoreGlobal, defIgnoreScope, current?.element, ]);
+  }, [rows, stats, scopedInherent, scopedChain, defIgnoreGlobal, defIgnoreScope, current?.element]);
 
   const typeBonusKey = (t) =>
     t === "baDmg" ? "baDmg" :
@@ -183,17 +185,17 @@ export default function Forte() {
 
     const elementKey = (current.element ?? "").toLowerCase();
     const baseElemBonus = Number(stats?.[elementKey] ?? 0);
-    const baseReceivedAmp = stats?.receivedAmp;
-    const dmgInc = stats?.dmgInc;
+    const baseReceivedAmp = Number(stats?.receivedAmp ?? 0);
+    const dmgInc = Number(stats?.dmgInc ?? 0);
 
   
     const elementAmp =
-      current.element === "Aero"    ? Number(stats.aeroAmp ?? 0) :
-      current.element === "Fusion"  ? Number(stats.fusionAmp ?? 0) :
-      current.element === "Glacio"  ? Number(stats.glacioAmp ?? 0) :
-      current.element === "Spectro" ? Number(stats.spectroAmp ?? 0) :
-      current.element === "Electro" ? Number(stats.electroAmp ?? 0) :
-      current.element === "Havoc"   ? Number(stats.havocAmp ?? 0) : 
+      current.element === "Aero"    ? Number(stats?.aeroAmp ?? 0) :
+      current.element === "Fusion"  ? Number(stats?.fusionAmp ?? 0) :
+      current.element === "Glacio"  ? Number(stats?.glacioAmp ?? 0) :
+      current.element === "Spectro" ? Number(stats?.spectroAmp ?? 0) :
+      current.element === "Electro" ? Number(stats?.electroAmp ?? 0) :
+      current.element === "Havoc"   ? Number(stats?.havocAmp ?? 0) : 
       0;
     
     return rowsWithMods.map((row) => {
@@ -202,26 +204,26 @@ export default function Forte() {
       
     
       let skillTypeAmp =
-        row.type === "baDmg" ? Number(stats.baAmp ?? 0) :
-        row.type === "haDmg" ? Number(stats.haAmp ?? 0) :
-        row.type === "skill" ? Number(stats.skillAmp ?? 0) :
-        row.type === "ult"   ? Number(stats.ultAmp ?? 0) :
-        row.type === "echoDmg" ? Number(stats.echoDmgAmp ?? 0):
+        row.type === "baDmg" ? Number(stats?.baAmp ?? 0) :
+        row.type === "haDmg" ? Number(stats?.haAmp ?? 0) :
+        row.type === "skill" ? Number(stats?.skillAmp ?? 0) :
+        row.type === "ult"   ? Number(stats?.ultAmp ?? 0) :
+        row.type === "echoDmg" ? Number(stats?.echoDmgAmp ?? 0):
         0;
       
       if (row.frazzle) {
-          skillTypeAmp += stats.frazzleAmp;
+          skillTypeAmp += Number(stats?.frazzleAmp ?? 0);
       }
       
       if (row.erosion){
-        skillTypeAmp += stats.erosionAmp;
+        skillTypeAmp += Number(stats?.erosionAmp ?? 0);
       }
 
     const finalStat = current?.hpDmgBase ? row.hp : row.atk;
 
-    let specificAmp = 0
-    if (current.element == "Fusion"){
-      specificAmp += row.fusionAmp
+    let specificAmp = 0;
+    if (current.element === "Fusion"){
+      specificAmp += Number(row.fusionAmp ?? 0);
     }
 
 
@@ -231,17 +233,17 @@ export default function Forte() {
         scalingBonus: 0, 
         elementBonus: baseElemBonus + (row.addElemBonus ?? 0) + dmgInc,
         skillBonus: baseTypeBonus + (row.addTypeBonus ?? 0),
-        allAmp: Number(stats.allAmp ?? 0) + (row.addAllAmp ?? 0) + specificAmp,
-        elementAmp: elementAmp,
-        skillTypeAmp: skillTypeAmp,
+        allAmp: Number(stats?.allAmp ?? 0) + (row.addAllAmp ?? 0) + specificAmp,
+        elementAmp,
+        skillTypeAmp,
         attackerLevel: Number(current.level ?? 90),
-        enemyLevel: Number(stats.enemylevel ?? 100),
+        enemyLevel: Number(stats?.enemylevel ?? 100),
         defIgnore: Number(row.defIgnore ?? 0),
         defReduction: 0,
-        resistance: Number(stats.enemyRes ?? 0) / 100, // 20 -> 0.20
+        resistance: Number(stats?.enemyRes ?? 0) / 100, // 20 -> 0.20
         resShred: shred,
-        critRate: Math.max(0, Math.min(1, (stats.cr ?? 0) / 100)),    
-        critDmgMult:  Number(stats.cd ?? 0) / 100 + row.specificCd,
+        critRate: Math.max(0, Math.min(1, (Number(stats?.cr ?? 0)) / 100)),    
+        critDmgMult:  Number(stats?.cd ?? 0) / 100 + row.specificCd,
         receivedAmp: baseReceivedAmp + row.receivedAmp                 
       });
 
@@ -253,30 +255,30 @@ export default function Forte() {
 
 
   return (
-    <div className="m-4 p-4 grid gap-2 border-0 shadow-2xl rounded-2xl">
-      <p className="text-xl font-bold tracking-tight text-center text-[var(--color-highlight)]">
+    <div className="p-4 lg:m-4 grid gap-2 border-1 border-gray-500/30 shadow-md rounded-2xl">
+      <p className="text-base lg:text-lg font-bold tracking-tight text-center text-[var(--color-highlight)]">
         {title}
       </p>
 
       {computedRows.map((r) => (
-        <div key={r.label} className="flex items-center justify-between px-3 py-2 odd:bg-gray-500/10">
+        <div key={r.label} className="flex items-center justify-between px-3 py-2 odd:bg-gray-500/20">
           <div>
-            <p className="font-medium">{r.label}</p>
-            <div className="text-xs opacity-70">MV {(r.mv * 100).toFixed(2)}%</div>
+            <p className="text-xs lg:text-base font-medium">{r.label}</p>
+            {/*<div className="text-xs opacity-70">MV {(r.mv * 100).toFixed(2)}%</div>*/}
           </div>
 
-          <div className="grid grid-cols-3 gap-4 text-right">
+          <div className="grid grid-cols-3 gap-1 lg:gap-4 text-right">
             <div>
               <div className="text-xs opacity-70">Non-Crit</div>
-              <div className="font-semibold">{Math.round(r.nonCrit).toLocaleString()}</div>
+              <div className="text-xs lg:text-sm font-semibold">{Math.round(r.nonCrit).toLocaleString()}</div>
             </div>
             <div>
               <div className="text-xs opacity-70">Avg</div>
-              <div className="font-semibold">{Math.round(r.avg).toLocaleString()}</div>
+              <div className="text-xs lg:text-sm font-semibold">{Math.round(r.avg).toLocaleString()}</div>
             </div>
             <div>
               <div className="text-xs opacity-70">Crit</div>
-              <div className="font-semibold">{Math.round(r.crit).toLocaleString()}</div>
+              <div className="text-xs lg:text-sm font-semibold">{Math.round(r.crit).toLocaleString()}</div>
             </div>
           </div>
         </div>

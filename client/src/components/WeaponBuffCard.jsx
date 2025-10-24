@@ -53,18 +53,18 @@ const descNodes = useMemo(() => {
 }, [b.description, b.statKey, value]);
 
   return (
-    <div className="p-3 flex flex-col justify-center gap-2">
+    <div className="p-2 flex flex-col justify-center gap-2">
       <div className="min-w-0">
-        <div className="font-semibold">
+        <p className="font-semibold text-sm lg:text-base">
           {b.weaponName}
-        </div>
-        <div className="text-sm opacity-80">{descNodes}</div>
+        </p>
+        <div className="text-xs lg:text-base opacity-80">{descNodes}</div>
       </div>
 
       <div className="flex items-center gap-3">
         {/* refinement select */}
         <div className="flex items-center gap-2">
-          <p className="text-sm opacity-80">Refinement Level</p>
+          <p className="text-xs lg:text-sm opacity-80">Refinement Level</p>
           <select
             className="border rounded-md bg-[var(--color-bg)] text-[var(--color-text)] text-sm px-2 py-1"
             value={refine}
@@ -82,7 +82,7 @@ const descNodes = useMemo(() => {
         {/* enable toggle */}
         <button
           onClick={() => toggle(b.id)}
-          className={`px-3 py-1 rounded-md text-sm border transition ${
+          className={`px-3 py-1 rounded-md text-xs lg:text-sm border transition ${
             enabled[b.id]
               ? "border-green-600 bg-emerald-400/10 cursor-pointer"
               : "border-[var(--color-text)] opacity-80 hover:opacity-100 cursor-pointer"

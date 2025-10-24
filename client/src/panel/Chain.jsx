@@ -10,7 +10,7 @@ export default function ChainPanel() {
 
 
   return (
-    <section className="mx-4 mt-6 rounded-2xl">
+    <section className="lg:mx-4 mt-6 rounded-2xl">
 
       <p className="text-base lg:text-lg font-semibold mb-3 text-center text-[var(--color-highlight)]">{current.name} Resonance Chain</p>
       {current?.id === 25 && (

@@ -8,7 +8,7 @@ export default function CharacterCard({resonator, onSelect}) {
     const element = getCharacterElementUrl(resonator.element);
 
   return (
-    <div className='flex flex-col items-center border-1 border-gray-500/30 shadow-md rounded-3xl py-2 px-1 mt-2'>
+    <div className='flex flex-col items-center border-1 border-gray-500/30 shadow-md rounded-3xl py-4 px-1 mt-2'>
         <button className='w-15 h-15  lg:w-30 lg:h-30 rounded-full cursor-pointer'
         type="button"
         onClick={() => onSelect?.(resonator)}

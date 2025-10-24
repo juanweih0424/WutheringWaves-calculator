@@ -19,10 +19,10 @@ export default function EchoSetBuff() {
       {/* Section header acts as a toggle */}
       <button
         type="button"
-        className=" w-full flex items-center justify-between rounded-xl px-2 py-2 hover:bg-gray-500/20 transition cursor-pointer"
+        className=" w-full flex items-center justify-between rounded-xl px-2 py-1 lg:py-2 hover:bg-gray-500/20 transition cursor-pointer"
         onClick={() => setOpen((v) => !v)}
       >
-        <p className="text-lg font-semibold">Team EchoSet Buff</p>
+        <p className="text-sm lg:text-base font-semibold">Team EchoSet Buff</p>
         <span
           className={`inline-block text-2xl leading-none transition-transform duration-200 ease-in-out ${open ? "rotate-180" : ""}`}
         >▾</span>
@@ -43,7 +43,7 @@ export default function EchoSetBuff() {
             <div className="opacity-70 text-sm">No echo sets with team buffs found.</div>
           ) : (
             <div className="space-y-8 p-4 border-0 shadow-md rounded-2xl">
-              <button onClick={clearAllBuffs} className="bg-red-500/80 hover:bg-red-500/50 transition-transform duration-200 ease-in-out cursor-pointer p-2 rounded-xl">Clear All</button>
+              <button onClick={clearAllBuffs} className="bg-red-500/80 hover:bg-red-500/50 transition-transform duration-200 ease-in-out cursor-pointer p-2 rounded-xl text-xs lg:text-sm">Clear All</button>
               {candidates.map((s) => (
                 <BuffCard key={s.id} setItem={s} />
               ))}

@@ -6,23 +6,23 @@ export default function TeamCharModal({ open, onClose, onSelect, excludeIds = []
   const { items, current } = useResonator();
 
   const filtered = (items || []).filter((r) => {
-    if (current && r.id === current.id) return false;     // exclude current
-    if (excludeIds?.length && excludeIds.includes(r.id)) return false; // optional dedupe
+    if (current && r.id === current.id) return false;     
+    if (excludeIds?.length && excludeIds.includes(r.id)) return false; 
     return true;
   });
 
   return (
     <Dialog open={open} onClose={onClose} className="relative z-50">
       <DialogBackdrop className="fixed inset-0 bg-black/30" />
-      <div className="fixed inset-0 flex items-center justify-center p-4">
+      <div className="fixed inset-0 flex items-center justify-center">
         <DialogPanel
           className="
             relative
-            w-2/3
+            w-4/5
             max-h-[85vh]
             overflow-y-auto
-            rounded-2xl bg-[var(--color-bg)] p-12
-            grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6
+            rounded-2xl bg-[var(--color-bg)] px-4 py-12
+            grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 lg:gap-x-4
           "
         >
           <button

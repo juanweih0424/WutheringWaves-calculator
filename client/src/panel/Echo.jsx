@@ -113,11 +113,11 @@ export default function Echo() {
   };
 
   return (
-    <div className="grid gap-4 p-4">
+    <div className="grid gap-4 lg:p-4">
       <div className="flex items-center justify-between">
-        <p className="font-bold text-xl tracking-tight">Echoes</p>
+        <p className="font-bold text-base lg:text-lg tracking-tight">Echoes</p>
         <button
-          className="text-base bg-red-500/75 p-2 border-0 rounded-2xl cursor-pointer hover:bg-red-500/60"
+          className="text-xs lg:text-sm bg-red-500/75 p-2 border-0 rounded-2xl cursor-pointer hover:bg-red-500/60"
           onClick={clearEquipped}
         >
           Clear all
@@ -130,12 +130,12 @@ export default function Echo() {
           const cost = slot?.cost ?? null;
 
           return (
-            <div key={i} className="rounded-2xl shadow-md p-3 mt-2">
-              <div className="flex items-start gap-4">
+            <div key={i} className="rounded-2xl shadow-md p-3 mt-2 border-gray-500/30 border-1">
+              <div className="flex flex-col lg:flex-row items-start gap-4">
                 {/* Left: avatar + Remove */}
-                <div className="flex flex-col items-center gap-2">
+                <div className="flex flex-col place-self-center lg:items-center lg:place-self-start gap-2">
                   <button
-                    className="w-24 h-24 rounded-full border border-amber-400 overflow-hidden hover:scale-110 transition cursor-pointer"
+                    className="w-20 h-20 lg:w-24 lg:h-24 rounded-full border border-amber-400 overflow-hidden hover:scale-110 transition cursor-pointer"
                     onClick={() => openPicker(i)}
                     title={slot?.echo?.name || `Select Echo ${i + 1}`}
                     type="button"
@@ -144,14 +144,14 @@ export default function Echo() {
                       <img src={img} className="w-full h-full object-cover" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-sm ">
-                        Select {i + 1}
+                        Echo {i + 1}
                       </div>
                     )}
                   </button>
 
                   {slot?.echo && (
                     <button
-                      className="text-xs bg-red-500/75 p-2 rounded-xl mt-1 cursor-pointer hover:bg-red-500/60"
+                      className="text-xs bg-red-500/75 py-2 lg:p-2 rounded-xl mt-1 cursor-pointer hover:bg-red-500/60"
                       onClick={() => unequipEcho(i)}
                       type="button"
                     >
@@ -164,39 +164,38 @@ export default function Echo() {
                 {slot?.echo && (
                   <div className="flex-1 min-w-0">
                     {/* Header row with Name + Main Stat next to it + Cost badge at far right */}
-                    <div className="flex items-center justify-between gap-3 flex-wrap">
-                      <div className="flex items-center gap-3">
-                        <p className="text-lg font-medium truncate text-[var(--color-highlight)] max-w-[22ch]">
-                          {slot.echo.name}
-                        </p>
-
-                        {/* Main stat picker moved up here */}
-                        <div className="flex items-center gap-2 shrink-0">
-                          <label className="text-lg opacity-80">
-                            Main Stats
-                          </label>
-                          <select
-                            className="border rounded bg-[var(--color-bg)] text-[var(--color-text)] text-sm px-2 py-1"
-                            value={slot.main?.statLabel ?? ""}
-                            onChange={(e) => setMainStat(i, e.target.value)}
-                          >
-                            <option value="" disabled>
-                              Select
-                            </option>
-                            {(MAIN_OPTIONS[cost] ?? []).map((label) => (
-                              <option key={label} value={label}>
-                                {label}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-
+      
+                    <div className="flex flex-col md:flex-row items-center md:justify-between gap-3">
+                      <div className="flex gap-4 items-center">
+                      <p className="text-sm lg:text-base font-medium truncate text-[var(--color-highlight)] max-w-[22ch]">
+                        {slot.echo.name}
+                      </p>
                       {cost != null && (
-                        <p className="shrink-0 rounded-full px-2 py-[2px] text-base font-medium bg-indigo-600/90">
-                          Cost {cost}
-                        </p>
-                      )}
+                      <p className="shrink-0 rounded-full px-2 py-1 text-xs lg:text-sm font-medium bg-indigo-600/90">
+                        Cost {cost}
+                      </p>
+                    )}
+                      </div>
+                      {/* Main stat picker moved up here */}
+                      <div className="flex items-center gap-2 shrink-0">
+                        <label className="text-sm lg:text-base opacity-80">
+                          Main Stats
+                        </label>
+                        <select
+                          className="border rounded bg-[var(--color-bg)] text-[var(--color-text)] text-xs lg:text-sm px-2 py-1"
+                          value={slot.main?.statLabel ?? ""}
+                          onChange={(e) => setMainStat(i, e.target.value)}
+                        >
+                          <option value="" disabled>
+                            Select
+                          </option>
+                          {(MAIN_OPTIONS[cost] ?? []).map((label) => (
+                            <option key={label} value={label}>
+                              {label}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
                     </div>
 
                     {/* Main + fixed sub recap */}
@@ -214,11 +213,11 @@ export default function Echo() {
                               <img
                                 src={icon}
                                 alt=""
-                                className={`h-6 w-6 shrink-0 ${tint}`}
+                                className={`w-4 h-4 lg:h-6 lg:w-6 shrink-0 ${tint}`}
                               />
                             ) : null;
                           })()}
-                          <span>
+                          <span className="text-sm lg:text-base">
                             {slot.main.statLabel}:{" "}
                             {fmt(slot.main.statLabel, slot.main.value)}
                           </span>
@@ -238,11 +237,11 @@ export default function Echo() {
                               <img
                                 src={icon}
                                 alt=""
-                                className={`h-6 w-6 shrink-0 ${tint}`}
+                                className={`w-4 h-4 lg:h-6 lg:w-6 shrink-0 ${tint}`}
                               />
                             ) : null;
                           })()}
-                          <span>
+                          <span className="text-sm lg:text-base">
                             {slot.sub.statLabel}:{" "}
                             {fmt(slot.sub.statLabel, slot.sub.value)}
                           </span>
@@ -253,12 +252,12 @@ export default function Echo() {
                     {/* Echo Skill (slot 1 only) */}
                     {i === 0 && slot?.echo?.skill && (
                       <div className="mb-3 rounded-lg border border-gray-500/50 p-3">
-                        <div className="flex items-start justify-between gap-3">
+                        <div className="flex flex-col  items-start justify-between gap-3">
                           <div className="min-w-0">
-                            <div className="text-base font-semibold">
+                            <p className="text-sm lg:text-base font-semibold">
                               Echo Skill
-                            </div>
-                            <p className="text-sm opacity-90 break-words leading-snug">
+                            </p>
+                            <p className="text-xs lg:text-sm opacity-90 break-words leading-snug">
                               {tokenizeDescription(
                                 slot.echo.skill.description
                               ).map((part, idx) =>
@@ -282,11 +281,11 @@ export default function Echo() {
                             onClick={() =>
                               setSkillEnabled(i, !slot.skillEnabled)
                             }
-                            className="inline-flex items-center gap-2 text-sm font-medium select-none hover:opacity-90 "
+                            className="inline-flex items-center gap-2 text-xs lg:text-sm font-medium select-none hover:opacity-90 "
                           >
                             <span>Enable</span>
                             <span
-                              className={`inline-flex items-center justify-center w-7 h-7 rounded-md border  
+                              className={`inline-flex items-center justify-center w-5 h-5 lg:w-7 lg:h-7 rounded-md border  
                               ${
                                 slot.skillEnabled
                                   ? "bg-emerald-600 border-emerald-600"
@@ -315,14 +314,14 @@ export default function Echo() {
                     {/* ===== User sub-stats (up to 5) ===== */}
                     <div className="mt-1">
                       <div className="flex items-center justify-between">
-                        <label className="text-sm font-semibold">
+                        <label className="text-xs lg:text-sm font-semibold">
                           Sub-Stats
                         </label>
                         {(slot?.subStats?.length ?? 0) < 5 && (
                           <button
                             type="button"
                             onClick={() => addSubStat(i)}
-                            className="text-xs px-2 py-1 rounded bg-amber-500/80 hover:bg-amber-500 cursor-pointer"
+                            className="text-xs lg:text-sm px-2 py-1 rounded bg-amber-500/80 hover:bg-amber-500 cursor-pointer"
                           >
                             + Add
                           </button>
@@ -353,7 +352,7 @@ export default function Echo() {
                               {/* label picker with options disabled if already used */}
                               <div className="grid grid-cols-[1fr_auto] gap-2 items-center">
                                 <select
-                                  className="border rounded bg-[var(--color-bg)] text-[var(--color-text)] text-sm px-2 py-1"
+                                  className="border rounded bg-[var(--color-bg)] text-[var(--color-text)] text-xs lg:text-sm px-2 py-1"
                                   value={labelValue}
                                   onChange={(e) =>
                                     setSubStatLabel(i, j, e.target.value)
@@ -403,8 +402,8 @@ export default function Echo() {
                                     }}
                                   />
                                   <div className="flex gap-2">
-                                  <img src={getIconForStat(key)} className="brightness-[var(--color-img)] w-6 h-6"/>
-                                  <p className="">
+                                  <img src={getIconForStat(key)} className="brightness-[var(--color-img)] w-5 h-5 lg:w-6 lg:h-6"/>
+                                  <p className="text-sm lg:text-base">
                                     {labelFromStatKey(key)}:{fmt(labelValue, tiers[idx])}{" "}
                                   </p>
                                     </div>

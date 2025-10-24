@@ -57,8 +57,8 @@ export default function ResonatorBuffCard({ id }) {
   return (
     <div className="p-3 flex flex-col items-start justify-between gap-4">
       <div className="min-w-0">
-        <div className="text- font-semibold">{b.name}</div>
-        <div className="text-sm opacity-80">{descNodes}</div>
+        <div className="text-sm lg:text-base font-semibold">{b.name}</div>
+        <div className="text-xs lg:text-sm opacity-80">{descNodes}</div>
 
         {hasAnyStacks && (
           <div className="mt-2 grid gap-2">
@@ -87,7 +87,7 @@ export default function ResonatorBuffCard({ id }) {
       <div className="flex items-end gap-2">
         <button
           onClick={() => toggle(b.id)}
-          className={`px-3 py-1 rounded-md text-sm border transition ${
+          className={`px-3 py-1 rounded-md text-xs lg:text-sm border transition ${
             enabled[b.id]
               ? "border-emerald-400 bg-emerald-400/10 cursor-pointer"
               : "border-gray-500 opacity-80 hover:opacity-100 cursor-pointer"

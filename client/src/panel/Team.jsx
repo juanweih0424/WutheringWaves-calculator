@@ -48,7 +48,7 @@ export default function Team() {
   }, [buffList]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 p-2">
       {/* ---- TOP: teammate pickers centered (outside any border) ---- */}
       <div className="flex justify-center gap-10">
         {[0, 1].map((i) => {
@@ -57,13 +57,13 @@ export default function Team() {
             <div key={i} className="flex flex-col items-center gap-2 mt-8">
               <button
                 onClick={() => openSlot(i)}
-                className="size-30 rounded-full border border-amber-400/50 overflow-hidden hover:scale-105 transition cursor-pointer"
+                className="size-22 lg:size-30 rounded-full border border-amber-400/50 overflow-hidden hover:scale-105 transition cursor-pointer"
                 title={`Pick teammate ${i + 1}`}
               >
                 {mate ? (
                   <img src={avatarFor(mate)} className="w-full h-full object-cover" />
                 ) : (
-                  <span className="text-sm opacity-70">Select a Teammate</span>
+                  <span className="text-xs lg:text-sm opacity-70">Select a Teammate</span>
                 )}
               </button>
               {mate && <div className="font-semibold tracking-tight text-[var(--color-highlight)]">{mate.name}</div>}
@@ -100,10 +100,10 @@ export default function Team() {
               <div key={owner} className="border border-gray-500/50 rounded-2xl shadow-md mr-2">
                 <button
                   type="button"
-                  className="w-full flex items-center justify-between rounded-xl px-2 py-2 hover:bg-gray-500/20 transition cursor-pointer"
+                  className="w-full flex items-center justify-between rounded-xl px-2 lg:py-2 hover:bg-gray-500/20 transition cursor-pointer"
                   onClick={() => setOpenByOwner((m) => ({ ...m, [owner]: !isOpen }))}
                 >
-                  <p className="text-lg font-semibold">Buffs for {owner}</p>
+                  <p className="text-xs lg:text-sm font-semibold">Buffs for {owner}</p>
                   <span className={`inline-block text-2xl transition-transform ${isOpen ? "rotate-180" : ""}`}>▾</span>
                 </button>
 
@@ -128,10 +128,10 @@ export default function Team() {
       <div className="border border-gray-500/50 rounded-2xl shadow-md mr-2">
         <button
           type="button"
-          className="w-full flex items-center justify-between rounded-xl px-2 py-2 hover:bg-gray-500/20 transition cursor-pointer"
+          className="w-full flex items-center justify-between rounded-xl px-2 lg:py-2 hover:bg-gray-500/20 transition cursor-pointer"
           onClick={() => setWeaponOpen((v) => !v)}
         >
-          <p className="text-lg font-semibold">Team Weapon Buffs</p>
+          <p className="text-xs lg:text-sm font-semibold">Team Weapon Buffs</p>
           <span className={`inline-block text-2xl transition-transform ${weaponOpen ? "rotate-180" : ""}`}>▾</span>
         </button>
 
@@ -143,7 +143,7 @@ export default function Team() {
               <div className="space-y-8 p-4 border-0 shadow-md rounded-2xl">
                 <button
                   onClick={clearAllBuffs}
-                  className="bg-red-500/80 hover:bg-red-500/50 transition p-2 rounded-xl"
+                  className="bg-red-500/80 hover:bg-red-500 transition p-2 text-xs lg:text-base rounded-xl cursor-pointer"
                 >
                   Clear All
                 </button>

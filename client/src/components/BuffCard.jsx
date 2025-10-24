@@ -79,13 +79,13 @@ export default function BuffCard({ setItem }) {
         <div className="flex items-center gap-2">
             <img
             src={getEchoSetImageUrl(Number(setItem.id))}
-            className="w-7 h-7 rounded"
+            className="w-6 h-6 lg:w-7 lg:h-7 rounded"
             />
-            <p className="text-lg font-semibold">{setItem.name}</p>
+            <p className="text-sm lg:text-base font-semibold">{setItem.name}</p>
         </div>
 
       {/* description with element-colored tokens */}
-      <p className="text-base opacity-90">
+      <p className="text-sm lg:text-base opacity-90">
         {tokenizeDescription(buff.desc).map((part, i) => {
           if (!part.highlight) return <span key={i}>{part.text}</span>;
           const color = colorForToken(part.text);
@@ -125,16 +125,16 @@ export default function BuffCard({ setItem }) {
                     <img
                     src={icon}
                     alt=""
-                    className={`w-8 h-8 ${isElement ? "" : "brightness-[var(--color-img)]"}`}
+                    className={`w-5 h-5 lg:w-7 lg:h-7 ${isElement ? "" : "brightness-[var(--color-img)]"}`}
                     />
                 )}
-                <p className="font-medium">{prettyLabel(ef.stat)}</p>
+                <p className="text-sm lg:text-base font-medium">{prettyLabel(ef.stat)}</p>
               </div>
 
               <div className="flex items-center gap-2">
                 {ef.stack && (
                   <>
-                    <span className="text-base opacity-80">Stack:</span>
+                    <span className="text-xs lg:text-sm opacity-80">Stack:</span>
                     <input
                       type="number"
                       min={0}
@@ -148,12 +148,12 @@ export default function BuffCard({ setItem }) {
                           Math.max(0, Math.min(max, Number(e.target.value) || 0))
                         )
                       }
-                      className="w-16 h-6 text-center border rounded bg-[var(--color-bg)]"
+                      className="w-10 lg:w-12 h-6 text-center border rounded bg-[var(--color-bg)]"
                       disabled={!isOn}
                     />
                   </>
                 )}
-                <p className="font-semibold">
+                <p className="text-sm lg:text-base font-semibold">
                   {fmtVal(ef.stat, totalVal)}
                 </p>
               </div>
@@ -162,7 +162,7 @@ export default function BuffCard({ setItem }) {
         })}
       </div>
 
-      <label className="flex items-center gap-2 mt-1 cursor-pointer">
+      <label className="flex items-center gap-2 mt-1 cursor-pointer text-sm">
         <input
           type="checkbox"
           checked={isOn}

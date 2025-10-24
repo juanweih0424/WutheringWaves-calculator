@@ -117,10 +117,10 @@ function EffectsList({ which, selSet, pieces }) {
             <div className="flex items-center gap-2">
               <img
                 src={getEchoSetImageUrl(Number(selSet.id))}
-                className="h-6 w-6 rounded"
+                className="h-5 w-5 lg:h-6 lg:w-6 rounded"
                 alt=""
               />
-              <p className="font-medium">{selSet.name}</p>
+              <p className="text-sm lg:text-base font-medium">{selSet.name}</p>
               <span className="ml-2 text-sm opacity-80">
                 {PIECE_TITLE[piece] ?? piece.toUpperCase()}
               </span>
@@ -128,7 +128,7 @@ function EffectsList({ which, selSet, pieces }) {
 
             {/* Description with BuffCard-style colored tokens */}
             {data.desc && (
-              <p className="tracking-tight">
+              <p className="tracking-tight text-sm lg:text-base">
                 {tokenizeDescription(data.desc).map((part, i) => {
                   if (!part.highlight) return <span key={i}>{part.text}</span>;
                   const color = colorForToken(part.text);
@@ -168,14 +168,14 @@ function EffectsList({ which, selSet, pieces }) {
                     className="flex items-center justify-between gap-3 rounded-md bg-gray-500/10 px-2 py-1"
                   >
                     <div className="flex items-center gap-2">
-                      {icon && <img src={icon} alt="" className={`w-6 h-6 ${tint}`} />}
-                      <p className="font-medium">{prettyStatLabel(ef.stat)}</p>
+                      {icon && <img src={icon} alt="" className={`w-5 h-5 lg:w-6 lg:h-6 ${tint}`} />}
+                      <p className=" text-sm lg:text-base font-medium">{prettyStatLabel(ef.stat)}</p>
                     </div>
 
                     <div className="flex items-center gap-2">
                       {ef.stack && (
                         <>
-                          <span className="text-sm opacity-80">Stack:</span>
+                          <span className="text-xs lg:text-sm opacity-80">Stack:</span>
                           <input
                             type="number"
                             min={0}
@@ -188,11 +188,11 @@ function EffectsList({ which, selSet, pieces }) {
                                 Math.max(0, Math.min(max, Number(e.target.value) || 0))
                               )
                             }
-                            className="w-14 h-6 text-center border rounded text-sm bg-[var(--color-bg)]"
+                            className="w-10 h-6 text-center border rounded text-sm bg-[var(--color-bg)]"
                           />
                         </>
                       )}
-                      <span className="font-semibold">{fmtVal(ef.stat, totalVal)}</span>
+                      <span className="text-sm lg:text-base font-semibold">{fmtVal(ef.stat, totalVal)}</span>
                     </div>
                   </div>
                 );
@@ -216,8 +216,8 @@ function Section({ title, which, pieces }) {
   );
 
   return (
-    <div className="rounded-xl border shadow-md border-gray-600/40 p-3 space-y-2">
-      <div className="font-medium">{title}</div>
+    <div className="rounded-xl border shadow-md border-gray-500/30 p-3 space-y-2">
+      <div className="text-sm lg:text-base font-medium">{title}</div>
 
       <select
         className="w-full border rounded px-2 py-1 text-sm bg-[var(--color-bg)] text-[var(--color-text)]"
@@ -235,7 +235,7 @@ function Section({ title, which, pieces }) {
       </select>
 
       {!selected ? (
-        <div className="opacity-70">
+        <div className="opacity-70 text-xs lg:text-sm">
           {which === "first"
             ? "No first echo set bonus is configured."
             : "No second echo set bonus is configured."}
@@ -250,7 +250,7 @@ function Section({ title, which, pieces }) {
 export default function EchoSet() {
   return (
     <div className="space-y-4">
-      <p className="text-lg font-semibold mt-2">Set Bonuses</p>
+      <p className="text-sm lg:text-base font-semibold mt-2">Set Bonuses</p>
       <Section title="Choose 2-Pc Set Effect" which="first" pieces={["2pc"]} />
       <Section title="Choose 3-Pc/5-Pc Set Effect" which="second" pieces={["5pc", "3pc"]} />
     </div>
