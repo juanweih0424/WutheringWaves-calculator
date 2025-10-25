@@ -260,21 +260,21 @@ export default function Basic() {
         <div key={r.label} className="flex items-center justify-between px-3 py-2 odd:bg-gray-500/20">
           <div>
             <p className="text-xs lg:text-base font-medium">{r.label}</p>
-            <div className="text-xs opacity-70">MV {(r.mv * 100).toFixed(2)}%</div>
+            {/*<div className="text-xs opacity-70">MV {(r.mv * 100).toFixed(2)}%</div>*/}
           </div>
 
           <div className="grid grid-cols-3 gap-1 lg:gap-4 text-right">
             <div>
               <div className="text-xs opacity-70">Non-Crit</div>
-              <div className="text-xs lg:text-sm font-semibold">{Math.round(r.nonCrit).toLocaleString()}</div>
+              <div className="text-xs lg:text-base font-semibold">{Math.round(r.nonCrit).toLocaleString()}</div>
             </div>
             <div>
               <div className="text-xs opacity-70">Avg</div>
-              <div className="text-xs lg:text-sm font-semibold">{Math.round(r.avg).toLocaleString()}</div>
+              <div className="text-xs lg:text-base font-semibold">{Math.round(r.avg).toLocaleString()}</div>
             </div>
             <div>
               <div className="text-xs opacity-70">Crit</div>
-              <div className="text-xs lg:text-sm font-semibold">{Math.round(r.crit).toLocaleString()}</div>
+              <div className="text-xs lg:text-base font-semibold">{Math.round(r.crit).toLocaleString()}</div>
             </div>
           </div>
         </div>

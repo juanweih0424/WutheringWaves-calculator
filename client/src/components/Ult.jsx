@@ -267,15 +267,15 @@ export default function Ult() {
           <div className="grid grid-cols-3 gap-1 lg:gap-4 text-right">
             <div>
               <div className="text-xs opacity-70">Non-Crit</div>
-              <div className="text-xs lg:text-sm font-semibold">{Math.round(r.nonCrit).toLocaleString()}</div>
+              <div className="text-xs lg:text-base font-semibold">{Math.round(r.nonCrit).toLocaleString()}</div>
             </div>
             <div>
               <div className="text-xs opacity-70">Avg</div>
-              <div className="text-xs lg:text-sm font-semibold">{Math.round(r.avg).toLocaleString()}</div>
+              <div className="text-xs lg:text-base font-semibold">{Math.round(r.avg).toLocaleString()}</div>
             </div>
             <div>
               <div className="text-xs opacity-70">Crit</div>
-              <div className="text-xs lg:text-sm font-semibold">{Math.round(r.crit).toLocaleString()}</div>
+              <div className="text-xs lg:text-base font-semibold">{Math.round(r.crit).toLocaleString()}</div>
             </div>
           </div>
         </div>

@@ -57,7 +57,7 @@ export function WeaponProvider({weapons=[], children}) {
         const wPassive = currWeap.passive 
         const currRankStats = wPassive.ranks[refineLvl-1];
         const g = (key) => (enabled[key] ? (currRankStats[key] ?? 0) : 0);
-        console.log(currRankStats.echoDmgTm);
+        
         // render method for weapon description
         const dict = {
             atkPct: currRankStats?.atkPct != null ? (currRankStats.atkPct * 100).toFixed(0) : "0",

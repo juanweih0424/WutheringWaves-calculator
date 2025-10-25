@@ -82,7 +82,7 @@ export default function Weapon() {
             {currWeap ? (
                 <img src={weapon} className="w-full h-full rounded-full" />
             ) : (
-            <span>Select a weapon</span>)}
+            <span className='text-sm'>Select a weapon</span>)}
             </button>
             {currWeap ? (
                 <div className='flex flex-col items-center w-[10rem] md:w-md p-4'>
