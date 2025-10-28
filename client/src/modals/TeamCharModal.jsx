@@ -154,7 +154,7 @@ export default function TeamCharModal({ open, onClose, onSelect, excludeIds = []
                         className={`flex items-center justify-center rounded-full border cursor-pointer px-3 py-1 text-xs lg:text-sm transition ${
                           active
                             ? "border-[var(--color-highlight)] text-[var(--color-highlight)] ring-2 ring-[var(--color-highlight)]"
-                            : "border-gray-500/30 text-white/80 hover:border-[var(--color-highlight)]"
+                            : "border-gray-500/30  hover:border-[var(--color-highlight)]"
                         }`}
                         aria-pressed={active}
                       >

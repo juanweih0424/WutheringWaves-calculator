@@ -1,16 +1,34 @@
 import { useMemo } from "react";
 import { useResonator } from "../context/ResonatorContext";
+import { useResonatorChain } from "../context/ResonatorChainContext";
 import { useStats } from "../hooks/useStats";
 import { talentMv, finalHit } from "../utils/dmg";
+import {
+  useDetailMap,
+  collectExtensions,
+  mergeAbilityWithExtensions,
+  applyRatioScaling,
+} from "../utils/extensions";
 
 export default function Outro() {
   const stats = useStats();
   const { current } = useResonator();
+  const { activeChain } = useResonatorChain();
 
   const scopedChain = stats?.scopedChain ?? [];
   const scopedInherent = stats?.scopedInherent ?? [];
   const title = current?.outro?.name ?? "Outro Skill";
-  const ability = current?.outro?.detail ?? null;
+  const baseDetail = current?.outro?.detail ?? null;
+
+  const detailMap = useDetailMap(current);
+  const outroExtensions = useMemo(
+    () => collectExtensions(activeChain, detailMap, "outro"),
+    [activeChain, detailMap]
+  );
+  const { ability, ratioMeta } = useMemo(
+    () => mergeAbilityWithExtensions(baseDetail, outroExtensions, "outro"),
+    [baseDetail, outroExtensions]
+  );
 
   const defIgnoreScope = stats?.defIgnoreScope ?? null; // "all" | "baDmg" | "skill" | "ult"
   const defIgnoreGlobal = Number(stats?.defIgnore ?? 0);
@@ -29,6 +47,8 @@ export default function Outro() {
     shred = Number(stats?.havocShred ?? 0);
   } else if (current?.element === "Spectro") {
     shred = Number(stats?.spectroShred ?? 0);
+  } else if (current?.element === "Fusion") {
+    shred = Number(stats?.fusionShred ?? 0);
   }
 
   // ---------- Build base rows ----------
@@ -40,7 +60,7 @@ export default function Outro() {
       frazzle: row.frazzle ?? null,
       erosion: row.erosion ?? null,
       mv: talentMv(1, 10, row.base, row.max, 1),
-      tags: row.tags ?? [],
+      tags: Array.isArray(row.tags) ? row.tags : row.tags ? [row.tags] : [],
     }));
   }, [ability, current?.id]);
 
@@ -80,6 +100,7 @@ export default function Outro() {
       let hpPct = Number(stats?.hpPct ?? 0);
       let defPct = Number(stats?.defPct ?? 0);
       let specificCd = 0;
+      let skillInc = 0;
 
       for (const eff of pool) {
         if (!matches(eff.appliesTo, row)) continue;
@@ -103,6 +124,9 @@ export default function Outro() {
             break;
           case "receivedAmp":
             receivedAmp += amt;
+            break;
+          case "skillInc":
+            skillInc += amt;
             break;
           case "baDmg":
           case "haDmg":
@@ -156,9 +180,15 @@ export default function Outro() {
         addTypeBonus,
         addElemBonus,
         receivedAmp,
-      };
-    });
-  }, [rows, stats, scopedInherent, scopedChain, defIgnoreGlobal, defIgnoreScope, current?.element]);
+      skillInc,
+    };
+  });
+}, [rows, stats, scopedInherent, scopedChain, defIgnoreGlobal, defIgnoreScope, current?.element]);
+
+  const rowsWithRatios = useMemo(
+    () => applyRatioScaling(rowsWithMods, ratioMeta, "outro"),
+    [rowsWithMods, ratioMeta]
+  );
 
   const typeBonusKey = (t) =>
     t === "baDmg" ? "baDmg" :
@@ -167,13 +197,13 @@ export default function Outro() {
     t === "ult"   ? "ult"   : null;
 
   const computedRows = useMemo(() => {
-    if (!rowsWithMods.length || !stats || !current) return [];
+    if (!rowsWithRatios.length || !stats || !current) return [];
 
     const elementKey = (current.element ?? "").toLowerCase();
     const baseElemBonus = Number(stats?.[elementKey] ?? 0);
     const baseReceivedAmp = Number(stats?.receivedAmp ?? 0);
 
-    return rowsWithMods.map((row) => {
+    return rowsWithRatios.map((row) => {
       const tbKey = typeBonusKey(row.type);
       const baseTypeBonus = Number(tbKey ? stats?.[tbKey] ?? 0 : 0);
 
@@ -182,7 +212,7 @@ export default function Outro() {
         mv: Number(row.mv ?? 0),
         scalingBonus: 0,
         elementBonus: baseElemBonus + (row.addElemBonus ?? 0),
-        skillBonus: baseTypeBonus + (row.addTypeBonus ?? 0),
+        skillBonus: baseTypeBonus + (row.addTypeBonus ?? 0) + (row.skillInc ?? 0),
         allAmp: Number(stats.allAmp ?? 0) + (row.addAllAmp ?? 0),
         elementAmp: 0,
         skillTypeAmp: 0,
@@ -199,7 +229,7 @@ export default function Outro() {
 
       return { ...row, nonCrit, avg, crit };
     });
-  }, [rowsWithMods, stats, current]);
+  }, [rowsWithRatios, stats, current]);
 
   if (!stats || !current) return null;
 

@@ -124,13 +124,13 @@
             "base": 2.5401,
             "max": 5.0501,
             "type": "skill",
-            "tags": ["chain1", "chain62"]
+            "tags": ["chain1"]
             },
             "Murmurs in a Haunting Dream DMG": {
             "base": 2.3340,
             "max": 4.6407,
             "type": "skill",
-            "tags": ["chain1", "chain62"]
+            "tags": ["chain1"]
             }
         }
     },
@@ -195,7 +195,6 @@
                     "stack":true,
                     "maxStack": 24,
                     "value":0.8255,
-                    "min":0.4153,
                     "stat":"skillBounsAdd",
                     "tags":"inherent1",
                     "receive": "chain2"
@@ -265,10 +264,16 @@
                     "tags":"chain61"
                 },
                 {
-                    "stack":false,
-                    "value":2.1642,
-                    "stat":"skillBounsAdd",
-                    "tags":"chain62"
+                    "extend": {
+                        "target": "forte",
+                        "label": "S6: Apparition of Beyond - Hecate DMG",
+                        "type": "echoDmg",
+                        "base": 2.1642,
+                        "max": 2.1642,
+                        "tags": [
+                            "chain62"
+                        ]
+                    }
                 }
             ]
         },

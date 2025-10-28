@@ -57,6 +57,7 @@ export function useStats() {
 
         let havocShred = 0;
         let aeroShred = 0;
+        let fusionShred = 0;
         let spectroShred = 0;
         let aeroAmp = 0;
         let frazzleAmp = 0;
@@ -222,6 +223,7 @@ export function useStats() {
                     case "erosionAmp": erosionAmp += e.amount;break;
                     case "receivedAmp": receivedAmp += e.amount;break;
                     case "dmgInc": dmgInc += e.amount;break;
+                    case "fusionShred": fusionShred += e.amount;break;
                     default: break;
                 } 
             }
@@ -258,6 +260,8 @@ export function useStats() {
                     case "echoDmgAmp": echoDmgAmp += e.amount;break;
                     case "allAtr": aero += e.amount; spectro +=e.amount;
                     fusion += e.amount; electro +=e.amount; havoc += e.amount; glacio += e.amount; break;
+                    case "fusionShred": fusionShred += e.amount;break;
+                    case "dmgInc": dmgInc += e.amount;break;
                     default: break;
                 } 
             } 
@@ -395,6 +399,8 @@ export function useStats() {
                 case "spectroShred": spectroShred += value; break;
                 case "echoDmg": echoDmg += value;break;
                 case "aero": aero += value; break;
+                case "fusionShred": fusionShred += value; break;
+                case "fusion": fusion += value; break;
                 default: break;
             }
         }
@@ -404,6 +410,27 @@ export function useStats() {
         const enemylevel = enemylvl;
         const enemyRes = enemyres;
 
+        let brantFlat = 0;
+        if (current.id==14){
+            for (const [k,v] of Object.entries(trackEnable)){
+                if (v.source == "Theatrical Moment" && er > 150){   
+                     
+                    brantFlat = 12 * (er-150)
+                    if (brantFlat > 1560){
+                        brantFlat = 1560;
+                    }
+                }
+                if (v.source == "My Moment" && er > 150){
+                    brantFlat = 20 * (er-150)
+                    if (brantFlat > 2600){
+                        brantFlat = 2600;
+                    }
+                }
+            }
+            flatAtk += brantFlat
+        }
+    
+
         // calc final atk/hp/def
         const atk = baseAtk * (1+atkPct) + flatAtk;
         const hp = baseHp * (1+hpPct) + flatHp;
@@ -412,11 +439,16 @@ export function useStats() {
         if (current.id == 25 && cr > 100){
             cd += (cr-100)*2
         }
+
+        if (fusionShred > 0.15){
+            fusionShred = 0.15
+        }
+            
         
         return {
             atkPct, atk, hp, hpPct, def, defPct, cr, cd, er, baDmg, haDmg, ult:ultDmg, skill:skillDmg, echoDmg, allAmp, defIgnore, baseAtk, flatAtk, flatDef, flatHp, baseHp, baseDef,
             fusion, aero, electro,spectroShred, spectro,havoc,glacio, heal, defIgnoreScope, enemylevel, enemyRes, aeroShred,havocShred, scopedInherent, scopedChain, aeroAmp, frazzleAmp,
-            haAmp, baAmp, skillAmp,ultAmp, havocAmp,electroAmp, echoDmgAmp, fusionAmp, glacioAmp, spectroAmp, erosionAmp,  receivedAmp , dmgInc
+            haAmp, baAmp, skillAmp,ultAmp, havocAmp,electroAmp, echoDmgAmp, fusionAmp, glacioAmp, spectroAmp, erosionAmp,  receivedAmp , dmgInc, fusionShred
         }
 
     }, [charBaseStats, weaponStats,passiveStats,minor,enemylvl,enemyres, trackEnable, activeChain, echoTotals, setTotals, echoTeamTotals,activeStats, activeStatsResonator, scopedChain,

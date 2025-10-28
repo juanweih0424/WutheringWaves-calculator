@@ -1,0 +1,331 @@
+{
+    "id": 14,
+    "name": "Brant",
+    "rarity": 5,
+    "element": "Fusion",
+    "weapon": "Broadblade",
+    "stats": {
+        "hp": {
+            "base": 934,
+            "max": 11675
+        },
+        "atk": {
+            "base": 30,
+            "max": 375
+        },
+        "def": {
+            "base": 107,
+            "max": 1308
+        }
+    },
+    "minor": {
+        "cr": 0.08,
+        "atkPct": 0.12
+    },
+    "basic": {
+        "name": "Normal Attack: Captain's Rhapsody",
+        "detail": {
+            "Stage 1 DMG": {
+                "base": 0.2542,
+                "max": 0.5053,
+                "type": "baDmg"
+            },
+            "Stage 2 DMG": {
+                "base": 0.51,
+                "max": 1.014,
+                "type": "baDmg"
+            },
+            "Stage 3 DMG": {
+                "base": 0.6658,
+                "max": 1.3234,
+                "type": "baDmg"
+            },
+            "Stage 4 DMG": {
+                "base": 0.705,
+                "max": 1.4012,
+                "type": "baDmg"
+            },
+            "Heavy Attack DMG": {
+                "base": 0.9937,
+                "max": 1.9755,
+                "type": "haDmg"
+            },
+            "Heavy Attack - Rhapsodic Riff DMG": {
+                "base": 0.85,
+                "max": 1.6899,
+                "type": "haDmg"
+            },
+            "Mid-air Attack Stage 1 DMG": {
+                "base": 0.618,
+                "max": 1.2286,
+                "type": "baDmg",
+                "tags": [
+                    "chain6"
+                ]
+            },
+            "Mid-air Attack Stage 1: Charged Attack DMG": {
+                "base": 1.672,
+                "max": 3.3248,
+                "type": "baDmg",
+                "tags": [
+                    "chain6"
+                ]
+            },
+            "Mid-air Attack Stage 1: Flip DMG": {
+                "base": 0.4675,
+                "max": 0.9295,
+                "type": "baDmg",
+                "tags": [
+                    "chain6"
+                ]
+            },
+            "Mid-air Attack Stage 1 Slash DMG": {
+                "base": 0.4251,
+                "max": 0.8451,
+                "type": "baDmg",
+                "tags": [
+                    "chain6"
+                ]
+            },
+            "Mid-air Attack Stage 2 DMG": {
+                "base": 0.8544,
+                "max": 1.6984,
+                "type": "baDmg",
+                "tags": [
+                    "chain6"
+                ]
+            },
+            "Mid-air Attack Stage 2: Charged Attack DMG": {
+                "base": 0.9924,
+                "max": 1.9722,
+                "type": "baDmg",
+                "tags": [
+                    "chain6"
+                ]
+            },
+            "Mid-air Attack Stage 2: Flip DMG": {
+                "base": 0.4675,
+                "max": 0.9295,
+                "type": "baDmg",
+                "tags": [
+                    "chain6"
+                ]
+            },
+            "Mid-air Attack Stage 3 DMG": {
+                "base": 0.8502,
+                "max": 1.6902,
+                "type": "baDmg",
+                "tags": [
+                    "chain6"
+                ]
+            },
+            "Mid-air Attack Stage 3: Flip DMG": {
+                "base": 0.4675,
+                "max": 0.9295,
+                "type": "baDmg",
+                "tags": [
+                    "chain6"
+                ]
+            },
+            "Mid-air Attack Stage 4 DMG": {
+                "base": 1.2769,
+                "max": 2.5385,
+                "type": "baDmg",
+                "tags": [
+                    "chain6"
+                ]
+            },
+            "Dodge Counter DMG": {
+                "base": 1.1477,
+                "max": 2.2817,
+                "type": "baDmg"
+            }
+        }
+    },
+    "skill": {
+        "name": "Resonance Skill: Anchors Aweigh!",
+        "detail": {
+            "Anchors Aweigh! DMG": {
+                "base": 1.6795,
+                "max": 3.3392,
+                "type": "skill"
+            },
+            "Plunging Attack DMG": {
+                "base": 0.527,
+                "max": 1.0478,
+                "type": "baDmg"
+            }
+        }
+    },
+    "ult": {
+        "name": "Resonance Liberation: To the Horizon",
+        "detail": {
+            "To the Horizon DMG": {
+                "base": 3.4178,
+                "max": 6.8042,
+                "type": "skill"
+            }
+        }
+    },
+    "forte": {
+        "name": "Forte Circuit: Ocean Odyssey",
+        "detail": {
+            "Returned from Ashes DMG": {
+                "base": 7.0896,
+                "max": 14.826,
+                "type": "baDmg",
+                "tags": [
+                    "chain3"
+                ]
+            }
+        }
+    },
+    "intro": {
+        "name": "Intro Skill: Applaud for Me!",
+        "detail": {
+            "Applaud for Me! DMG": {
+                "base": 1.275,
+                "max": 2.5349,
+                "type": "intro"
+            }
+        }
+    },
+    "outro": {
+        "name": "Outro Skill: The Course is Set!"
+    },
+    "buff": {
+        "Inherent Skill: Trial by Fire and Tide": {
+            "desc": "Brant's resistance to interruption is increased during {Mid-air Attacks} and gains 15% {Fusion DMG Bonus}.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.15,
+                    "stat": "fusion"
+                }
+            ]
+        },
+        "Theatrical Moment": {
+            "desc": "Brant gains additional ATK based on his Energy Regen: For every 1% of his Energy Regen over 150%, Brant gains additional 12 points of ATK, up to 1560.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0,
+                    "stat": "flatAtk"
+                }
+            ]
+        },
+        "My Moment": {
+            "desc": "Brant gains additional ATK based on his Energy Regen: For every 1% of his Energy Regen over 150%, Brant gains additional 20 points of ATK, up to 2600.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0,
+                    "stat": "flatAtk"
+                }
+            ]
+        }
+    },
+    "chain": {
+        "Sequence Node 1: By Currents and Winds": {
+            "desc": "{Returned from Ashes} temporarily causes nearby targets to stagnate while casting. The stagnation effect is removed when Brant is switched off the field. After casting Intro Skill {Applaud for Me!} or each flip following Mid-air Attack, Brant's DMG dealt is increased by 20% for 5s, stacking up to 3 times.",
+            "effects": [
+                {
+                    "stack": true,
+                    "maxStack": 3,
+                    "value": 0.2,
+                    "stat": "dmgInc"
+                }
+            ]
+        },
+        "Sequence Node 2: For Smiles and Cheers": {
+            "desc": "Casting {Mid-air Attack} and {Returned from Ashes} increases Brant's Crit. Rate by 30%. Brant's Outro Skill {The Course is Set!} gains a new enhancement: When Resonance Skill cast by the incoming Resonator (or nearby Resonators who activate Brant's Outro Skill) hits a target within 20s after Brant's Outro Skill, Brant blasts the hit target, dealing Fusion DMG equal to 440% of Brant's ATK (considered Basic Attack DMG). This explosion can be triggered 1 time per second, up to 2 explosions in total. This effect remains active when Brant is switched off the field.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.3,
+                    "stat": "cr"
+                },
+                {
+                    "extend": {
+                        "base": 4.4,
+                        "max": 4.4,
+                        "label": "S2: For Smiles and Cheers Blast DMG",
+                        "target": "outro",
+                        "type": "baDmg",
+                        "tags": [
+                            "chain2"
+                        ]
+                    }
+                }
+            ]
+        },
+        "Sequence Node 3: Through Storms I Sail": {
+            "desc": "The multiplier of the DMG dealt by {Returned from Ashes} is increased by 42%.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.42,
+                    "stat": "skillBouns",
+                    "tags": "chain3"
+                }
+            ]
+        },
+        "Sequence Node 4: To Freedom I Sing": {
+            "desc": "The Shield obtained from {Returned from Ashes} is increased by 20%. Casting {Returned from Ashes} restores HP for all nearby Resonators in the team (6.60 HP for every 1% Energy Regen)."
+        },
+        "Sequence Node 5: All the World's an Actor's Stage": {
+            "desc": "When dealing Basic Attack DMG to the target, Brant's Basic Attack DMG Bonus is increased by 15% for 10s.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.15,
+                    "stat": "baDmg"
+                }
+            ]
+        },
+        "Sequence Node 6: All the World's a Captain's Carnevale": {
+            "desc": "{Mid-air Attack}'s multiplier is increased by 30%. Casting {Returned from Ashes} causes a secondary blast, dealing Fusion DMG equal to 30% of the DMG dealt by {Returned from Ashes}, considered Basic Attack DMG.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.3,
+                    "stat": "skillBouns",
+                    "tags": "chain6"
+                },
+                {
+                    "extend": {
+                        "target": "forte",
+                        "label": "S6: All the World's a Captain's Carnevale Blast DMG",
+                        "type": "baDmg",
+                        "tags": [
+                            "chain61"
+                        ],
+                        "ratioOf": {
+                            "section": "forte",
+                            "row": "Returned from Ashes DMG",
+                            "ratio": 0.3
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "teamBuff": [
+        {
+            "name": "Outro Skill: Attentive Heart",
+            "desc": "Amplify the incoming Resonator's Fusion DMG by 20% and Resonance Skill DMG by 25% for 14s or until the Resonator is switched out.",
+            "effects": [
+                {
+                    "stack": false,
+                    "stat": "fusionAmp",
+                    "value": 0.2
+                },
+                {
+                    "stack": false,
+                    "stat": "skillAmp",
+                    "value": 0.25
+                }
+            ]
+        }
+    ]
+}

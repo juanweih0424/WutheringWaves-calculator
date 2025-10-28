@@ -72,7 +72,7 @@ export default function ResonatorBuffCard({ id }) {
                     max={e.maxStack || 0}
                     value={stacksById[id]?.[e.statKey] ?? 0}
                     onChange={(evt) => setStacks(id, e.statKey, evt.target.value)}
-                    className="w-16 rounded-md border border-white/10 bg-transparent px-2 py-1 text-sm"
+                    className="w-16 rounded-md border border-gray-500/30 bg-transparent px-2 py-1 text-sm"
                   />
                   {e.maxStack ? (
                     <span className="text-xs opacity-60">(Max {e.maxStack})</span>

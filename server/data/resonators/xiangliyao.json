@@ -1,0 +1,281 @@
+{
+    "id": 4,
+    "name": "Xiangli Yao",
+    "rarity": 5,
+    "element": "Electro",
+    "weapon": "Gauntlet",
+    "stats": {
+        "hp": {
+            "base": 850,
+            "max": 10625
+        },
+        "atk": {
+            "base": 34,
+            "max": 425
+        },
+        "def": {
+            "base": 100,
+            "max": 1222
+        }
+    },
+    "minor": {
+        "atkPct": 0.12,
+        "cd": 0.16
+    },
+    "basic": {
+        "name": "Normal Attack: Probe",
+        "detail": {
+            "Stage 1 DMG": {
+                "base": 0.333,
+                "max": 0.6622,
+                "type": "baDmg"
+            },
+            "Stage 2 DMG": {
+                "base": 0.501,
+                "max": 0.9961,
+                "type": "baDmg"
+            },
+            "Stage 3 DMG": {
+                "base": 0.6,
+                "max": 1.1928,
+                "type": "baDmg"
+            },
+            "Stage 4 DMG": {
+                "base": 0.667,
+                "max": 1.3263,
+                "type": "baDmg"
+            },
+            "Stage 5 DMG": {
+                "base": 1,
+                "max": 1.9881,
+                "type": "baDmg"
+            },
+            "Heavy Attack DMG": {
+                "base": 0.833,
+                "max": 1.6562,
+                "type": "haDmg"
+            },
+            "Mid-air Attack DMG": {
+                "base": 0.62,
+                "max": 1.2327,
+                "type": "baDmg"
+            },
+            "Dodge Counter DMG": {
+                "base": 1.2,
+                "max": 2.3858,
+                "type": "baDmg"
+            }
+        }
+    },
+    "skill": {
+        "name": "Resonance Skill: Deduction",
+        "detail": {
+            "Deduction DMG": {
+                "base": 1,
+                "max": 1.9881,
+                "type": "skill",
+                "tags": [
+                    "chain3"
+                ]
+            }
+        }
+    },
+    "forte": {
+        "name": "Forte Circuit: Forever Seeking",
+        "detail": {
+            "Decipher DMG": {
+                "base": 2.001,
+                "max": 3.9782,
+                "type": "ult",
+                "tags": [
+                    "chain3"
+                ]
+            },
+            "Law of Reigns DMG": {
+                "base": 3.06,
+                "max": 6.2293,
+                "type": "ult",
+                "tags": [
+                    "chain3",
+                    "chain6"
+                ]
+            },
+            "Revamp DMG": {
+                "base": 1.54,
+                "max": 3.1482,
+                "type": "ult"
+            }
+        }
+    },
+    "ult": {
+        "name": "Resonance Liberation: Cogitation Model",
+        "detail": {
+            "Cogitation Model DMG": {
+                "base": 7.3742,
+                "max": 14.6606,
+                "type": "ult",
+                "tags": [
+                    "chain51"
+                ]
+            },
+            "Pivot - Impale Stage 1 DMG": {
+                "base": 0.6019,
+                "max": 1.1967,
+                "type": "baDmg"
+            },
+            "Pivot - Impale Stage 2 DMG": {
+                "base": 1.226,
+                "max": 2.4368,
+                "type": "baDmg"
+            },
+            "Pivot - Impale Stage 3 DMG": {
+                "base": 1.3406,
+                "max": 2.665,
+                "type": "baDmg"
+            },
+            "Divergence DMG": {
+                "base": 2.494,
+                "max": 4.9587,
+                "type": "baDmg",
+                "tags": [
+                    "chain3"
+                ]
+            },
+            "Unfathomed DMG": {
+                "base": 1.9528,
+                "max": 3.8824,
+                "type": "ult"
+            }
+        }
+    },
+    "intro": {
+        "name": "Intro Skill: Principle",
+        "detail": {
+            "Principle DMG": {
+                "base": 1,
+                "max": 1.9882,
+                "type": "intro"
+            }
+        }
+    },
+    "outro": {
+        "name": "Outro Skill: Chain Rule",
+        "detail": {
+            "Chain Rule DMG": {
+                "base": 2.3763,
+                "max": 2.3763,
+                "type": "outro",
+                "tags": [
+                    "chain5"
+                ]
+            }
+        }
+    },
+    "buff": {
+        "Inherent Skill: Knowing": {
+            "desc": "Gain 5% Electro DMG Bonus after casting Resonance Skill for 8s, stackable up to 4 times.",
+            "effects": [
+                {
+                    "stack": true,
+                    "maxStack": 4,
+                    "value": 0.05,
+                    "stat": "electro"
+                }
+            ]
+        }
+    },
+    "chain": {
+        "Sequence Node 1: Prodigy of Prot\u00e9g\u00e9s": {
+            "desc": "Resonance Skill {Law of Reigns} additionally launches 6 {Convolution Matrices} at enemies, each dealing Resonance Liberation DMG equal to 8% of the skill's DMG Multiplier.",
+            "effects": [
+                {
+                    "extend": {
+                        "target": "forte",
+                        "label": "S1: Prodigy of Prot\u00e9g\u00e9s",
+                        "type": "ult",
+                        "tags": [
+                            "chain1"
+                        ],
+                        "ratioOf": {
+                            "section": "forte",
+                            "row": "Law of Reigns DMG",
+                            "ratio": 0.48
+                        }
+                    }
+                }
+            ]
+        },
+        "Sequence Node 2: Traces of Predecessors": {
+            "desc": "Casting Resonance Skill or Resonance Liberation {Cogitation Model} increases Crit. DMG by 30% for 8s.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.3,
+                    "stat": "cd"
+                }
+            ]
+        },
+        "Sequence Node 3: Ruins of Ancient": {
+            "desc": "Casting Resonance Liberation {Cogitation Model} increases the DMG of {Decipher}, {Deduction}, {Divergence}, and {Law of Reigns} by 63% for 24s. This effect can stack up to 5 times.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.63,
+                    "stat": "skillBouns",
+                    "tags": "chain3"
+                }
+            ]
+        },
+        "Sequence Node 4: Vessel of Rebirth": {
+            "desc": "Casting Resonance Liberation {Cogitation Model} grants a 25% DMG Bonus to all Resonance Liberation DMG for 30s.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.25,
+                    "stat": "ult"
+                }
+            ]
+        },
+        "Sequence Node 5: End of Stars": {
+            "desc": "The DMG Multiplier of Outro Skill {Chain Rule} is increased by 222%. The DMG Multiplier of Resonance Liberation {Cogitation Model} is increased by 100%.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 2.22,
+                    "stat": "skillBouns",
+                    "tags": "chain5"
+                },
+                {
+                    "stack": false,
+                    "value": 1,
+                    "stat": "skillBouns",
+                    "tags": "chain51"
+                }
+            ]
+        },
+        "Sequence Node 6: Solace of the Ordinary": {
+            "desc": "Hypercubes obtained from Resonance Liberation {Cogitation Model} are enhanced, increasing the DMG Multiplier of Resonance Skill {Law of Reigns} by 76%.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.76,
+                    "stat": "skillBouns",
+                    "tags": "chain6"
+                }
+            ]
+        }
+    },
+    "teamBuff": [
+        {
+            "name": "Sequence Node 4: Vessel of Rebirth",
+            "desc": "After casting Resonance Liberation {Cogitation Model}, all team members' Resonance Liberation gains 25% DMG Bonus for 30s.",
+            "effects": [
+                {
+                    "stack": false,
+                    "stat": "ult",
+                    "value": 0.25
+                }
+            ]
+        }
+    ]
+}

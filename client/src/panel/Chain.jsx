@@ -61,7 +61,7 @@ export default function ChainPanel() {
                     max={maxStacks}
                     value={stacks}
                     onChange={(e) => setChainStack(name, e.target.value)}
-                    className="w-10 h-7 rounded-md border bg-transparent px-2 py-1"
+                    className="w-12 h-7 rounded-md border bg-transparent px-2 py-1"
                   />
                   <span className="text-xs opacity-70">/ {maxStacks}</span>
                 </div>

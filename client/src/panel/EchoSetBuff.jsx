@@ -15,14 +15,14 @@ export default function EchoSetBuff() {
 
 
   return (
-    <div className="border border-gray-500/50 rounded-2xl shadow-md">
+    <div className="border border-gray-500/30 rounded-2xl shadow-md">
       {/* Section header acts as a toggle */}
       <button
         type="button"
-        className=" w-full flex items-center justify-between rounded-xl px-2 py-1 lg:py-2 hover:bg-gray-500/20 transition cursor-pointer"
+        className=" w-full flex items-center justify-between rounded-xl px-2 py-2 lg:py-3 hover:bg-gray-500/20 transition cursor-pointer"
         onClick={() => setOpen((v) => !v)}
       >
-        <p className="text-sm lg:text-base font-semibold">Team EchoSet Buff</p>
+        <p className="text-xs lg:text-base font-semibold">Team EchoSet Buff</p>
         <span
           className={`inline-block text-2xl leading-none transition-transform duration-200 ease-in-out ${open ? "rotate-180" : ""}`}
         >▾</span>

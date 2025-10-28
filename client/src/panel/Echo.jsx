@@ -422,7 +422,6 @@ export default function Echo() {
         })}
       </div>
         <EchoSet/>
-        <EchoSetBuff/>
       <EchoModal open={open} onClose={() => setOpen(false)} onSelect={onSelect} />
     </div>
   );

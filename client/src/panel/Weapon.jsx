@@ -76,14 +76,19 @@ export default function Weapon() {
 
   return (
     <div className='pt-8 flex flex-col'>
-        <div className='flex justify-center items-center'>
+        <div className='flex justify-center items-center gap-2'>
+          <div className='flex flex-col items-center justify-center gap-3'>
             <button onClick={() => setIsOpen(true)} className='w-24 h-24 md:w-30 md:h-30
-        lg:w-35 lg:h-35 border-1 rounded-full border-amber-400 cursor-pointer transition-transform hover:scale-110 duration-300 ease-in-out'>
+        lg:w-35 lg:h-35 border-1 rounded-full border-amber-400 cursor-pointer transition-transform hover:scale-105 duration-300 ease-in-out'>
             {currWeap ? (
                 <img src={weapon} className="w-full h-full rounded-full" />
+                
             ) : (
             <span className='text-sm'>Select a weapon</span>)}
             </button>
+            <button onClick={()=>setCurrWeap(null)} className='bg-red-500/70 rounded-xl text-sm px-3 py-1 cursor-pointer hover:bg-red-600/80'>Unequip</button>
+          </div>
+            
             {currWeap ? (
                 <div className='flex flex-col items-center w-[10rem] md:w-md p-4'>
                     <p className='text-sm lg:text-xl font-semibold text-[var(--color-highlight)]'>{currWeap.name}</p>

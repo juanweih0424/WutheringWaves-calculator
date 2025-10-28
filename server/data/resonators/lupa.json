@@ -1,0 +1,418 @@
+{
+    "id": 10,
+    "name": "Lupa",
+    "rarity": 5,
+    "element": "Fusion",
+    "weapon": "Broadblade",
+    "stats": {
+        "hp": { "base": 953, "max": 11913 },
+        "atk": { "base": 31, "max": 388 },
+        "def": { "base": 97, "max": 1186 }
+    },
+    "forte": {
+        "name": "Forte Circuit: Ignis Lupa",
+        "detail": {
+            "Dance With the Wolf DMG": {
+                "base": 2.818,
+                "max": 5.6021,
+                "type": "ult"
+            },
+            "Dance With the Wolf - Climax DMG": {
+                "base": 3.8039,
+                "max": 7.5626,
+                "type": "ult",
+                "tags": ["chain4","chain6"]
+            },
+            "Set the Arena Ablaze DMG": {
+                "base": 1.0652,
+                "max": 2.1175,
+                "type": "skill"
+            }
+        }
+    },
+    "minor": {
+        "atkPct": 0.12,
+        "cr": 0.08
+    },
+    "basic": {
+        "name": "Normal Attack: Flaming Star",
+        "detail": {
+            "Stage 1 DMG": {
+                "base": 0.4532,
+                "max": 0.9008,
+                "type": "baDmg"
+            },
+            "Stage 2 DMG": {
+                "base": 0.4531,
+                "max": 0.9008,
+                "type": "baDmg"
+            },
+            "Stage 3 DMG": {
+                "base": 0.7932,
+                "max": 1.5768,
+                "type": "baDmg"
+            },
+            "Stage 4 DMG": {
+                "base": 1.2386,
+                "max": 2.4624,
+                "type": "baDmg"
+            },
+            "Heavy Attack DMG": {
+                "base": 0.567,
+                "max": 1.1272,
+                "type": "haDmg"
+            },
+            "Heavy Attack - Wolf's Gnawing DMG": {
+                "base": 0.5644,
+                "max": 1.1222,
+                "type": "haDmg"
+            },
+            "Heavy Attack - Wolf's Claw DMG": {
+                "base": 1.2099,
+                "max": 2.405,
+                "type": "haDmg"
+            },
+            "Mid-air Attack Stage 1 DMG": {
+                "base": 0.3859,
+                "max": 0.7673,
+                "type": "baDmg"
+            },
+            "Mid-air Attack Stage 2 DMG": {
+                "base": 0.7773,
+                "max": 1.5447,
+                "type": "baDmg"
+            },
+            "Mid-air Attack Stage 3 DMG": {
+                "base": 0.2866,
+                "max": 0.5696,
+                "type": "baDmg"
+            },
+            "Mid-air Attack - Firestrike DMG": {
+                "base": 0.2866,
+                "max": 0.5696,
+                "type": "haDmg"
+            },
+            "Plunging Attack DMG": {
+                "base": 0.5271,
+                "max": 1.0479,
+                "type": "baDmg"
+            },
+            "Basic Attack - Starfall DMG": {
+                "base": 0.8487,
+                "max": 1.6866,
+                "type": "baDmg"
+            },
+            "Dodge Counter DMG": {
+                "base": 1.3757,
+                "max": 2.7344,
+                "type": "baDmg"
+            }
+        }
+    },
+    "skill": {
+        "name": "Resonance Skill: Shewolf's Hunt",
+        "detail": {
+            "Shewolf's Hunt DMG": {
+                "base": 0.7081,
+                "max": 1.4077,
+                "type": "skill"
+            },
+            "Feral Fang DMG": {
+                "base": 1.5774,
+                "max": 3.1361,
+                "type": "skill",
+                "tags": ["inherent1"]
+            }
+        }
+    },
+    "intro": {
+        "name": "Intro Skill: Try Focusing, Eh?",
+        "detail": {
+            "Try Focusing, Eh? DMG": {
+                "base": 0.9981,
+                "max": 1.984,
+                "type": "intro"
+            },
+            "Nowhere to Run! DMG": {
+                "base": 4.9896,
+                "max": 9.9197,
+                "type": "ult",
+                "tags":["chain3","chain6"]
+            }
+        }
+    },
+    "ult": {
+        "name": "Resonance Liberation: Fire-Kissed Glory",
+        "detail": {
+            "Fire-Kissed Glory DMG": {
+                "base": 4.1268,
+                "max": 8.2044,
+                "type": "ult",
+                "tags":["chain6"]
+            },
+            "Foebreaker DMG": {
+                "base": 1.5314,
+                "max": 3.0446,
+                "type": "skill"
+            }
+        }
+    },
+    "outro":{
+        "name": "Outro Skill: Stand by Me, Warrior"
+    },
+    "buff": {
+        "Feral Fang Marked": {
+            "desc": "The DMG Multiplier for {Feral Fang} to marked targets is increased by 50%.",
+            "effects": [
+                {
+                    "value": 0.5,
+                    "stat": "skillBouns",
+                    "stack": false,
+                    "tags": "inherent1"
+                }
+            ]
+        },
+        "Pack Hunt": {
+            "desc": "Resonators with {Pack Hunt} gain a 6% ATK increase, and 10% Fusion DMG Bonus when they attack Overlord Class or Calamity Class targets (both are non-stackable).",
+            "effects": [
+                {
+                    "value": 0.06,
+                    "stat": "atkPct",
+                    "stack": false
+                },
+                {
+                    "value": 0.1,
+                    "stat": "fusion",
+                    "stack": false
+                }
+            ]
+        },
+        "Pack Hunt Fusion Team": {
+            "desc": "Resonators with {Pack Hunt}: If there are 3 Fusion Resonators in the team, the Fusion DMG Bonus against Overlord Class or Calamity Class targets additionally increases by 10%.",
+            "effects": [
+                {
+                    "value": 0.1,
+                    "stat": "fusion",
+                    "stack": false
+                }
+            ]
+        },
+        "Pack Hunt Three Fusion Team": {
+            "desc": "When the active Resonator casts Intro Skill, {Pack Hunt} is enhanced, granting an additional 6% ATK increase to all Resonators in the team, up to a maximum of 18%.",
+            "effects": [
+                {
+                    "value": 0.06,
+                    "stat": "atkPct",
+                    "stack": true,
+                    "maxStack":2
+                }
+            ]
+        },
+        "Wildfire Banner": {
+            "desc": "Lupa's ATK is increased by 12% for 8s when casting Resonance Skill {Feral Fang}, Heavy Attack {Wolf's Gnawing}, Heavy Attack {Wolf's Claw}, Mid-air Attack {Firestrike}, Resonance Liberation {Fire-Kissed Glory}, or {Dance With the Wolf}/{Dance With the Wolf - Climax}.",
+            "effects": [
+                {
+                    "value": 0.12,
+                    "stat": "atkPct",
+                    "stack": false
+                }
+            ]
+        },
+        "Inherent Skill: Applause of Victory": {
+            "desc": "Defeating a marked target resets the cooldown of Resonance Skill {Shewolf's Hunt}. Casting Resonance Liberation {Fire-Kissed Glory} grants {Glory}. Within 35s, attacks of all Resonators in the team ignore 3% of the target's Fusion RES. For each Fusion Resonator in the team other than Lupa, this effect increases by 3%, up to the maximum of 9%.",
+            "effects": [
+                {
+                    "value": 0.03,
+                    "stat": "fusionShred",
+                    "stack": true,
+                    "maxStack": 3
+                }
+            ]
+        },
+        "Inherent Skill: Applause of Victory: Fusion Team": {
+            "desc": "When there are 3 Fusion Resonators in the team, Resonators' attacks further ignore 6% Fusion RES.",
+            "effects": [
+                {
+                    "value": 0.06,
+                    "stat": "fusionShred",
+                    "stack": false
+                }
+            ]
+        }
+    },
+    "chain": {
+        "Sequence Node 1: Behold the Nameless One": {
+            "desc": "Performing Resonance Skill {Fire-Kissed Glory} recovers 10 Concerto Energy for Lupa and increases Lupa's Crit. Rate by 20% for 10s. {Dance With the Wolf - Climax} is immune to interruption.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.2,
+                    "stat": "cr"
+                }
+            ]
+        },
+        "Sequence Node 2: Every Ground, Her Hunting Field": {
+            "desc": "Performing {Fire-Kissed Glory}, Heavy Attack {Wolf's Gnawing}, Heavy Attack {Wolf's Claw}, or Mid-air Attack {Firestrike} gives 20% Fusion DMG Bonus to all Resonators in the team for 30s, stacking up to 2 times.",
+            "effects": [
+                {
+                    "stack": true,
+                    "maxStack": 2,
+                    "value": 0.2,
+                    "stat": "fusion"
+                }
+            ]
+        },
+        "Sequence Node 3: Wolflame Howls in Her Wake": {
+            "desc": "The DMG Multiplier of Intro Skill {Nowhere to Run!} increases by 100%. The effect of Resonance Liberation {Glory} is now updated as follows: Casting Resonance Liberation {Fire-Kissed Glory} grants {Glory}. Attacks of all Resonators in the team ignore 15% Fusion RES for 35s.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 1.0,
+                    "stat": "skillBouns",
+                    "tags": "chain3"
+                },
+                {
+                    "stack": false,
+                    "value": 0.15,
+                    "stat": "fusionShred"
+                }
+            ]
+        },
+        "Sequence Node 4: High and Aflame Is Her Banner": {
+            "desc": "The DMG Multiplier of {Dance With the Wolf - Climax} increases by 125%.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 1.25,
+                    "stat": "skillBouns",
+                    "tags": "chain4"
+                }
+            ]
+        },
+        "Sequence Node 5: Embrace the Thunderous Triumph": {
+            "desc": "Performing Intro Skill {Try Focusing, Eh?} or {Nowhere to Run!} gives 15% Resonance Liberation DMG Bonus for 10s.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.15,
+                    "stat": "ult"
+                }
+            ]
+        },
+        "Sequence Node 6: To the Brightest Flaming Star": {
+            "desc": "The damage dealt by Forte Circuit {Dance With the Wolf - Climax}, Resonance Liberation {Fire-Kissed Glory}, and Intro Skill {Nowhere to Run!} ignores 30% of the target's DEF. Resonance Skill {Feral Fang} restores 100 points of Wolflame on hit, triggered once per 20s. Forte Circuit {Dance With the Wolf} is replaced with {Dance With the Wolf - Climax}. {Dance With the Wolf - Climax} can be performed when Lupa is not in Burning Matchpoint state. Casting Intro Skill {Nowhere to Run!} no longer ends {Pack Hunt} and {Glory}.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.3,
+                    "stat": "defIgnore",
+                    "tags": "chain6"
+                }
+            ]
+        }
+
+    },
+    "teamBuff": [
+        {
+            "name": "Pack Hunt",
+            "desc": "Resonators with {Pack Hunt} gain a 6% ATK increase, and 10% Fusion DMG Bonus when they attack Overlord Class or Calamity Class targets (both are non-stackable).",
+            "effects": [
+                {
+                    "value": 0.06,
+                    "stat": "atkPct",
+                    "stack": false
+                },
+                {
+                    "value": 0.1,
+                    "stat": "fusion",
+                    "stack": false
+                }
+            ]
+        },
+        {
+            "name": "Pack Hunt Fusion Team",
+            "desc": "Resonators with {Pack Hunt}: If there are 3 Fusion Resonators in the team, the Fusion DMG Bonus against Overlord Class or Calamity Class targets additionally increases by 10%.",
+            "effects": [
+                {
+                    "value": 0.1,
+                    "stat": "fusion",
+                    "stack": false
+                }
+            ]
+        },
+        {
+            "name": "Pack Hunt Enhanced",
+            "desc": "When the active Resonator casts Intro Skill, {Pack Hunt} is enhanced, granting an additional 6% ATK increase to all Resonators in the team, up to a maximum of 18%.",
+            "effects": [
+                {
+                    "value": 0.06,
+                    "stat": "atkPct",
+                    "stack": true,
+                    "maxStack": 3
+                }
+            ]
+        },
+        {
+            "name": "Inherent Skill: Applause of Victory",
+            "desc": "Casting Resonance Liberation {Fire-Kissed Glory} grants {Glory}. Within 35s, attacks of all Resonators in the team ignore 3% of the target's Fusion RES. For each Fusion Resonator in the team other than Lupa, this effect increases by 3%, up to the maximum of 9%.",
+            "effects": [
+                {
+                    "value": 0.03,
+                    "stat": "fusionShred",
+                    "stack": true,
+                    "maxStack": 3
+                }
+            ]
+        },
+        {
+            "name": "Inherent Skill: Applause of Victory: Fusion Team",
+            "desc": "When there are 3 Fusion Resonators in the team, Resonators' attacks further ignore 6% Fusion RES.",
+            "effects": [
+                {
+                    "value": 0.06,
+                    "stat": "fusionShred",
+                    "stack": false
+                }
+            ]
+        },
+        {
+            "name": "Outro Skill: Stand by Me, Warrior",
+            "desc": "The incoming Resonator will have their Fusion DMG Amplified by 20% and Basic Attack DMG Amplified by 25% for 14s or until the Resonator is switched out.",
+            "effects": [
+                {
+                    "value": 0.2,
+                    "stat": "fusionAmp",
+                    "stack": false
+                },
+                {
+                    "value": 0.25,
+                    "stat": "baAmp",
+                    "stack": false
+                }
+            ]
+        },
+        {
+            "name": "Sequence Node 2: Every Ground, Her Hunting Field",
+            "desc": "Performing {Fire-Kissed Glory}, Heavy Attack {Wolf's Gnawing}, Heavy Attack {Wolf's Claw}, or Mid-air Attack {Firestrike} gives 20% Fusion DMG Bonus to all Resonators in the team for 30s, stacking up to 2 times.",
+            "effects": [
+                {
+                    "value": 0.2,
+                    "stat": "fusion",
+                    "stack": true,
+                    "maxStack": 2
+                }
+            ]
+        },
+        {
+            "name": "Sequence Node 3: Wolflame Howls in Her Wake",
+            "desc": "Casting Resonance Liberation {Fire-Kissed Glory} grants {Glory}. Attacks of all Resonators in the team ignore 15% Fusion RES for 35s.",
+            "effects": [
+                {
+                    "value": 0.15,
+                    "stat": "fusionShred",
+                    "stack": false
+                }
+            ]
+        }
+    ]
+}

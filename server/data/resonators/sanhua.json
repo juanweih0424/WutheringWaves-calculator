@@ -1,0 +1,37 @@
+{
+    "id": 24,
+    "name": "Sanhua",
+    "rarity": 4,
+    "element": "Glacio",
+    "weapon": "Sword",
+    "stats": {
+        "hp": { "base": 805, "max": 10063 },
+        "atk": { "base": 22, "max": 275 },
+        "def": { "base": 77, "max": 941 }
+    },
+    "teamBuff": [
+        {
+            "name": "Outro Skill: Silversnow",
+            "desc": "The incoming Resonator has their Basic Attack DMG Amplified by 38% for 14s or until they are switched out.",
+            "effects": [
+                {
+                    "stack": false,
+                    "stat": "baAmp",
+                    "value": 0.38
+                }
+            ]
+        },
+        {
+            "name": "Sequence Node 6: Daybreak Radiance",
+            "desc": "After an {Ice Prism} or a {Glacier} is detonated, all team members' ATK is increased by 10% for 20s, stacking up to 2 times.",
+            "effects": [
+                {
+                    "stack": true,
+                    "maxStack": 2,
+                    "stat": "atkPct",
+                    "value": 0.1
+                }
+            ]
+        }
+    ]
+}

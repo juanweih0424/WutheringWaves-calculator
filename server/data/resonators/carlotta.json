@@ -213,10 +213,16 @@
                     "tags":"chain31"
                 },
                 {
-                    "stack":false,
-                    "value":10.32,
-                    "stat":"skillBounsAdd",
-                    "tags":"chain32"
+                    "extend": {
+                        "target": "outro",
+                        "label": "S3: Closing Remark Additional DMG",
+                        "type": "outro",
+                        "base": 10.3218,
+                        "max": 10.3218,
+                        "tags": [
+                            "chain3"
+                        ]
+                    }
                 }
             ]
         },   

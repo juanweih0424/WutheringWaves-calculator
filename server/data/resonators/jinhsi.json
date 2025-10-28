@@ -1,0 +1,263 @@
+{
+    "id": 5,
+    "name": "Jinhsi",
+    "rarity": 5,
+    "element": "Spectro",
+    "weapon": "Broadblade",
+    "stats": {
+        "hp": { "base": 866, "max": 10825 },
+        "atk": { "base": 33, "max": 413 },
+        "def": { "base": 103, "max": 1259 }
+    },
+    "minor": {
+        "cr": 0.08,
+        "atkPct": 0.12
+    },
+    "basic": {
+        "name": "Basic Attack: Slash of Breaking Dawn",
+        "detail": {
+            "Stage 1 DMG": {
+                "base": 0.3343,
+                "max": 0.6647,
+                "type": "baDmg"
+            },
+            "Stage 2 DMG": {
+                "base": 0.4904,
+                "max": 0.9749,
+                "type": "baDmg"
+            },
+            "Stage 3 DMG": {
+                "base": 0.5359,
+                "max": 1.0649,
+                "type": "baDmg"
+            },
+            "Stage 4 DMG": {
+                "base": 0.7934,
+                "max": 1.5772,
+                "type": "baDmg"
+            },
+            "Heavy Attack DMG": {
+                "base": 1.2,
+                "max": 2.386,
+                "type": "haDmg"
+            },
+            "Mid-air Attack DMG": {
+                "base": 0.62,
+                "max": 1.2328,
+                "type": "baDmg"
+            },
+            "Dodge Counter DMG": {
+                "base": 0.738,
+                "max": 1.4678,
+                "type": "baDmg"
+            }
+        }
+    },
+    "skill": {
+        "name": "Resonance Skill: Trailing Lights of Eons",
+        "detail": {
+            "Trailing Lights of Eons DMG": {
+                "base": 0.9787,
+                "max": 1.9446,
+                "type": "skill"
+            },
+            "Overflowing Radiance DMG": {
+                "base": 0.7836,
+                "max": 1.5851,
+                "type": "skill"
+            }
+        }
+    },
+    "ult": {
+        "name": "Resonance Liberation: Purge of Light",
+        "detail": {
+            "Purge of Light DMG": {
+                "base": 8.38,
+                "max": 16.6603,
+                "type": "ult",
+                "tags":["chain5"]
+            }
+        }
+    },
+    "forte": {
+        "name": "Forte Circuit: Incarnation",
+        "detail": {
+            "Incarnation: Basic Attack 1 DMG": {
+                "base": 0.4458,
+                "max": 0.8862,
+                "type": "skill"
+            },
+            "Incarnation: Basic Attack 2 DMG": {
+                "base": 0.6538,
+                "max": 1.2995,
+                "type": "skill"
+            },
+            "Incarnation: Basic Attack 3 DMG": {
+                "base": 0.8337,
+                "max": 1.6574,
+                "type": "skill"
+            },
+            "Incarnation: Basic Attack 4 DMG": {
+                "base": 0.939,
+                "max": 1.8669,
+                "type": "skill"
+            },
+            "Incarnation: Heavy Attack DMG": {
+                "base": 0.8,
+                "max": 1.5906,
+                "type": "skill"
+            },
+            "Incarnation: Dodge Counter DMG": {
+                "base": 1.1039,
+                "max": 2.1944,
+                "type": "skill"
+            },
+            "Crescent Divinity DMG": {
+                "base": 2.534,
+                "max": 5.038,
+                "type": "skill"
+            },
+            "Illuminous Epiphany: Solar Flare DMG": {
+                "base": 0.6,
+                "max": 1.1934,
+                "type": "skill",
+                "tags":["chain6","chain1"]
+            },
+            "Illuminous Epiphany: Stella Glamor DMG": {
+                "base": 1.75,
+                "max": 3.4792,
+                "type": "skill",
+                "tags":["chain6","inherent2", "chain1"]
+            }
+        }
+    },
+    "intro": {
+        "name": "Intro Skill: Loong's Halo",
+        "detail": {
+            "Loong's Halo DMG": {
+                "base": 0.8,
+                "max": 1.5905,
+                "type": "intro",
+                "tags":["inherent1"]
+            }
+        }
+    },
+    "outro": {
+        "name": "Outro Skill: Temporal Bender"
+    },
+    "buff": {
+        "Inherent Skill: Radiant Surge": {
+            "desc": "Jinhsi gains 20% Spectro DMG Bonus.",
+            "effects": [
+                {
+                    "value": 0.2,
+                    "stat": "spectro",
+                    "stack": false
+                }
+            ]
+        },
+        "Inherent Skill: Converged Flash": {
+            "desc": "DMG Multiplier of Intro Skill {Loong's Halo} is increased by 50%.",
+            "effects": [
+                {
+                    "value": 0.5,
+                    "stat": "skillBouns",
+                    "stack": false,
+                    "tags": "inherent1"
+                }
+            ]
+        },
+        "Incandescence":{
+            "desc": "Consume up to 50 {Incandescence}, with each point of {Incandescence} granting bonus DMG Multiplier percentage to {Stella Glamor}.",
+            "effects": [
+                {
+                    "stack":true,
+                    "maxStack": 50,
+                    "value":0.4454,
+                    "stat":"skillBounsAdd",
+                    "tags":"inherent2",
+                    "receive": "chain61"
+                }
+            ]
+        }
+    },
+    "chain": {
+        "Sequence Node 1: Abyssal Ascension": {
+            "desc": "When casting Basic Attack {Incarnation - Basic Attack} or Resonance Skill {Crescent Divinity}, Jinhsi gains one stack of {Herald of Revival}, stacking up to 4 times and lasting for 6s. When casting Resonance Skill {Illuminous Epiphany}, Jinhsi consumes all stacks of {Herald of Revival}. Each stack increases the damage of Resonance Skill {Illuminous Epiphany} by 20%.",
+            "effects": [
+                {
+                    "stack": true,
+                    "maxStack": 4,
+                    "value": 0.2,
+                    "stat": "skillInc",
+                    "tags": "chain1"
+                }
+            ]
+        },
+        "Sequence Node 2: Chronofrost Repose": {
+            "desc": "Jinhsi restores 50 Incandescence while staying out of combat for more than 4s. This effect can only be triggered 1 time every 4s."
+        },
+        "Sequence Node 3: Celestial Incarnate": {
+            "desc": "Jinhsi gains one stack of {Immortal's Descendancy} after casting Intro Skill {Loong's Halo}. Each stack of {Immortal's Descendancy} increases Jinhsi's ATK by 25%, stacking up to 2 times and lasting for 20s.",
+            "effects": [
+                {
+                    "stack": true,
+                    "maxStack": 2,
+                    "value": 0.25,
+                    "stat": "atkPct"
+                }
+            ]
+        },
+        "Sequence Node 4: Benevolent Grace": {
+            "desc": "When Jinhsi casts Resonance Liberation {Purge of Light} or Resonance Skill {Illuminous Epiphany}, all nearby Resonators on the team gain 20% Attribute DMG Bonus for 20s.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.2,
+                    "stat": "allAtr"
+                }
+            ]
+        },
+        "Sequence Node 5: Frostfire Illumination": {
+            "desc": "The DMG Multiplier of Resonance Liberation {Purge of Light} is increased by 120%.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 1.2,
+                    "stat": "ult",
+                    "tags": "chain5"
+                }
+            ]
+        },
+        "Sequence Node 6: Thawing Triumph": {
+            "desc": "The DMG Multiplier of Resonance Skill {Illuminous Epiphany} is increased by 45% and the additional DMG Multiplier gained by consuming {Incandescence} is increased by 45%.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.45,
+                    "stat": "skillBouns",
+                    "tags": "chain6"
+                },
+                {
+                    "stack": false,
+                    "value": 0.45,
+                    "stat": "skillBouns",
+                    "tags": "chain61"
+                }
+            ]
+        }
+    },
+    "teamBuff": [
+        {
+            "name": "Sequence Node 4: Benevolent Grace",
+            "desc": "When casting Resonance Liberation {Purge of Light} or Resonance Skill {Illuminous Epiphany}, all nearby Characters in the team gain DMG Bonus for all attributes by 20% for 20s.",
+            "effects": [
+                {
+                    "stack": false,
+                    "stat": "allAtr",
+                    "value": 0.2
+                }
+            ]
+        }
+    ]
+}

@@ -1,12 +1,12 @@
 export const getCharacterImageUrl = (() => {
-  const images = import.meta.glob("../assets/images/characters/avatar/*.webp", {
+  const images = import.meta.glob("../assets/images/characters/avatar/*.{webp,png}", {
     eager: true,
     import: "default",
   });
 
   const map = {};
   for (const path in images) {
-    const id = path.match(/(\d+)\.webp$/)?.[1];
+    const id = path.match(/(\d+)\.(?:webp|png)$/)?.[1];
     if (id) map[id] = images[path];
   }
   return (id) => map[id] ?? null;

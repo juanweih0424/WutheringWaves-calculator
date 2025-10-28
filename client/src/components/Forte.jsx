@@ -1,16 +1,34 @@
 import { useMemo } from "react";
 import { useResonator } from "../context/ResonatorContext";
+import { useResonatorChain } from "../context/ResonatorChainContext";
 import { useStats } from "../hooks/useStats";
 import { talentMv, finalHit } from "../utils/dmg";
+import {
+  useDetailMap,
+  collectExtensions,
+  mergeAbilityWithExtensions,
+  applyRatioScaling,
+} from "../utils/extensions";
 
 export default function Forte() {
   const stats = useStats();
   const { current, forte } = useResonator();
+  const { activeChain } = useResonatorChain();
 
   const scopedChain = stats?.scopedChain ?? [];
   const scopedInherent = stats?.scopedInherent ?? [];
   const title = current?.forte?.name ?? "Forte Circuit";
-  const ability = current?.forte?.detail ?? null;
+  const baseDetail = current?.forte?.detail ?? null;
+
+  const detailMap = useDetailMap(current);
+  const forteExtensions = useMemo(
+    () => collectExtensions(activeChain, detailMap, "forte"),
+    [activeChain, detailMap]
+  );
+  const { ability, ratioMeta } = useMemo(
+    () => mergeAbilityWithExtensions(baseDetail, forteExtensions, "forte"),
+    [baseDetail, forteExtensions]
+  );
 
   const defIgnoreScope = stats?.defIgnoreScope ?? null; // "all" | "baDmg" | "skill" | "ult"
   const defIgnoreGlobal = Number(stats?.defIgnore ?? 0);
@@ -28,6 +46,8 @@ export default function Forte() {
     shred = Number(stats?.havocShred ?? 0);
   } else if (current?.element === "Spectro"){
     shred = Number(stats?.spectroShred ?? 0);
+  } else if (current?.element === "Fusion"){
+    shred = Number(stats?.fusionShred ?? 0);
   }
 
 
@@ -81,6 +101,7 @@ export default function Forte() {
       let defPct = Number(stats?.defPct ?? 0);
       let specificCd = 0;
       let fusionAmp = 0;
+      let skillInc = 0;
 
       for (const eff of pool) {
         if (!matches(eff.appliesTo, row)) continue;
@@ -101,6 +122,10 @@ export default function Forte() {
             break;
           case "cd":
             specificCd += amt;
+            break;
+
+          case "skillInc":
+            skillInc += amt;
             break;
 
           case "receivedAmp":
@@ -168,9 +193,15 @@ export default function Forte() {
         addTypeBonus,
         addElemBonus,
         receivedAmp,
+        skillInc,
       };
     });
   }, [rows, stats, scopedInherent, scopedChain, defIgnoreGlobal, defIgnoreScope, current?.element]);
+
+  const rowsWithRatios = useMemo(
+    () => applyRatioScaling(rowsWithMods, ratioMeta, "forte"),
+    [rowsWithMods, ratioMeta]
+  );
 
   const typeBonusKey = (t) =>
     t === "baDmg" ? "baDmg" :
@@ -181,7 +212,7 @@ export default function Forte() {
 
   // ---------- Final damage per row ----------
   const computedRows = useMemo(() => {
-    if (!rowsWithMods.length || !stats || !current) return [];
+    if (!rowsWithRatios.length || !stats || !current) return [];
 
     const elementKey = (current.element ?? "").toLowerCase();
     const baseElemBonus = Number(stats?.[elementKey] ?? 0);
@@ -198,7 +229,7 @@ export default function Forte() {
       current.element === "Havoc"   ? Number(stats?.havocAmp ?? 0) : 
       0;
     
-    return rowsWithMods.map((row) => {
+    return rowsWithRatios.map((row) => {
       const tbKey = typeBonusKey(row.type);
       const baseTypeBonus = Number(tbKey ? stats?.[tbKey] ?? 0 : 0);
       
@@ -227,12 +258,13 @@ export default function Forte() {
     }
 
 
+
       const { nonCrit, crit, avg } = finalHit({
         atk: finalStat,
         mv: Number(row.mv ?? 0),
         scalingBonus: 0, 
         elementBonus: baseElemBonus + (row.addElemBonus ?? 0) + dmgInc,
-        skillBonus: baseTypeBonus + (row.addTypeBonus ?? 0),
+        skillBonus: baseTypeBonus + (row.addTypeBonus ?? 0) + row.skillInc,
         allAmp: Number(stats?.allAmp ?? 0) + (row.addAllAmp ?? 0) + specificAmp,
         elementAmp,
         skillTypeAmp,
@@ -249,7 +281,7 @@ export default function Forte() {
 
       return { ...row, nonCrit, avg, crit };
     });
-  }, [rowsWithMods, stats, current]);
+  }, [rowsWithRatios, stats, current]);
 
   if (!stats || !current || !ability) return null;
 
@@ -264,7 +296,7 @@ export default function Forte() {
         <div key={r.label} className="flex items-center justify-between px-3 py-2 odd:bg-gray-500/20">
           <div>
             <p className="text-xs lg:text-base font-medium">{r.label}</p>
-            {/*<div className="text-xs opacity-70">MV {(r.mv * 100).toFixed(2)}%</div>*/}
+            <div className="text-xs opacity-70">MV {(r.mv * 100).toFixed(2)}%</div>
           </div>
 
           <div className="grid grid-cols-3 gap-1 lg:gap-4 text-right">

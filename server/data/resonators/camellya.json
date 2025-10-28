@@ -1,0 +1,317 @@
+{
+    "id": 6,
+    "name": "Camellya",
+    "rarity": 5,
+    "element": "Havoc",
+    "weapon": "Sword",
+    "stats": {
+        "hp": { "base": 826, "max": 10325 },
+        "atk": { "base": 36, "max": 450 },
+        "def": { "base": 95, "max": 1161 }
+    },
+    "minor": {
+        "atkPct": 0.12,
+        "cd": 0.16
+    },
+    "basic": {
+        "name": "Basic Attack: Burgeoning",
+        "detail": {
+            "Basic Attack 1 DMG": {
+                "base": 0.3145,
+                "max": 0.6253,
+                "type": "baDmg",
+                "tags":["inherent1", "inherent2"]
+            },
+            "Basic Attack 2 DMG": {
+                "base": 0.4676,
+                "max": 0.9296,
+                "type": "baDmg",
+                "tags":["inherent1", "inherent2"]
+            },
+            "Basic Attack 3 DMG": {
+                "base": 0.765,
+                "max": 1.521,
+                "type": "baDmg",
+                "tags":["inherent1", "inherent2"]
+            },
+            "Basic Attack 4 DMG": {
+                "base": 2.484,
+                "max": 4.94,
+                "type": "baDmg",
+                "tags":["inherent1", "inherent2"]
+            },
+            "Basic Attack 5 DMG": {
+                "base": 0.9692,
+                "max": 1.9268,
+                "type": "baDmg",
+                "tags":["inherent1", "inherent2"]
+            },
+            "Heavy Attack DMG": {
+                "base": 1.3299,
+                "max": 2.6442,
+                "type": "baDmg"
+            },
+            "Mid-air Attack DMG": {
+                "base": 0.66,
+                "max": 1.3122,
+                "type": "baDmg",
+                "tags":["inherent1", "inherent2"]
+            },
+            "Dodge Counter DMG": {
+                "base": 1.5,
+                "max": 2.982,
+                "type": "baDmg",
+                "tags":["inherent1", "inherent2"]
+            }
+        }
+    },
+    "ult": {
+        "name": "Resonance Liberation: Fervor Efflorescent",
+        "detail": {
+            "Fervor Efflorescent DMG": {
+                "base": 6.05,
+                "max": 12.0281,
+                "type": "ult",
+                "tags":["chain3"]
+            }
+        }
+    },
+    "skill": {
+        "name": "Resonance Skill: Valse of Bloom and Blight",
+        "detail": {
+            "Crimson Blossom DMG": {
+                "base": 1.143,
+                "max": 2.2724,
+                "type": "baDmg",
+                "tags":["inherent1", "inherent2"]
+            },
+            "Vining Waltz 1 DMG": {
+                "base": 0.4845,
+                "max": 0.9633,
+                "type": "baDmg",
+                "tags":["inherent1", "inherent2"]
+            },
+            "Vining Waltz 2 DMG": {
+                "base": 0.459,
+                "max": 0.913,
+                "type": "baDmg",
+                "tags":["inherent1", "inherent2"]
+            },
+            "Vining Waltz 3 DMG": {
+                "base": 0.6624,
+                "max": 1.317,
+                "type": "baDmg",
+                "tags":["inherent1", "inherent2"]
+            },
+            "Vining Waltz 4 DMG": {
+                "base": 1.02,
+                "max": 2.0277,
+                "type": "baDmg",
+                "tags":["inherent1", "inherent2"]
+            },
+            "Blazing Waltz DMG": {
+                "base": 2.0976,
+                "max": 4.170,
+                "type": "baDmg",
+                "tags":["inherent1", "inherent2"]
+            },
+            "Floral Ravage DMG": {
+                "base": 1.3233,
+                "max": 2.6305,
+                "type": "baDmg",
+                "tags":["inherent1", "inherent2"]
+            },
+            "Vining Ronde DMG": {
+                "base": 0.7992,
+                "max": 1.5885,
+                "type": "baDmg",
+                "tags":["inherent1", "inherent2"]
+            },
+            "Atonement DMG": {
+                "base": 1.14,
+                "max": 2.2667,
+                "type": "baDmg",
+                "tags":["inherent1", "inherent2"]
+            }
+        }
+    },
+    "forte": {
+        "name": "Forte Circuit: Vegetative Universe",
+        "detail": {
+            "Ephemeral DMG": {
+                "base": 6.35,
+                "max": 12.6245,
+                "type": "baDmg",
+                "tags":["chain2"]
+            },
+            "S6 Perennial Flower DMG (S6 Enabled)": {
+                "base": 6.35,
+                "max": 12.6245,
+                "type": "baDmg",
+                "tags":["chain2"]
+            }
+        }
+    },
+    "intro": {
+        "name": "Intro Skill: Everblooming",
+        "detail": {
+            "Everblooming DMG": {
+                "base": 1,
+                "max": 1.9881,
+                "type": "intro",
+                "tags":["chain5"]
+            }
+        }
+    },
+    "outro": {
+        "name": "Outro Skill: Twining",
+        "detail": {
+            "Twining DMG": {
+                "base": 3.2924,
+                "max": 3.2924,
+                "type": "outro",
+                "tags":["chain51"]
+            },
+            "Twining (after Ephemeral) DMG": {
+                "base": 4.5902,
+                "max": 4.5902,
+                "type": "outro",
+                "tags":["chain51"]
+            }
+        }
+    },
+    "buff": {
+        "Inherent Skill: Seedbed": {
+            "desc": "Gain 15% Havoc DMG Bonus. DMG dealt by Heavy Attack {Pruning} is now considered Basic Attack DMG.",
+            "effects": [
+                {
+                    "value": 0.15,
+                    "stat": "havoc",
+                    "stack": false
+                }
+            ]
+        },
+        "Inherent Skill: Epiphyte": {
+            "desc": "Gain 15% Basic DMG Bonus and increased resistance to interruption when casting Basic Attack, Basic Attack {Vining Waltz}, and Basic Attack {Blazing Waltz}.",
+            "effects": [
+                {
+                    "value": 0.15,
+                    "stat": "baDmg",
+                    "stack": false
+                }
+            ]
+        },
+        "Sweet Dream": {
+            "desc": "Increase the DMG Multiplier of Normal Attack, Basic Attack {Vining Waltz}, Basic Attack {Blazing Waltz}, Basic Attack {Vining Ronde}, Dodge Counter {Atonement}, Resonance Skill {Crimson Blossom}, and Resonance Skill {Floral Ravage} by 50%.",
+            "effects": [
+                {
+                    "value": 0.5,
+                    "stat": "skillBouns",
+                    "stack": false,
+                    "tags":"inherent1",
+                    "receive":"chain6"
+                }
+            ]
+        },
+        "Sweet Dream Ephemeral": {
+            "desc": "Casting {Ephemeral} consumes all {Crimson Buds}. Each {Crimson Bud} consumed additionally increases the DMG Multiplier of {Sweet Dream} by 5%, up to 50%.",
+            "effects": [
+                {
+                    "value": 0.05,
+                    "stat": "skillBouns",
+                    "stack": true,
+                    "maxStack": 10,
+                    "tags": "inherent2"
+                }
+            ]
+        }
+    },
+    "chain": {
+        "Sequence Node 1: Somewhere No One Travelled": {
+            "desc": "Casting Intro Skill {Everblooming} increases Camellya's Crit. DMG by 28% for 18s. This effect can be triggered once every 25s. Immune to interruptions while casting {Ephemeral}.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.28,
+                    "stat": "cd"
+                }
+            ]
+        },
+        "Sequence Node 2: Calling Upon the Silent Rose": {
+            "desc": "The DMG Multiplier of Resonance Skill {Ephemeral} is increased by 120%.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 1.2,
+                    "stat": "skillBouns",
+                    "tags": "chain2"
+                }
+            ]
+        },
+        "Sequence Node 3: A Bud Adorned by Thorns": {
+            "desc": "The DMG Multiplier of Resonance Liberation {Fervor Efflorescent} is increased by 50%. When in {Budding Mode}, Camellya's ATK is increased by 58%.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.5,
+                    "stat": "skillBouns",
+                    "tags": "chain3"
+                },
+                {
+                    "stack": false,
+                    "value": 0.58,
+                    "stat": "atkPct"
+                }
+            ]
+        },
+        "Sequence Node 4: Roots Set Deep in Eternity": {
+            "desc": "Casting {Everblooming} gives all team members 25% Basic Attack DMG Bonus for 30s.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.25,
+                    "stat": "baDmg"
+                }
+            ]
+        },
+        "Sequence Node 5: Infinity Held in Your Palm": {
+            "desc": "The DMG Multipliers of Intro Skill {Everblooming} is increased by 303% and Outro Skill {Twining} is increased by 68%.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 3.03,
+                    "stat": "skillBouns",
+                    "tags": "chain5"
+                },
+                {
+                    "stack": false,
+                    "value": 0.68,
+                    "stat": "skillBouns",
+                    "tags": "chain51"
+                }
+            ]
+        },
+        "Sequence Node 6: Bloom For You Thousand Times Over (before casting Perennial)": {
+            "desc": "The DMG Multiplier of Forte Circuit's {Sweet Dream} is additionally increased by 150%. Within 15s after casting {Ephemeral}, if Concerto Energy is full and {Perennial} is not on cooldown, Resonance Skill is replaced with {Perennial}. Casting {Perennial} consumes 50 Concerto Energy and recovers 50 Crimson Pistils, dealing Havoc DMG equal to 100% of {Ephemeral} DMG, considered Basic Attack DMG. This skill can be cast once every 25s. Immune to interruptions when casting {Perennial}.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 3,
+                    "stat": "skillBouns",
+                    "tags": "chain6"
+                }
+            ]
+        },
+        "Sequence Node 6: Bloom For You Thousand Times Over (after casting Perennial)": {
+            "desc": "Camellya enters {Budding Mode} after casting {Perennial} and removes all {Crimson Buds}. The bonus DMG Multiplier granted by Forte Circuit's {Sweet Dream} is increased to 250%. Immune to interruptions when casting {Perennial}.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 5,
+                    "stat": "skillBouns",
+                    "tags": "chain6"
+                }
+            ]
+        }
+    }
+}

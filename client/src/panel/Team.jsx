@@ -9,6 +9,7 @@ import { useResonatorBuffs } from "../context/ResonatorBuffContext";
 import TeamCharModal from "../modals/TeamCharModal";
 import ResonatorBuffCard from "../components/ResonatorBuffCard";
 import { getCharacterImageUrl } from "../utils/character";
+import EchoSetBuff from "./EchoSetBuff";
 
 export default function Team() {
   /* -------------------- WEAPON BUFFS (unchanged) -------------------- */
@@ -97,13 +98,13 @@ export default function Team() {
             const isOpen = !!openByOwner[owner];
 
             return (
-              <div key={owner} className="border border-gray-500/50 rounded-2xl shadow-md mr-2">
+              <div key={owner} className="border border-gray-500/50 rounded-2xl shadow-md">
                 <button
                   type="button"
-                  className="w-full flex items-center justify-between rounded-xl px-2 lg:py-2 hover:bg-gray-500/20 transition cursor-pointer"
+                  className="w-full flex items-center justify-between rounded-xl px-2 py-1 lg:py-2 hover:bg-gray-500/20 transition cursor-pointer"
                   onClick={() => setOpenByOwner((m) => ({ ...m, [owner]: !isOpen }))}
                 >
-                  <p className="text-xs lg:text-sm font-semibold">Buffs for {owner}</p>
+                  <p className="text-xs lg:text-base font-semibold">Buffs for {owner}</p>
                   <span className={`inline-block text-2xl transition-transform ${isOpen ? "rotate-180" : ""}`}>▾</span>
                 </button>
 
@@ -125,13 +126,13 @@ export default function Team() {
       )}
 
       {/* ---- Weapon Buffs panel (kept exactly) ---- */}
-      <div className="border border-gray-500/50 rounded-2xl shadow-md mr-2">
+      <div className="border border-gray-500/30 rounded-2xl shadow-md">
         <button
           type="button"
-          className="w-full flex items-center justify-between rounded-xl px-2 lg:py-2 hover:bg-gray-500/20 transition cursor-pointer"
+          className="w-full flex items-center justify-between rounded-xl px-2 py-1 lg:py-2 hover:bg-gray-500/20 transition cursor-pointer"
           onClick={() => setWeaponOpen((v) => !v)}
         >
-          <p className="text-xs lg:text-sm font-semibold">Team Weapon Buffs</p>
+          <p className="text-xs lg:text-base font-semibold">Team Weapon Buff</p>
           <span className={`inline-block text-2xl transition-transform ${weaponOpen ? "rotate-180" : ""}`}>▾</span>
         </button>
 
@@ -153,6 +154,7 @@ export default function Team() {
           </div>
         </div>
       </div>
+      <EchoSetBuff/>
     </div>
   );
 }

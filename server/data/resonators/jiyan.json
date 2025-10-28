@@ -1,0 +1,271 @@
+{
+    "id": 18,
+    "name": "Jiyan",
+    "rarity": 5,
+    "element": "Aero",
+    "weapon": "Broadblade",
+    "stats": {
+        "hp": {
+            "base": 839,
+            "max": 10488
+        },
+        "atk": {
+            "base": 35,
+            "max": 438
+        },
+        "def": {
+            "base": 97,
+            "max": 1186
+        }
+    },
+    "minor": {
+        "cr": 0.08,
+        "atkPct": 0.12
+    },
+    "basic": {
+        "name": "Normal Attack: Lone Lance",
+        "detail": {
+            "Part 1 Damage": {
+                "base": 0.368,
+                "max": 0.7316,
+                "type": "baDmg"
+            },
+            "Part 2 Damage": {
+                "base": 0.22,
+                "max": 0.4373,
+                "type": "baDmg"
+            },
+            "Part 3 Damage": {
+                "base": 0.915,
+                "max": 1.819,
+                "type": "baDmg"
+            },
+            "Part 4 Damage": {
+                "base": 0.666,
+                "max": 1.324,
+                "type": "baDmg"
+            },
+            "Part 5 Damage": {
+                "base": 2.3746,
+                "max": 4.721,
+                "type": "baDmg"
+            },
+            "Heavy Attack Damage": {
+                "base": 0.6696,
+                "max": 1.332,
+                "type": "haDmg"
+            },
+            "Windborne Strike Damage": {
+                "base": 0.533,
+                "max": 1.0596,
+                "type": "haDmg"
+            },
+            "Abyssal Slash Damage": {
+                "base": 0.411,
+                "max": 0.8171,
+                "type": "haDmg"
+            },
+            "Mid-Air Attack Damage": {
+                "base": 0.62,
+                "max": 1.2326,
+                "type": "baDmg"
+            },
+            "Banner Of Triumph Damage": {
+                "base": 0.4,
+                "max": 0.7952,
+                "type": "baDmg"
+            },
+            "Mid-Air Attack Follow-Up Damage": {
+                "base": 0.783,
+                "max": 1.5566,
+                "type": "baDmg"
+            },
+            "Dodge Counter Damage": {
+                "base": 1.266,
+                "max": 2.517,
+                "type": "baDmg"
+            }
+        }
+    },
+    "skill": {
+        "name": "Resonance Skill: Windqueller",
+        "detail": {
+            "Windqueller DMG": {
+                "base": 2.14,
+                "max": 4.2544,
+                "type": "skill"
+            }
+        }
+    },
+    "ult": {
+        "name": "Resonance Liberation: Emerald Storm: Prelude",
+        "detail": {
+            "Lance of Qingloong Part 1 Damage": {
+                "base": 2.636,
+                "max": 5.252,
+                "type": "haDmg"
+            },
+            "Lance of Qingloong Part 2 Damage": {
+                "base": 2.4768,
+                "max": 4.9244,
+                "type": "haDmg"
+            },
+            "Lance of Qingloong Part 3 Damage": {
+                "base": 2.6864,
+                "max": 5.3408,
+                "type": "haDmg"
+            }
+        }
+    },
+    "forte": {
+        "name": "Forte Circuit: Qingloong at War",
+        "detail": {
+            "Emerald Storm: Finale Damage": {
+                "base": 3.5941,
+                "max": 7.1729,
+                "type": "haDmg",
+                "tags": ["chain6"]
+            }
+        }
+    },
+    "buff": {
+        "Forte Circuit: Qingloong at War": {
+            "desc": "When casting Resonance Skill {Windqueller}, if Jiyan has 30 or more {Resolve}, he consumes 30 {Resolve} to increase the damage of this Resonance Skill {Windqueller} by 20%.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.2,
+                    "stat": "skill",
+                    "tags": "inherent1"
+                }
+            ]
+        },
+        "Inherent Skill: Heavenly Balance": {
+            "desc": "After casting the Intro Skill {Tactical Strike}, Jiyan's ATK is increased by 10% for 15s.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.1,
+                    "stat": "atkPct"
+                }
+            ]
+        },
+        "Inherent Skill: Tempest Taming": {
+            "desc": "When Jiyan's attacks hit a target, Jiyan's Crit. DMG is increased by 12% for 8s.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.12,
+                    "stat": "cd"
+                }
+            ]
+        }
+    },
+    "intro": {
+        "name": "Intro Skill: Tactical Strike",
+        "detail": {
+            "Tactical Strike DMG": {
+                "base": 1.0,
+                "max": 1.9881,
+                "type": "intro"
+            }
+        }
+    },
+    "outro": {
+        "name": "Outro Skill: Discipline",
+        "detail": {
+            "Discipline DMG": {
+                "base": 3.134,
+                "max": 3.134,
+                "type": "outro",
+                "tags": [
+                    "chain5"
+                ]
+            }
+        },
+        "cooldown": 1,
+        "maxTrigger": 2
+    },
+    "chain": {
+        "Sequence Node 1: Benevolence": {
+            "desc": "Resonance Skill {Windqueller} can be used one additional time and the {Resolve} cost of casting {Windqueller} is decreased by 15."
+        },
+        "Sequence Node 2: Versatility": {
+            "desc": "After casting Intro Skill {Tactical Strike}, Jiyan gains 30 {Resolve} and increases his ATK by 28% for 15s. This effect can be triggered once every 15s.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.28,
+                    "stat": "atkPct"
+                }
+            ]
+        },
+        "Sequence Node 3: Spectation": {
+            "desc": "When casting Resonance Skill {Windqueller}, Resonance Liberation {Emerald Storm: Prelude}, Resonance Skill {Emerald Storm: Finale}, or Intro Skill {Tactical Strike}, Jiyan gains 16% Crit. Rate and 32% Crit. DMG for 8s.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.16,
+                    "stat": "cr"
+                },
+                {
+                    "stack": false,
+                    "value": 0.32,
+                    "stat": "cd"
+                }
+            ]
+        },
+        "Sequence Node 4: Prudence": {
+            "desc": "When casting Resonance Liberation {Emerald Storm: Prelude} or Resonance Liberation {Emerald Storm: Finale}, Heavy Attack DMG Bonus of all team members is increased by 25% for 30s.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 0.25,
+                    "stat": "haDmg"
+                }
+            ]
+        },
+        "Sequence Node 5: Resolution": {
+            "desc": "The DMG Multiplier of Outro Skill {Discipline} is increased by 120%. When Jiyan's attacks hit a target, his ATK is increased by 3% for 8s, stacking up to 15 times; this effect is immediately maxed after he casts Intro Skill {Tactical Strike}.",
+            "effects": [
+                {
+                    "stack": false,
+                    "value": 1.2,
+                    "stat": "skillBouns",
+                    "tags": "chain5"
+                },
+                {
+                    "stack": true,
+                    "maxStack": 15,
+                    "stat": "atkPct",
+                    "value": 0.03
+                }
+            ]
+        },
+        "Sequence Node 6: Fortitude": {
+            "desc": "Every time Heavy Attack, Intro Skill {Tactical Strike}, or Resonance Skill {Windqueller} is used, Jiyan gains 1 stack of {Momentum}, stacking up to 2 times. Resonance Liberation {Emerald Storm: Finale} consumes all {Momentum}, and each stack consumed increases the DMG Multiplier of {Emerald Storm: Finale} by 120%.",
+            "effects": [
+                {
+                    "stack": true,
+                    "maxStack": 2,
+                    "value": 1.2,
+                    "stat": "skillBouns",
+                    "tags": "chain6"
+                }
+            ]
+        }
+    },
+    "teamBuff": [
+        {
+            "name": "Sequence Node 4: Prudence",
+            "desc": "When casting Resonance Liberation {Emerald Storm: Prelude} or Resonance Liberation {Emerald Storm: Finale}, Heavy Attack DMG Bonus of all team members is increased by 25% for 30s.",
+            "effects": [
+                {
+                    "stack": false,
+                    "stat": "haDmg",
+                    "value": 0.25
+                }
+            ]
+        }
+    ]
+}

@@ -98,7 +98,7 @@ export default function CharModal({ open, onClose, onSelect }) {
             </div>
             <div className="flex flex-col lg:flex-row gap-4">
             {elementOptions.length > 0 && (
-              <div className="flex flex-wrap items-center lg:gap-2">
+              <div className="flex items-center lg:gap-2">
                 <span className="text-xs lg:text-sm uppercase tracking-wide opacity-60">Element</span>
                 {elementOptions.map((el) => {
                   const iconSrc = iconForElement(el);
@@ -130,7 +130,7 @@ export default function CharModal({ open, onClose, onSelect }) {
               </div>
             )}
             {rarityOptions.length > 0 && (
-              <div className="flex flex-wrap items-center gap-2">
+              <div className="flex items-center gap-2">
                 <span className="text-xs lg:text-sm uppercase tracking-wide opacity-60">Rarity</span>
                 {rarityOptions.map((rarity) => {
                   const active = Number(rarityFilter) === Number(rarity);
