@@ -33,7 +33,7 @@ export default function ResonatorBuff() {
                 <div className="min-w-0">
                   <div className="text-sm font-medium lg:text-lg text-[var(--color-highlight)]">{name}</div>
                   {data.desc && (
-                    <p className="text-xs lg:text-base mt-1">
+                    <p className="text-xs lg:text-sm mt-1">
                       {tokenizeDescription(data.desc).map((tok, i) => (
                         <span
                           key={i}

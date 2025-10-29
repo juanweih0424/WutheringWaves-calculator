@@ -36,16 +36,27 @@ export default function Toggle() {
             role="menu"
             className="absolute right-0 top-full -mt-[1px] z-[60]
               w-20 bg-[var(--color-bg)] border border-[var(--color-bg)] rounded-lg  
-              shadow-lg tracking-tight"
+              shadow-lg tracking-tight space-y-1"
           >
-            <a href="/about" className="block px-4 py-2 text-sm text-center">About</a>
-            <a href="https://github.com/your/repo" target="_blank" rel="noreferrer"
-              className="block px-4 py-2 text-sm text-center">Repo</a>
+            <Link to="" className="block text-sm  italic lg:text-base text-center hover:text-[var(--color-text-hover)]">
+              Calculator
+            </Link>
+            <Link to="about" className="block text-sm italic lg:text-base text-center hover:text-[var(--color-text-hover)]">
+              Formula & About
+            </Link>
           </div>
         )}
       </div>
       <div className="hidden lg:flex lg:gap-x-2 lg:justify-center lg:items-center">
-            <a href="/about" className="block text-sm lg:text-base text-center hover:text-[var(--color-text-hover)]">Placeholder</a>
+            <Link to="" className="block text-sm lg:text-base text-center hover:text-[var(--color-text-hover)]">
+              Calculator
+            </Link>
+            <Link to="about" className="block text-sm lg:text-base text-center hover:text-[var(--color-text-hover)]">
+              Formula & About
+            </Link>
+            <Link to="update" className="block text-sm lg:text-base text-center hover:text-[var(--color-text-hover)]">
+              Updates
+            </Link>
       </div>
     </div>
 

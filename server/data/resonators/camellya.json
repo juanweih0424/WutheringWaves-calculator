@@ -143,12 +143,6 @@
                 "max": 12.6245,
                 "type": "baDmg",
                 "tags":["chain2"]
-            },
-            "S6 Perennial Flower DMG (S6 Enabled)": {
-                "base": 6.35,
-                "max": 12.6245,
-                "type": "baDmg",
-                "tags":["chain2"]
             }
         }
     },
@@ -299,6 +293,21 @@
                     "value": 3,
                     "stat": "skillBouns",
                     "tags": "chain6"
+                },
+                {
+                    "extend": {
+                        "target": "forte",
+                        "label": "S6 Perennial Flower DMG",
+                        "type": "baDmg",
+                        "tags": [
+                            "chain61"
+                        ],
+                        "ratioOf": {
+                            "section": "forte",
+                            "row": "Ephemeral DMG",
+                            "ratio": 1
+                        }
+                    }
                 }
             ]
         },

@@ -30,7 +30,7 @@ export default function ChainPanel() {
                 <div className="min-w-0">
                   <div className="font-medium text-sm lg:text-lg text-[var(--color-highlight)]">{name}</div>
                   {node.desc && (
-                  <p className="text-xs lg:text-base mt-1">
+                  <p className="text-xs lg:text-sm mt-1">
                     {tokenizeDescription(node.desc).map((tok, i) => (
                       <span
                         key={i}

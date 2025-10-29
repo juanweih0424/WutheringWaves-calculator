@@ -21,7 +21,7 @@ export default function CharacterCard({resonator, onSelect}) {
             <img src={element} className='size-6 lg:size-10'/>
             <img src={weapon} className='size-5.5 lg:size-10 brightness-[var(--color-img)]'/>
           </div>
-          <button className='bg-[#309adb] rounded-2xl border-0 text-xs py-1 px-2 lg:px-3  lg:text-base hover:bg-blue-600 cursor-pointer
+          <button className='bg-[#309adb] rounded-2xl border-0 py-1 px-2 lg:px-4 lg:py-1.5  text-xs lg:text-sm hover:bg-blue-600 cursor-pointer
           transition-transform duration-300 ease-in-out' onClick={() => onSelect?.(resonator)} type="button">
             Resonate
           </button>

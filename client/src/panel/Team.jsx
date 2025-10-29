@@ -144,7 +144,7 @@ export default function Team() {
               <div className="space-y-8 p-4 border-0 shadow-md rounded-2xl">
                 <button
                   onClick={clearAllBuffs}
-                  className="bg-red-500/80 hover:bg-red-500 transition p-2 text-xs lg:text-base rounded-xl cursor-pointer"
+                  className="bg-red-500/80 hover:bg-red-500 transition p-2 text-xs lg:text-sm rounded-xl cursor-pointer"
                 >
                   Clear All
                 </button>

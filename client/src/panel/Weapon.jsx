@@ -126,7 +126,7 @@ export default function Weapon() {
         {currWeap? (
             <div className='flex flex-col p-6 mx-4 border-1 shadow-md my-4 rounded-2xl gap-2 border-gray-500/30'>
                 <p className='text-[var(--color-highlight)] font-bold text-sm lg:text-base'>{passiveStats.weapPassiveName}</p>
-                <div className="text-xs lg:text-base" dangerouslySetInnerHTML={{ __html: passiveStats.weapPassiveDesc }} />
+                <div className="text-xs lg:text-sm" dangerouslySetInnerHTML={{ __html: passiveStats.weapPassiveDesc }} />
             </div>
         ):(null)}
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 p-4">
@@ -136,10 +136,10 @@ export default function Weapon() {
         return (
           <div key={k} className="rounded-xl border-1 p-4 shadow-md border-gray-500/30 flex flex-col">
             <p className="text-sm lg:text-base">
-              <span className="text-sm lg:text-base font-semibold">
+              <span className="text-sm font-semibold">
                 {LABELS[k] ?? k}
               </span>{" "}
-              <span className="text-[var(--color-highlight)]">{percent}%</span>
+              <span className="text-[var(--color-highlight)] text-sm">{percent}%</span>
             </p>
             <div className="mt-2 flex items-center gap-4">
               <label className="inline-flex items-center gap-2">
@@ -152,7 +152,7 @@ export default function Weapon() {
               </label>
               {isStackLine && passiveStats.hasStack && (
                 <div className="flex items-center gap-2">
-                  <span className='text-xs lg:text-base'>Stacks</span>
+                  <span className='text-xs lg:text-sm'>Stacks</span>
                   <input
                     type="number"
                     min={0}

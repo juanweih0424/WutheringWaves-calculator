@@ -36,7 +36,7 @@ export default function Header({ onSelect = () => {}, activePage }) {
         <button onClick={() => onSelect("team")} className="cursor-pointer h-full p-2 hover:bg-[var(--color-hover)] border-0 border-solid rounded-full">
             <img
             src={team}
-            title="Teammates"
+            title="Teammates & Buffs"
             className="w-full h-full object-contain filter brightness-[var(--color-img)] 
             hover:scale-[1.1] transition-transform duration-150"
             />
@@ -44,7 +44,7 @@ export default function Header({ onSelect = () => {}, activePage }) {
         <button onClick={() => onSelect("chain")} className="cursor-pointer h-full pr-0.5 pb-0.75 hover:bg-[var(--color-hover)] border-0 border-solid rounded-full">
             <img
             src={chain}
-            title="Resonator Chain"
+            title="Resonator Chains"
             className="w-full h-full object-contain filter brightness-[var(--color-img)] 
             hover:scale-[1.1] transition-transform duration-150"
             />
@@ -54,7 +54,7 @@ export default function Header({ onSelect = () => {}, activePage }) {
             <img
             src={enemy}
             title="Enemy Setting"
-            className="w-full h-full object-contain pt-3 pb-1 px-1 filter brightness-[var(--color-img)] 
+            className="w-full h-full object-contain px-1.5 pt-3 pb-0.5 filter brightness-[var(--color-img)] 
             hover:scale-[1.1] transition-transform duration-150"
             />
         </button>

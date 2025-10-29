@@ -184,9 +184,9 @@ export default function Resonator() {
           >
             <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <p className="text-sm lg:text-base font-semibold tracking-tight">{statTitle(key)}</p>
+                <p className="text-sm font-semibold tracking-tight">{statTitle(key)}</p>
               </div>
-              <p className="text-xs lg:text-sm opacity-80 mt-0.5">
+              <p className="text-xs  opacity-80 mt-0.5">
                 {statDesc(key, value)}
               </p>
             </div>
@@ -206,7 +206,7 @@ export default function Resonator() {
             peer-checked:bg-emerald-500/70 peer-checked:after:translate-x-5
           "
         />
-        <span className="ml-3 text-sm opacity-80 w-16 text-right">
+        <span className="ml-3 text-xs opacity-80 w-16 text-right">
           {enable ? 'Enabled' : 'Disabled'}
         </span>
       </label>
